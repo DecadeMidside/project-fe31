@@ -1,18 +1,52 @@
-import { Button, Form, Input, Row } from "antd";
-import { FaSearch } from "react-icons/fa";
+import { Button, Input, Col } from "antd";
 import styled from "styled-components";
 
 export const TopHeader = styled.div`
   height: auto;
   width: 100%;
 
-  padding: 20px;
+  /* padding: 20px; */
 `;
 
 export const navBar = styled.ul`
   display: flex;
+  padding: 20px;
+  font-size: 18px;
+
   justify-content: space-between;
   list-style-type: none;
+  > li:hover {
+    color: #ffc62d;
+    cursor: pointer;
+  }
+`;
+
+export const CustomCol = styled(Col)`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: auto;
+  height: inherit;
+`;
+export const StyledListIcon = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  font-size: 18px;
+  width: 100%;
+  padding: 20px;
+`;
+export const StyledIcon = styled.div`
+  margin: 0 16px;
+  :hover {
+    color: #ffc62d;
+    cursor: pointer;
+  }
+`;
+
+export const CustomColLogo = styled(Col)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 export const HeaderBar = styled.div`
   font-size: 13px;
@@ -21,14 +55,6 @@ export const HeaderBar = styled.div`
   padding-top: 10px;
   margin-bottom: 0;
   text-decoration: none;
-`;
-export const RowCenter = styled(Row)`
-  align-items: center;
-`;
-export const StyledFormSearch = styled(Form)`
-  position: relative;
-  /* line-height: 150px; */
-  margin: 8px 0 0 8px;
 `;
 
 export const StyledSearchInput = styled(Input)`
@@ -67,21 +93,9 @@ export const SearchBtn = styled(Button)`
     border-radius: 0;
   }
 `;
-export const SearchIcon = styled(FaSearch)`
-  position: absolute;
-  align-items: flex-start;
-  line-height: 150px;
-  font-size: inherit;
-  letter-spacing: 1px;
-`;
-export const StyledLogoWrap = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+
 export const StyledImg = styled.img`
   max-width: 115px;
   height: auto;
-
   object-fit: cover;
 `;

@@ -1,40 +1,65 @@
 import { Col, Row } from "antd";
-import { SearchOutlined } from "@ant-design/icons";
+import {
+  FaSearch,
+  FaPhoneAlt,
+  FaHeart,
+  FaUser,
+  FaCartPlus,
+} from "react-icons/fa";
 import Logo from "../../images/breitling.svg";
 import * as S from "./styles";
 
-const onSearch = (value) => console.log(value);
 function Header() {
   return (
-    <div className="header">
+    <>
       <S.TopHeader>
         <Row>
-          <Col span={4}>
+          <S.CustomColLogo span={4}>
             <S.StyledImg src={Logo}></S.StyledImg>
-          </Col>
+          </S.CustomColLogo>
           <Col span={12}>
             <S.navBar>
-              <li>Watches</li>
-              <li>Straps</li>
-              <li>Stores</li>
-              <li>Service</li>
-              <li>Sustainability</li>
-              <li>About</li>
+              <li>WATCHES</li>
+              <li>STRAPS</li>
+              <li>STORES</li>
+              <li>SERVICE</li>
+              <li>SUSTAINABILITY</li>
+              <li>ABOUT</li>
             </S.navBar>
           </Col>
-          <Col span={8}>
-            <SearchOutlined />
-          </Col>
+          <S.CustomCol span={8}>
+            <S.StyledListIcon>
+              <S.StyledIcon>
+                {" "}
+                <FaSearch />
+              </S.StyledIcon>
+              <S.StyledIcon>
+                {" "}
+                <FaPhoneAlt />
+              </S.StyledIcon>
+              <S.StyledIcon>
+                {" "}
+                <FaHeart />
+              </S.StyledIcon>
+              <S.StyledIcon>
+                <FaUser />
+              </S.StyledIcon>
+              <S.StyledIcon>
+                {" "}
+                <FaCartPlus />
+              </S.StyledIcon>
+            </S.StyledListIcon>
+          </S.CustomCol>
         </Row>
       </S.TopHeader>
       <S.HeaderBar>
-        <S.RowCenter>
+        {/* <S.RowCenter>
           <Col span={8}></Col>
           <Col span={8}></Col>
           <Col span={8}>col-8</Col>
-        </S.RowCenter>
+        </S.RowCenter> */}
       </S.HeaderBar>
-    </div>
+    </>
   );
 }
 export default Header;
