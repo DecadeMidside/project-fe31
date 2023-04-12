@@ -1,5 +1,6 @@
 import { ConfigProvider } from "antd";
 import Header from "../layout/Header";
+import Footer from "../layout/Footer";
 // import  from "";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         }}
       >
         <Header />
+        <Footer />
       </ConfigProvider>
     </div>
   );

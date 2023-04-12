@@ -1,0 +1,60 @@
+import * as S from "./styles";
+import {
+  FaFacebook,
+  FaTiktok,
+  FaInstagram,
+  FaYoutube,
+  FaTwitter,
+  FaTelegram,
+} from "react-icons/fa";
+function Footer() {
+  return (
+    <S.styleFooter>
+      <S.styleFooterHeading>
+        <li> +1 203-456-2458 </li>
+        <li>MON-FRI 09:00-18:00, SAT-SUN: CLOSED</li>
+        <li>INFO.US@BREITLING.COM</li>
+      </S.styleFooterHeading>
+      <S.styleFooterWrapper>
+        <S.styleFooterMenu>
+          <li>WATCHES</li>
+          <li>STRAPS </li>
+          <li>SERVICE </li>
+          <li>STORES </li>
+          <li>ABOUT </li>
+          <li>MY ACCOUNT</li>
+          <li>FAQS </li>
+          <li>NEWSLETTER </li>
+          <li>DOWNLOAD THE CATALOG </li>
+          <li>CHECK YOUR ORDER</li>
+        </S.styleFooterMenu>
+        <div>
+          <S.styleButton>UNITED STATES ENG</S.styleButton>
+        </div>
+      </S.styleFooterWrapper>
+
+      <S.styleFooterMenu>
+        <FaFacebook />
+        <FaInstagram />
+        <FaTelegram />
+        <FaTiktok />
+        <FaYoutube />
+        <FaTwitter />
+      </S.styleFooterMenu>
+
+      <S.styleFooterMenu>
+        <li>Terms of use</li>
+        <li>Press lounge</li>
+        <li>Career</li>
+        <li>Human Rights statement</li>
+        <li>Privacy policy</li>
+        <li>Terms & conditions</li>
+        <li>Contact</li>
+        <li>Impressum</li>
+        <li>Sitemap</li>
+        <li>Accessibility</li>
+      </S.styleFooterMenu>
+    </S.styleFooter>
+  );
+}
+export default Footer;
