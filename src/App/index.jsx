@@ -1,19 +1,20 @@
 import { ConfigProvider } from "antd";
 import Header from "../layout/Header";
-// import  from "";
+import ProductList from "../pages/ProductList";
 
 function App() {
   return (
     <div className="App">
       <ConfigProvider
-        theme={{
-          token: {
-            colorPrimary: "green",
-            colorText: "black",
-          },
-        }}
+      // theme={{
+      //   token: {
+      //     colorPrimary: "",
+      //     colorText: "black",
+      //   },
+      // }}
       >
         <Header />
+        <ProductList />
       </ConfigProvider>
     </div>
   );
