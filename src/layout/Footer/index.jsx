@@ -1,4 +1,5 @@
 import * as S from "./styles";
+import { TfiWorld } from "react-icons/tfi";
 import {
   FaFacebook,
   FaTiktok,
@@ -6,17 +7,20 @@ import {
   FaYoutube,
   FaTwitter,
   FaTelegram,
+  FaPhoneAlt,
 } from "react-icons/fa";
 function Footer() {
   return (
     <S.styleFooter>
       <S.styleFooterHeading>
-        <li> +1 203-456-2458 </li>
+        <li>
+          <FaPhoneAlt /> +1 203-456-2458{" "}
+        </li>
         <li>MON-FRI 09:00-18:00, SAT-SUN: CLOSED</li>
         <li>INFO.US@BREITLING.COM</li>
       </S.styleFooterHeading>
       <S.styleFooterWrapper>
-        <S.styleFooterMenu>
+        <S.styleFooterMenu style={{ fontWeight: 500 }}>
           <li>WATCHES</li>
           <li>STRAPS </li>
           <li>SERVICE </li>
@@ -29,18 +33,21 @@ function Footer() {
           <li>CHECK YOUR ORDER</li>
         </S.styleFooterMenu>
         <div>
-          <S.styleButton>UNITED STATES ENG</S.styleButton>
+          <S.styleButton>
+            <TfiWorld />
+            UNITED STATES ENG
+          </S.styleButton>
         </div>
       </S.styleFooterWrapper>
 
-      <S.styleFooterMenu>
+      <S.styleFooterSocial>
         <FaFacebook />
         <FaInstagram />
         <FaTelegram />
         <FaTiktok />
         <FaYoutube />
         <FaTwitter />
-      </S.styleFooterMenu>
+      </S.styleFooterSocial>
 
       <S.styleFooterMenu>
         <li>Terms of use</li>
