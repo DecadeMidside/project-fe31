@@ -14,7 +14,7 @@ function Footer() {
     <S.styleFooter>
       <S.styleFooterHeading>
         <li>
-          <FaPhoneAlt /> +1 203-456-2458{" "}
+          <FaPhoneAlt /> +1 203-456-2458 0983823317{" "}
         </li>
         <li>MON-FRI 09:00-18:00, SAT-SUN: CLOSED</li>
         <li>INFO.US@BREITLING.COM</li>
