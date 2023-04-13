@@ -1,4 +1,7 @@
 import { Col, Row } from "antd";
+import { Link } from "react-router-dom";
+
+import { ROUTES } from "../../constant/routes";
 import {
   FaSearch,
   FaPhoneAlt,
@@ -42,7 +45,9 @@ function Header() {
                 <FaHeart />
               </S.StyledIcon>
               <S.StyledIcon>
-                <FaUser />
+                <Link to={ROUTES.ACCOUNT}>
+                  <FaUser />
+                </Link>
               </S.StyledIcon>
               <S.StyledIcon>
                 {" "}

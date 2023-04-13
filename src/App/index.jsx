@@ -1,15 +1,22 @@
 import { ConfigProvider } from "antd";
-import Header from "../layout/Header";
-import Footer from "../layout/Footer";
-import ProductList from "../pages/ProductList";
+import { Routes, Route } from "react-router-dom";
+
+import "../App.css";
+import UserLayout from "../layout/UserLayout";
+
+import AccountPage from "../pages/Account";
+
+import { ROUTES } from "../constant/routes";
 
 function App() {
   return (
     <div className="App">
       <ConfigProvider>
-        <Header />
-        <Footer />
-        <ProductList />
+        <Routes>
+          <Route element={<UserLayout />}>
+            <Route path={ROUTES.ACCOUNT} element={<AccountPage />} />
+          </Route>
+        </Routes>
       </ConfigProvider>
     </div>
   );
