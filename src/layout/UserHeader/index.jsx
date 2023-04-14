@@ -45,7 +45,7 @@ function Header() {
                 <FaHeart />
               </S.StyledIcon>
               <S.StyledIcon>
-                <Link to={ROUTES.ACCOUNT}>
+                <Link to={ROUTES.USER.ACCOUNT}>
                   <FaUser />
                 </Link>
               </S.StyledIcon>
@@ -57,13 +57,6 @@ function Header() {
           </S.CustomCol>
         </Row>
       </S.TopHeader>
-      <S.HeaderBar>
-        {/* <S.RowCenter>
-          <Col span={8}></Col>
-          <Col span={8}></Col>
-          <Col span={8}>col-8</Col>
-        </S.RowCenter> */}
-      </S.HeaderBar>
     </>
   );
 }

@@ -3,21 +3,26 @@ import styled from "styled-components";
 
 export const TopHeader = styled.div`
   height: auto;
+  position: fixed;
   width: 100%;
-
-  /* padding: 20px; */
+  height: 64px;
+  background-color: #fff;
+  z-index: 999;
+  top: 0;
 `;
 
 export const navBar = styled.ul`
   display: flex;
   padding: 20px;
   font-size: 18px;
-
   justify-content: space-between;
   list-style-type: none;
   > li:hover {
     color: #ffc62d;
     cursor: pointer;
+  }
+  > li {
+    font-weight: 500;
   }
 `;
 
