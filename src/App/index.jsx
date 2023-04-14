@@ -1,25 +1,30 @@
 import { ConfigProvider } from "antd";
-import Header from "../layout/Header";
-import Footer from "../layout/Footer";
-// import  from "";
+import { Routes, Route } from "react-router-dom";
+
+import "../App.css";
+import UserLayout from "../layout/UserLayout";
+
+import AccountPage from "../pages/Account";
+
+import { ROUTES } from "../constant/routes";
+import HomePage from "../pages/Home";
+import RegisterPage from "../pages/Register";
 import ProductList from "../pages/ProductList";
 
 function App() {
   return (
-    <div className="App">
-      <ConfigProvider
-      // theme={{
-      //   token: {
-      //     colorPrimary: "",
-      //     colorText: "black",
-      //   },
-      // }}
-      >
-        <Header />
-        <Footer />
-        <ProductList />
-      </ConfigProvider>
-    </div>
+    <ConfigProvider>
+      <Routes>
+        <Route element={<UserLayout />}>
+          <Route path={ROUTES.USER.HOME} element={<HomePage />} />
+          <Route path={ROUTES.USER.ACCOUNT} element={<AccountPage />} />
+          <Route path={ROUTES.USER.REGISTER} element={<RegisterPage />} />
+          <Route path={ROUTES.USER.PRODUCT_LIST} element={<ProductList />} />
+
+          <Route />
+        </Route>
+      </Routes>
+    </ConfigProvider>
   );
 }
 

@@ -1,9 +1,12 @@
 import { Card } from "antd";
 import styled from "styled-components";
 
-export const WatchesWrapper = styled.div`
-  width: 25%;
+export const ProductListWrapper = styled.div`
+  max-width: 1216px;
+  padding: 0 16px;
 `;
+
+export const WatchesWrapper = styled.div``;
 export const StyledProductItem = styled(Card)`
   display: flex;
   flex-direction: column;
