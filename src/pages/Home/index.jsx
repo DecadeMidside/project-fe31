@@ -1,6 +1,5 @@
 import { Carousel, Row, Col } from "antd";
 import * as S from "./styles";
-import ProductItem from "../ProductList/productItem";
 
 function HomePage() {
   return (
@@ -87,20 +86,7 @@ function HomePage() {
               NOW{" "}
             </S.styledCustomTitle>
           </Col>
-          <S.styledContentWrapper>
-            <S.styledCustomColProductItem span={6}>
-              {ProductItem()}
-            </S.styledCustomColProductItem>
-            <S.styledCustomColProductItem span={6}>
-              {ProductItem()}
-            </S.styledCustomColProductItem>
-            <S.styledCustomColProductItem span={6}>
-              {ProductItem()}
-            </S.styledCustomColProductItem>
-            <S.styledCustomColProductItem span={6}>
-              {ProductItem()}
-            </S.styledCustomColProductItem>
-          </S.styledContentWrapper>
+          <S.styledContentWrapper></S.styledContentWrapper>
         </Row>
       </div>
       <Row>
