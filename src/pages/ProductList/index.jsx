@@ -11,12 +11,7 @@ function ProductList() {
           <Card>rrr</Card>
         </Col>
         <Col span={18}>
-          <Row gutter={[16, 16]}>
-            <Col span={6}>{ProductItem()}</Col>
-            <Col span={6}>{ProductItem()}</Col>
-            <Col span={6}>{ProductItem()}</Col>
-            <Col span={6}>{ProductItem()}</Col>
-          </Row>
+          <Row gutter={[16, 16]}></Row>
           <Row justify={"center"}>
             <Button>Showmore</Button>
           </Row>
