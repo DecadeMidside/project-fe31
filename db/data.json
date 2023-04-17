@@ -1,11 +1,131 @@
-{"products":[
+{
+  "products": [
     {
-"id": 1,
-"name": "abc"
+      "id": 1,
+      "name": " B01 FORD THUNDERBIRD",
+      "codeNumber": "AB01766A1A1X1",
+      "price": "8000",
+      "diametterId": 1,
+      "categoryId": 1,
+      "image": "https://www.breitling.com/media/image/3/cfg_site_hd/asset-version-c314a64086/ab01766a1a1x1-top-time-b01-ford-thunderbird-soldier.webp"
     },
-     {
-"id": 2,
-"name": "xyz"
+    {
+      "id": 2,
+      "name": " B01 FORD MUSTANG",
+      "codeNumber": "AB01762A1L1X1",
+      "diametterId": 2,
+      "price": "8000",
+      "categoryId": 1,
+      "image": "https://www.breitling.com/media/image/3/cfg_site_hd/asset-version-04db51d5d1/ab01762a1l1x1-top-time-b01-ford-mustang-soldier.webp"
+    },
+    {
+      "id": 3,
+      "name": " B01 CHRONOGRAPH 42",
+      "codeNumber": "AB0145331K1P1",
+      "price": "9100",
+      "diametterId": 3,
+
+      "categoryId": 2,
+      "image": "https://www.breitling.com/media/image/3/cfg_site_hd/asset-version-ea58b1cb58/ab0145331k1p1-premier-b01-chronograph-42-soldier.webp"
+    },
+    {
+      "id": 4,
+      "name": " B01 CHRONOGRAPH 42",
+      "codeNumber": "AB0145221B1P1",
+      "price": "9100",
+      "diametterId": 4,
+
+      "categoryId": 2,
+      "image": ""
+    },
+    {
+      "id": 5,
+      "name": "  AUTOMATIC 42",
+      "codeNumber": "A17375211I1S1",
+      "price": "9100",
+      "diametterId": 1,
+      "categoryId": 3,
+      "image": ""
+    },
+    {
+      "id": 6,
+      "name": "  AUTOMATIC 42",
+      "codeNumber": "A17378E71C1S1",
+      "price": "9100",
+      "diametterId": 3,
+      "categoryId": 3,
+      "image": ""
+    },
+    {
+      "id": 7,
+      "name": "  AUTOMATIC 42",
+      "codeNumber": "A17378E71C1S1",
+      "diametterId": 3,
+
+      "price": "9100",
+
+      "categoryId": 3,
+      "image": ""
     }
-]
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Top Time",
+      "image": "https://www.breitling.com/media/image/3/cfg_site_hd/asset-version-04db51d5d1/ab01762a1l1x1-top-time-b01-ford-mustang-soldier.webp"
+    },
+    {
+      "id": 2,
+      "name": "Premier",
+      "image": "https://www.breitling.com/media/image/3/cfg_site_hd/asset-version-9b62e57ff3/rb0145371g1p1-premier-b01-chronograph-42-soldier.webp"
+    },
+    {
+      "id": 3,
+      "name": "Superocean",
+      "image": "https://www.breitling.com/media/image/3/cfg_site_hd/asset-version-eb247b6ee0/a17375211i1s1-superocean-automatic-42-soldier.webp"
+    },
+    {
+      "id": 4,
+      "name": "Navitimer",
+      "image": "https://www.breitling.com/media/image/2/cfg_site_hd/asset-version-cc35307579/ab0138241g1p1-navitimer-b01-chronograph-43-soldier.webp"
+    },
+    {
+      "id": 5,
+      "name": "Chromonat",
+      "image": "https://www.breitling.com/media/image/2/cfg_site_hd/asset-version-b8b26f4c30/a32398101m1a1-chronomat-automatic-gmt-40-soldier.webp"
+    },
+    {
+      "id": 6,
+      "name": "Professional",
+      "image": "https://www.breitling.com/media/image/1/cfg_site_hd/asset-version-a0fbec2ab9/x82310d91b1s1-endurance-pro-soldier.webp"
+    },
+    {
+      "id": 7,
+      "name": "Superocean Heritage",
+      "image": "https://www.breitling.com/media/image/2/cfg_site_hd/asset-version-0fb0f2c064/ab2010121l1s1-superocean-heritage-b20-automatic-42-soldier.webp"
+    },
+    {
+      "id": 8,
+      "name": "Avenger",
+      "image": "https://www.breitling.com/media/image/1/cfg_site_hd/asset-version-a29fc38c89/v13317101b1x1.webp"
+    }
+  ],
+  "diametters": [
+    {
+      "id": 1,
+      "size": "size 42mm"
+    },
+    {
+      "id": 2,
+      "size": "size 43mm"
+    },
+    {
+      "id": 3,
+      "size": "size 44mm"
+    },
+    {
+      "id": 4,
+      "size": "size 45mm"
+    }
+  ]
 }
