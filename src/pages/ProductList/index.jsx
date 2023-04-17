@@ -16,7 +16,6 @@ function ProductList() {
             <Col span={6}>{ProductItem()}</Col>
             <Col span={6}>{ProductItem()}</Col>
             <Col span={6}>{ProductItem()}</Col>
-            <Col span={6}>{ProductItem()}</Col>
           </Row>
           <Row justify={"center"}>
             <Button>Showmore</Button>
