@@ -27,30 +27,22 @@ export const StyleTitle = styled.div`
   letter-spacing: 0;
   margin: 40px auto;
 `;
+
 export const WrapperCollection = styled(Row)`
   background-color: #f1f1f1;
-  height: auto;
+  height: 100px;
   width: 100%;
   display: flex;
   font-size: 14px;
   justify-content: center;
 `;
-// export const WrapperFilter = styled(Row)`
-//   display: flex;
-//   background-color: #fff;
-//   padding: 16px;
-//   margin: 0;
-//   width: 100%;
-//   height: inherit;
-//   font-size: 14px;
-//   justify-content: center;
-// `;
+
 export const CustomCol = styled(Col)`
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: auto;
-  height: 100%;
+  height: auto;
 `;
 export const CustomColSort = styled(Col)`
   display: flex;
@@ -60,31 +52,74 @@ export const CustomColSort = styled(Col)`
   height: inherit;
 `;
 export const StyledCollection = styled(Card)`
-  flex-direction: column;
-  /* background-color: ; */
-
+  background-color: rgba(256, 256, 256, 0);
+  margin-top: -100%;
   width: 100%;
-  height: auto;
+  height: 145px;
   text-align: center;
   font-size: 8px;
   border: none;
-
   border-radius: 0 !important;
-  padding: 0;
+  > img {
+    margin-top: 20px;
+    padding: 0;
+    width: 100%;
+    height: 60px;
+    margin-bottom: 0;
+  }
+  > div {
+    padding: 0 4px 0 !important ;
+    margin-top: -24px;
+  }
+  :hover {
+    scale: 1.1;
+    cursor: pointer;
+  }
 `;
 
 export const StyledProductItem = styled(Card)`
   display: flex;
+  position: relative;
+
   flex-direction: column;
   background-color: #fafafa;
-
   width: 100%;
-  height: 500px;
+  height: 450px;
   text-align: center;
   font-size: 14px;
   border: none;
   border-radius: 0 !important;
+  > div {
+    padding: 0 4px 0 !important ;
+    margin: -24px;
+  }
+
+  &::before {
+    content: "NEW";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0 8px;
+    margin: 8px;
+    border-top: solid 2px #ffc62d;
+    border-bottom: solid 2px #ffc62d;
+    background-color: #fafafa;
+    color: #333;
+    font-weight: 500;
+  }
 `;
+export const HeartIconWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  /* padding: 0 8px; */
+  margin: 4px;
+  color: #333;
+  font-size: 24px;
+  cursor: pointer;
+`;
+
 export const StyledBtnProduct = styled.button`
   width: 160px;
   height: 50px;

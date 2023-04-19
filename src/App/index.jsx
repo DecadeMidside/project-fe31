@@ -10,6 +10,7 @@ import { ROUTES } from "../constant/routes";
 import HomePage from "../pages/Home";
 import RegisterPage from "../pages/Register";
 import ProductList from "../pages/ProductList";
+import ProductDetail from "../pages/ProductDetail";
 
 function App() {
   return (
@@ -20,6 +21,10 @@ function App() {
           <Route path={ROUTES.USER.ACCOUNT} element={<AccountPage />} />
           <Route path={ROUTES.USER.REGISTER} element={<RegisterPage />} />
           <Route path={ROUTES.USER.PRODUCT_LIST} element={<ProductList />} />
+          <Route
+            path={ROUTES.USER.PRODUCT_DETAIL}
+            element={<ProductDetail />}
+          />
 
           <Route />
         </Route>

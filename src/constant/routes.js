@@ -4,7 +4,7 @@ export const ROUTES = {
     REGISTER: "/pages/Register",
     HOME: "/",
     PRODUCT_LIST: "/pages/ProductList",
-    PRODUCT_DETAIL: "/san-pham/:id",
+    PRODUCT_DETAIL: "/pages/ProductDetail",
     ABOUT: "/about",
   },
   ADMIN: {

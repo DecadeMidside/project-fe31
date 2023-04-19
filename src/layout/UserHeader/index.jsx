@@ -20,9 +20,12 @@ function Header() {
           <S.CustomColLogo span={4}>
             <S.StyledImg src={Logo}></S.StyledImg>
           </S.CustomColLogo>
+
           <Col span={12}>
             <S.navBar>
-              <li>WATCHES</li>
+              <Link to={ROUTES.USER.PRODUCT_LIST}>
+                <li>WATCHES</li>
+              </Link>
               <li>STRAPS</li>
               <li>STORES</li>
               <li>SERVICE</li>

@@ -12,7 +12,7 @@ import {
   Image,
 } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-
+import { AiOutlineHeart } from "react-icons/ai";
 import { ROUTES } from "../../constant/routes";
 import { PRODUCT_LIMIT } from "../../constant/paging";
 import {
@@ -83,10 +83,7 @@ function ProductList() {
     return categoryList.data.map((item) => {
       return (
         <S.CustomCol span={3} key={item.id}>
-          <S.StyledCollection
-            hoverable
-            cover={<img alt="example" src={item.image} />}
-          >
+          <S.StyledCollection cover={<img alt="example" src={item.image} />}>
             <Meta title={item.name} />
           </S.StyledCollection>
         </S.CustomCol>
@@ -106,6 +103,9 @@ function ProductList() {
                 <h3>{item.name}</h3>
                 <h6>{item.price} </h6>
                 <S.StyledBtnProduct>ADD TO CART</S.StyledBtnProduct>
+                <S.HeartIconWrapper>
+                  <AiOutlineHeart />
+                </S.HeartIconWrapper>
               </S.StyledProductItem>{" "}
             </section>
           </Link>
@@ -136,9 +136,18 @@ function ProductList() {
             </Card>
           </Col>
           <Col span={18}>
-            <Row justify={""} gutter={[16, 16]}>
-              {renderProductList}
+            <Row gutter={[16, 16]}>
+              <Col span={16}>
+                <Input.Search></Input.Search>
+              </Col>
+              <Col span={8}>
+                <Select style={{ width: "100%" }}>
+                  <Select.Option value="desc">Giá tăng dần</Select.Option>
+                  <Select.Option value="asc">Giá giảm dần</Select.Option>
+                </Select>
+              </Col>
             </Row>
+            <Row gutter={[16, 16]}>{renderProductList}</Row>
             {productList.data.length !== productList.meta.total && (
               <Row justify="center" style={{ marginTop: 16 }}>
                 <Button onClick={() => handleShowMore()}>Show more</Button>
