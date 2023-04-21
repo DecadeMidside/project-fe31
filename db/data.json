@@ -3,8 +3,10 @@
     {
       "id": 1,
       "name": " B01 FORD THUNDERBIRD",
+      "genderId": 1,
       "codeNumber": "AB01766A1A1X1",
       "price": "8000",
+
       "diametterId": 1,
       "categoryId": 1,
       "image": "https://www.breitling.com/media/image/3/cfg_site_hd/asset-version-c314a64086/ab01766a1a1x1-top-time-b01-ford-thunderbird-soldier.webp"
@@ -13,6 +15,7 @@
       "id": 2,
       "name": " B01 FORD MUSTANG",
       "codeNumber": "AB01762A1L1X1",
+      "genderId": 1,
       "diametterId": 2,
       "price": "8000",
       "categoryId": 1,
@@ -23,6 +26,7 @@
       "name": " B01 CHRONOGRAPH 42",
       "codeNumber": "AB0145331K1P1",
       "price": "9100",
+      "genderId": 1,
       "diametterId": 3,
 
       "categoryId": 2,
@@ -33,39 +37,43 @@
       "name": " B01 CHRONOGRAPH 42",
       "codeNumber": "AB0145221B1P1",
       "price": "9100",
+      "genderId": 1,
       "diametterId": 4,
 
       "categoryId": 2,
-      "image": ""
+      "image": "https://www.breitling.com/media/image/3/cfg_site_hd/asset-version-7a14651816/ab01763a1c1x1-top-time-b01-shelby-cobra-soldier.webp"
     },
     {
       "id": 5,
       "name": "  AUTOMATIC 42",
       "codeNumber": "A17375211I1S1",
-      "price": "9100",
+      "price": "10100",
+      "genderId": 2,
       "diametterId": 1,
       "categoryId": 3,
-      "image": ""
+      "image": "https://www.breitling.com/media/image/3/gallery_square_1080/asset-version-ccb394543a/rb0145371g1p1-premier-b01-chronograph-42-soldier.webp"
     },
     {
       "id": 6,
       "name": "  AUTOMATIC 42",
       "codeNumber": "A17378E71C1S1",
       "price": "9100",
+      "genderId": 2,
       "diametterId": 3,
       "categoryId": 3,
-      "image": ""
+      "image": "https://www.breitling.com/media/image/3/cfg_site_hd/asset-version-c969b9b221/ab0145221b1p1-premier-b01-chronograph-42-soldier.webp"
     },
     {
       "id": 7,
       "name": "  AUTOMATIC 42",
       "codeNumber": "A17378E71C1S1",
+      "genderId": 2,
       "diametterId": 3,
 
       "price": "9100",
 
       "categoryId": 3,
-      "image": ""
+      "image": "https://www.breitling.com/media/image/3/cfg_site_hd/asset-version-5a13dd8ed2/ab0145371l1a1-premier-b01-chronograph-42-soldier-3.webp"
     }
   ],
   "categories": [
@@ -126,6 +134,16 @@
     {
       "id": 4,
       "size": "size 45mm"
+    }
+  ],
+  "genders": [
+    {
+      "id": 1,
+      "gender": "Men"
+    },
+    {
+      "id": 1,
+      "gender": "Women"
     }
   ]
 }

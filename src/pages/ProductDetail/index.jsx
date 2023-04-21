@@ -1,4 +1,5 @@
 import * as S from "./styles";
+
 import {
   Input,
   Button,
@@ -10,117 +11,253 @@ import {
   Space,
   Image,
 } from "antd";
+import { useEffect, useMemo } from "react";
+import { Link, useParams, generatePath } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
+import { AiOutlineHeart } from "react-icons/ai";
+import { ROUTES } from "../../constant/routes";
+import { PRODUCT_LIMIT } from "../../constant/paging";
+import {
+  getProductDetailAction,
+  getProductListAction,
+} from "../../redux/actions";
+import { FaPhoneAlt, FaCalendarAlt } from "react-icons/fa";
+
 function ProductDetail() {
+  const { id } = useParams();
+
+  const dispatch = useDispatch();
+
+  const { productList, productDetail } = useSelector((state) => state.product);
+
+  useEffect(() => {
+    dispatch(getProductDetailAction({ id: id }));
+    dispatch(
+      getProductListAction({
+        page: 1,
+        limit: PRODUCT_LIMIT,
+      })
+    );
+  }, [id]);
+  const renderProductList = useMemo(() => {
+    return productList.data.map((item) => {
+      return (
+        <Col key={item.id} span={6}>
+          <Link to={generatePath(ROUTES.USER.PRODUCT_DETAIL, { id: item.id })}>
+            <S.StyledProductItem
+              hoverable
+              cover={<img alt="example" src={item.image} />}
+            >
+              <h3>{item.name}</h3>
+              <h6>{item.price} </h6>
+              <S.StyledBtnProduct>ADD TO CART</S.StyledBtnProduct>
+              <S.HeartIconWrapper>
+                <AiOutlineHeart />
+              </S.HeartIconWrapper>
+            </S.StyledProductItem>{" "}
+          </Link>
+        </Col>
+      );
+    });
+  }, [productList.data]);
   return (
     <div>
-      <Row>
+      <S.WrapperDetail>
         <Col span={12}>
-          <Image src="https://www.breitling.com/media/image/3/gallery_square/asset-version-e8254c39f6/ab01761a1k1x1-top-time-b01-chevrolet-corvette-soldier.webp"></Image>
+          <img src={productDetail.data.image}></img>
         </Col>
-        <Col span={12}>
-          <h5>AB0145171C1A1</h5>
-          <h1>PREMIER B01 CHRONOGRAPH 42</h1>
-          <h3>USD 9,500</h3>
+        <S.CustomColDetail span={12}>
+          <h5>{productDetail.data.codeNumber}</h5>
+          <h1>{productDetail.data.name}</h1>
+          <h3>USD {productDetail.data.price}</h3>
           <h5>Boutique delivery available</h5>
-          <button>ADD TO BAG</button>
-          <button>GIVE AS A GIFT</button>
-          <div>
-            <div>icon</div>
-            <div>CALL TO BUY</div>
-          </div>
-          <div>
-            <div>icon</div>
-            <div>BOOK AN APPOINTMENT</div>
-          </div>
-          <ul>
-            <li>FREE SHIPPING</li>
-            <li>FREE RETURN</li>
-            <li>EXCLUSIVE BENEFITS</li>
-          </ul>
-        </Col>
-      </Row>
-      <h1>KEY FEATURES</h1>
-      <Row>
-        <ul style={{ display: "flex" }}>
-          <li>
-            <img src="" alt="ex" />
-            <h5>Case material</h5>
-            <strong>123</strong>
-          </li>
-          <li>
-            <img src="" alt="ex" />
-            <h5>Water resistance</h5>
-            <strong>123</strong>
-          </li>
-          <li>
-            <img src="" alt="ex" />
-            <h5>Diameter</h5>
-            <strong>123</strong>
-          </li>
-          <li>
-            <img src="" alt="ex" />
-            <h5>Thickness</h5>
-          </li>
-          <li>
-            <img src="" alt="ex" />
-            <h5>Product Weight (Approx.)</h5>
-            <strong>123</strong>
-          </li>
-          <li>
-            <img src="" alt="ex" />
-            <h5>Power reserve</h5>
-            <strong>123</strong>
-          </li>
-        </ul>
-      </Row>
-      <h1>WARRANTY</h1>
-      <Row style={{ display: "flex" }}>
-        <Col span={8}>
-          <Row>
-            <Col span={16}>
+          <S.styleButton outline={true}>ADD TO BAG</S.styleButton>
+          <S.styleTextOr>
+            <span>or</span>
+          </S.styleTextOr>
+          <S.styleButton outline={false}> GIVE AS A GIFT</S.styleButton>
+          <S.styleCall>
+            <FaPhoneAlt /> <span>CALL TO BUY </span>
+          </S.styleCall>
+          <S.styleCall>
+            <FaCalendarAlt /> <span>BOOK AN APPOINTMENT</span>
+          </S.styleCall>
+
+          <S.styleRowService gutter={[16, 16]}>
+            <S.styleColService span={8}>
               <div>
+                <img src="https://www.breitling.com/media/breitling/images/br-11-20/asset-version-890399ea8e/icon-free-shipping.svg"></img>
+              </div>
+              <span>FREE SHIPPING</span>
+            </S.styleColService>
+            <S.styleColService span={8}>
+              <div>
+                <img src="https://www.breitling.com/media/breitling/images/br-11-20/asset-version-14fb6ee1d5/icon-free-return.svg"></img>
+              </div>
+              <span>FREE RETURN</span>
+            </S.styleColService>
+            <S.styleColService span={8}>
+              <div>
+                <img src="https://www.breitling.com/media/breitling/images/br-11-20/asset-version-0721303587/icon-exclusive-benefit.svg"></img>
+              </div>
+              <span>EXCLUSIVE BENEFITS</span>
+            </S.styleColService>
+          </S.styleRowService>
+        </S.CustomColDetail>
+      </S.WrapperDetail>
+
+      <S.styleTechnical>
+        <h1>TECHNICAL DATA</h1>
+        <S.styleRowFeature>
+          <S.styleTechnicalContent span={6}>
+            <h3>MOVEMENT</h3>
+            <ul>
+              <li>
+                <h4>Caliber</h4>
+                <p>Breitling 01 (Manufacture)</p>
+              </li>
+              <li>
+                <h4>Power reserve</h4>
+                <p>Approx. 70 hrs</p>
+              </li>
+              <li>
+                <h4>Vibration</h4>
+                <p>28,800 v.p.h</p>
+              </li>
+              <li>
+                <h4>Calendar</h4>
+                <p>Dial aperture</p>
+              </li>
+            </ul>
+          </S.styleTechnicalContent>
+          <S.styleTechnicalContent span={6}>
+            <h3>DIMENSIONS</h3>
+            <ul>
+              <li>
+                <h4>Product Weight (Approx.)</h4>
+                <p>Breitling 01 (Manufacture)</p>
+              </li>
+              <li>
+                <h4>Watch-head Weight (Approx.)</h4>
+                <p>Approx. 70 hrs</p>
+              </li>
+              <li>
+                <h4>Diameter</h4>
+                <p>28,800 v.p.h</p>
+              </li>
+              <li>
+                <h4>Thickness</h4>
+                <p>Dial aperture</p>
+              </li>
+            </ul>
+          </S.styleTechnicalContent>{" "}
+          <S.styleTechnicalContent span={6}>
+            <h3>STRAP</h3>
+            <ul>
+              <li>
+                <h4>Strap material</h4>
+                <p>Breitling 01 (Manufacture)</p>
+              </li>
+              <li>
+                <h4>Strap color</h4>
+                <p>Approx. 70 hrs</p>
+              </li>
+              <li>
+                <h4>Strap type</h4>
+                <p>28,800 v.p.h</p>
+              </li>
+              <li>
+                <h4>Lug</h4>
+                <p>Dial aperture</p>
+              </li>
+            </ul>
+          </S.styleTechnicalContent>{" "}
+          <S.styleTechnicalContent span={6}>
+            <h3>CASE</h3>
+            <ul>
+              <li>
+                <h4>Case material</h4>
+                <p>Stainless steel</p>
+              </li>
+              <li>
+                <h4> Caseback</h4>
+                <p>Approx. 70 hrs</p>
+              </li>
+              <li>
+                <h4>Bezel</h4>
+                <p>28,800 v.p.h</p>
+              </li>
+              <li>
+                <h4>Crystal</h4>
+                <p>Dial aperture</p>
+              </li>
+            </ul>
+          </S.styleTechnicalContent>
+        </S.styleRowFeature>
+      </S.styleTechnical>
+
+      <S.styleTechnical gutter={[16, 16]}>
+        <h1>YOU MAY ALSO LIKE</h1>
+        <S.styleRowFeature> {renderProductList}</S.styleRowFeature>
+      </S.styleTechnical>
+      <S.styleTechnical>
+        <h1>WARRANTY</h1>
+        <Row style={{ display: "flex" }} gutter={[16, 16]}>
+          <Col span={8}>
+            <Row style={{ display: "flex" }}>
+              <S.styleText span={16}>
                 Whether it's a chronograph or Breitling watch, we've got you
                 covered on all your needs. Find all the details under our terms
                 and conditions – Breitling International Warranty and Warranty
                 Period. Warranty Duration (Years): 5 Visit Breitling's Terms &
                 Conditions for warranty details.
-              </div>
-            </Col>
-            <Col span={8}>
-              <img src="" alt="chứng nhận" />
-            </Col>
-          </Row>
-          <Row>
-            <h4>+3 YEARS</h4>
-            <h5>MECHANICAL MANUFACTURE BREITLING MOVEMENTS </h5>
-            <h6>
-              Extend the warranty on your Breitling watch by an additional 3
-              years for Breitling mechanical manufacture movements or 2 years
-              for other Breitling movements. Give your watch the best care
-              possible.
-            </h6>
-            <h4>EXTEND MY WARRANTY</h4>
-          </Row>
-        </Col>
-        <Col span={16}>
-          <Row>
-            <Col span={8}>
-              <Image src="https://www.breitling.com/assets/images/br-11-20/be-3365-temp/asset-version-e304bf56ec/warranty-care.jpg"></Image>
-            </Col>
-            <Col span={16}>
-              <h2>CARING FOR YOUR BREITLING WATCH</h2>
+              </S.styleText>
+              <S.styleText span={8}>
+                <img
+                  src="https://www.breitling.com/media/breitling/images/br-11-20/asset-version-0d4e6a3baf/warranty-5.svg"
+                  alt="chứng nhận"
+                />
+              </S.styleText>
+            </Row>
+            <S.styleWarrantyInfo>
               <div>
-                A Breitling watch lasts a lifetime. It adapts to any lifestyle.
-                It also needs a bit of care from time to time. Ensure your
-                Breitling performs at its peak performance by treating it to our
-                #BreitlingCare services. Explore our comprehensive set of
-                services and assistance designed for you and your Breitling.
+                {" "}
+                <h4>+3 YEARS</h4>
+                <h5>MECHANICAL MANUFACTURE BREITLING MOVEMENTS </h5>
+                <S.styleText>
+                  Extend the warranty on your Breitling watch by an additional 3
+                  years for Breitling mechanical manufacture movements or 2
+                  years for other Breitling movements. Give your watch the best
+                  care possible.
+                </S.styleText>
+                <h4>EXTEND MY WARRANTY</h4>
               </div>
-              <h4>EXPLORE #BREITLINGSERVICE</h4>
-            </Col>
-          </Row>
-        </Col>
-      </Row>
+            </S.styleWarrantyInfo>
+          </Col>
+          <Col span={16}>
+            <Row gutter={[16, 16]}>
+              <Col span={8}>
+                <Image src="https://www.breitling.com/assets/images/br-11-20/be-3365-temp/asset-version-e304bf56ec/warranty-care.jpg"></Image>
+              </Col>
+              <Col span={16}>
+                <div>
+                  <h3>CARING FOR YOUR BREITLING WATCH</h3>
+                  <S.styleText>
+                    A Breitling watch lasts a lifetime. It adapts to any
+                    lifestyle. It also needs a bit of care from time to time.
+                    Ensure your Breitling performs at its peak performance by
+                    treating it to our #BreitlingCare services. Explore our
+                    comprehensive set of services and assistance designed for
+                    you and your Breitling.
+                  </S.styleText>
+                  <h4>EXPLORE #BREITLINGSERVICE</h4>
+                </div>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+      </S.styleTechnical>
     </div>
   );
 }

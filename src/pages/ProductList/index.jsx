@@ -30,6 +30,7 @@ function ProductList() {
     diametterId: [],
     categoryId: [],
     searchKey: "",
+    sort: "",
   });
   useEffect(() => {
     dispatch(
@@ -49,9 +50,10 @@ function ProductList() {
   const handleShowMore = () => {
     dispatch(
       getProductListAction({
+        ...filterParams,
         page: productList.meta.page + 1,
         limit: PRODUCT_LIMIT,
-        diametterId: filterParams.diametterId,
+        // diametterId: filterParams.diametterId,
         more: true,
       })
     );
@@ -66,16 +68,17 @@ function ProductList() {
     });
   }, [diametterList.data]);
 
-  const handleFilterDiametter = (values) => {
+  const handleFilter = (key, values) => {
     setFilterParams({
       ...filterParams,
-      diametterId: values,
+      [key]: values,
     });
     dispatch(
       getProductListAction({
+        ...filterParams,
+        [key]: values,
         page: 1,
         limit: PRODUCT_LIMIT,
-        diametterId: values,
       })
     );
   };
@@ -95,19 +98,17 @@ function ProductList() {
       return (
         <Col key={item.id} span={8}>
           <Link to={generatePath(ROUTES.USER.PRODUCT_DETAIL, { id: item.id })}>
-            <section className="newWatches">
-              <S.StyledProductItem
-                hoverable
-                cover={<img alt="example" src={item.image} />}
-              >
-                <h3>{item.name}</h3>
-                <h6>{item.price} </h6>
-                <S.StyledBtnProduct>ADD TO CART</S.StyledBtnProduct>
-                <S.HeartIconWrapper>
-                  <AiOutlineHeart />
-                </S.HeartIconWrapper>
-              </S.StyledProductItem>{" "}
-            </section>
+            <S.StyledProductItem
+              hoverable
+              cover={<img alt="example" src={item.image} />}
+            >
+              <h3>{item.name}</h3>
+              <h6>{item.price} </h6>
+              <S.StyledBtnProduct>ADD TO CART</S.StyledBtnProduct>
+              <S.HeartIconWrapper>
+                <AiOutlineHeart />
+              </S.HeartIconWrapper>
+            </S.StyledProductItem>{" "}
           </Link>
         </Col>
       );
@@ -129,7 +130,7 @@ function ProductList() {
             <Card>
               <h3>DIAMETTER</h3>
               <Checkbox.Group
-                onChange={(values) => handleFilterDiametter(values)}
+                onChange={(values) => handleFilter("diametterId", values)}
               >
                 <Row>{renderDiametterFilter}</Row>
               </Checkbox.Group>
@@ -138,12 +139,19 @@ function ProductList() {
           <Col span={18}>
             <Row gutter={[16, 16]}>
               <Col span={16}>
-                <Input.Search></Input.Search>
+                <Input.Search
+                  onChange={(e) => handleFilter("searchKey", e.target.value)}
+                ></Input.Search>
               </Col>
               <Col span={8}>
-                <Select style={{ width: "100%" }}>
-                  <Select.Option value="desc">Giá tăng dần</Select.Option>
-                  <Select.Option value="asc">Giá giảm dần</Select.Option>
+                <Select
+                  onChange={(value) => handleFilter("sort", value)}
+                  style={{ width: "100%" }}
+                >
+                  <Select.Option value="price.asc">Giá tăng dần</Select.Option>
+                  <Select.Option value="price.desc">Giá giảm dần</Select.Option>
+                  <Select.Option value="name.asc">A-Z</Select.Option>
+                  <Select.Option value="name.desc">Z-A</Select.Option>
                 </Select>
               </Col>
             </Row>

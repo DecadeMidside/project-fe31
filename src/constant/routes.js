@@ -3,8 +3,8 @@ export const ROUTES = {
     ACCOUNT: "/pages/Account",
     REGISTER: "/pages/Register",
     HOME: "/",
-    PRODUCT_LIST: "/pages/ProductList",
-    PRODUCT_DETAIL: "/pages/ProductDetail",
+    PRODUCT_LIST: "/products",
+    PRODUCT_DETAIL: "/products/:id",
     ABOUT: "/about",
   },
   ADMIN: {

@@ -1,27 +1,28 @@
-import { put, takeEvery } from "redux-saga/effects";
+import { put, takeEvery, debounce } from "redux-saga/effects";
 import axios from "axios";
+import { PRODUCT_ACTION, REQUEST, SUCCESS, FAIL } from "../constants";
 
 function* getProductListSaga(action) {
-  console.log(
-    "🚀 ~ file: product.saga.js:5 ~ function*getProductListSaga ~ action:",
-    action
-  );
   try {
-    const { page, limit, more, categoryId, diametterId } = action.payload;
+    const { page, limit, more, categoryId, diametterId, searchKey, sort } =
+      action.payload;
     const result = yield axios.get("http://localhost:4000/products", {
       params: {
         _page: page,
         _limit: limit,
         categoryId: categoryId,
         diametterId: diametterId,
+        q: searchKey,
+        // ...sortParam,
+        ...(sort && {
+          _sort: sort.split(".")[0],
+          _order: sort.split(".")[1],
+        }),
       },
     });
-    console.log(
-      "🚀 ~ file: product.saga.js:14 ~ function*getProductListSaga ~ result:",
-      result
-    );
+
     yield put({
-      type: "GET_PRODUCT_LIST_SUCCESS",
+      type: SUCCESS(PRODUCT_ACTION.GET_PRODUCT_LIST),
       payload: {
         data: result.data,
         meta: {
@@ -34,7 +35,26 @@ function* getProductListSaga(action) {
     });
   } catch (e) {
     yield put({
-      type: "GET_PRODUCT_LIST_FAIL",
+      type: FAIL(PRODUCT_ACTION.GET_PRODUCT_LIST),
+      payload: {
+        error: "Lỗi rồi!",
+      },
+    });
+  }
+}
+function* getProductDetailSaga(action) {
+  try {
+    const { id } = action.payload;
+    const result = yield axios.get(`http://localhost:4000/products/${id}`);
+    yield put({
+      type: SUCCESS(PRODUCT_ACTION.GET_PRODUCT_DETAIL),
+      payload: {
+        data: result.data,
+      },
+    });
+  } catch (e) {
+    yield put({
+      type: FAIL(PRODUCT_ACTION.GET_PRODUCT_DETAIL),
       payload: {
         error: "Lỗi rồi!",
       },
@@ -43,5 +63,9 @@ function* getProductListSaga(action) {
 }
 
 export default function* productSaga() {
-  yield takeEvery("GET_PRODUCT_LIST_REQUEST", getProductListSaga);
+  yield takeEvery(REQUEST(PRODUCT_ACTION.GET_PRODUCT_LIST), getProductListSaga);
+  yield takeEvery(
+    REQUEST(PRODUCT_ACTION.GET_PRODUCT_DETAIL),
+    getProductDetailSaga
+  );
 }
