@@ -5,7 +5,7 @@ export const StyleSlider = styled.div`
   background-image: url("https://www.breitling.com/media/breitling/images/account/login/asset-version-8436ff698b/header_1400.webp");
   background-repeat: no-repeat;
   background-size: cover;
-  min-height: 300px;
+  min-height: 400px;
   object-fit: cover;
   display: flex;
   justify-content: center;

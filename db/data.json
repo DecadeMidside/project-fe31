@@ -1,4 +1,14 @@
 {
+  "users": [
+    {
+      "email": "long@gmail.com",
+      "password": "$2a$10$hU1CHWZSAyThrLZzHmndq.dbS7K4qYh5HWWcGgbZB10iaWnMbumzq",
+      "phoneNumber": "0904454838",
+      "createdAt": 1682078958561,
+      "updatedAt": 1682078958562,
+      "id": 1
+    }
+  ],
   "products": [
     {
       "id": 1,
@@ -24,7 +34,6 @@
       "codeNumber": "AB0145331K1P1",
       "price": "9100",
       "diametterId": 3,
-
       "categoryId": 2,
       "image": "https://www.breitling.com/media/image/3/cfg_site_hd/asset-version-ea58b1cb58/ab0145331k1p1-premier-b01-chronograph-42-soldier.webp"
     },
@@ -34,7 +43,6 @@
       "codeNumber": "AB0145221B1P1",
       "price": "9100",
       "diametterId": 4,
-
       "categoryId": 2,
       "image": ""
     },
@@ -61,9 +69,7 @@
       "name": "  AUTOMATIC 42",
       "codeNumber": "A17378E71C1S1",
       "diametterId": 3,
-
       "price": "9100",
-
       "categoryId": 3,
       "image": ""
     }

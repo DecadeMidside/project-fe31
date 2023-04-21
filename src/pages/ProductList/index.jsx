@@ -156,6 +156,10 @@ function ProductList() {
           </Col>
         </Row>
       </S.ProductListWrapper>
+      {/* <Select style={{ width: "100%" }}>
+        <Select.Option value="desc">Giá tăng dần</Select.Option>
+        <Select.Option value="asc">Giá giảm dần</Select.Option>
+      </Select> */}
     </>
   );
 }
