@@ -1,4 +1,14 @@
 {
+  "users": [
+    {
+      "email": "long@gmail.com",
+      "password": "$2a$10$hU1CHWZSAyThrLZzHmndq.dbS7K4qYh5HWWcGgbZB10iaWnMbumzq",
+      "phoneNumber": "0904454838",
+      "createdAt": 1682078958561,
+      "updatedAt": 1682078958562,
+      "id": 1
+    }
+  ],
   "products": [
     {
       "id": 1,
@@ -28,7 +38,6 @@
       "price": "9100",
       "genderId": 1,
       "diametterId": 3,
-
       "categoryId": 2,
       "image": "https://www.breitling.com/media/image/3/cfg_site_hd/asset-version-ea58b1cb58/ab0145331k1p1-premier-b01-chronograph-42-soldier.webp"
     },
@@ -39,7 +48,6 @@
       "price": "9100",
       "genderId": 1,
       "diametterId": 4,
-
       "categoryId": 2,
       "image": "https://www.breitling.com/media/image/3/cfg_site_hd/asset-version-7a14651816/ab01763a1c1x1-top-time-b01-shelby-cobra-soldier.webp"
     },
@@ -69,9 +77,7 @@
       "codeNumber": "A17378E71C1S1",
       "genderId": 2,
       "diametterId": 3,
-
       "price": "9100",
-
       "categoryId": 3,
       "image": "https://www.breitling.com/media/image/3/cfg_site_hd/asset-version-5a13dd8ed2/ab0145371l1a1-premier-b01-chronograph-42-soldier-3.webp"
     }

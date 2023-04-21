@@ -1,3 +1,7 @@
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { registerAction } from "../../redux/actions/auth.action";
+import { useEffect } from "react";
 import {
   AutoComplete,
   Button,
@@ -15,10 +19,22 @@ import { useState } from "react";
 const { Option } = Select;
 
 function RegisterPage() {
-  const [form] = Form.useForm();
+  const [registerForm] = Form.useForm();
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
   };
+  const { registerData } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (registerData.error) {
+      registerForm.setFields([
+        {
+          name: "email",
+          errors: [registerData.error],
+        },
+      ]);
+    }
+  }, [registerData.error]);
 
   const [autoCompleteResult, setAutoCompleteResult] = useState([]);
   const onWebsiteChange = (value) => {
@@ -34,6 +50,15 @@ function RegisterPage() {
     label: website,
     value: website,
   }));
+  const handleRegister = (values) => {
+    dispatch(
+      registerAction({
+        email: values.email,
+        password: values.password,
+        phoneNumber: values.phoneNumber,
+      })
+    );
+  };
   return (
     <>
       <S.StyleCustomRow>
@@ -42,10 +67,10 @@ function RegisterPage() {
       <S.StyleCustomRowForm>
         <S.styleFormContent>
           <Form
-            form={form}
+            form={registerForm}
             layout="vertical"
             name="register"
-            onFinish={onFinish}
+            onFinish={(values) => handleRegister(values)}
             initialValues={{
               residence: ["zhejiang", "hangzhou", "xihu"],
               prefix: "86",
@@ -62,6 +87,7 @@ function RegisterPage() {
                 },
                 {
                   required: true,
+                  whitespace: true,
                   message: "Please input your E-mail!",
                 },
               ]}
@@ -111,7 +137,7 @@ function RegisterPage() {
             </Form.Item>
 
             <Form.Item
-              name="phone"
+              name="phoneNumber"
               label="Phone Number"
               rules={[
                 {
