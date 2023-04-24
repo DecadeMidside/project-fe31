@@ -5,10 +5,15 @@ export const TopHeader = styled.div`
   height: auto;
   position: fixed;
   width: 100%;
-  height: 64px;
+
   background-color: #fff;
   z-index: 999;
   top: 0;
+  /* > div {
+    text-align: end;
+    padding-right: 16px;
+    margin-top: -4px;
+  } */
 `;
 
 export const navBar = styled.ul`

@@ -2,18 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { registerAction } from "../../redux/actions/auth.action";
 import { useEffect } from "react";
-import {
-  AutoComplete,
-  Button,
-  Cascader,
-  Checkbox,
-  Col,
-  Form,
-  Input,
-  InputNumber,
-  Row,
-  Select,
-} from "antd";
+import { Checkbox, Form, Select } from "antd";
+import { ROUTES } from "../../constant/routes";
 import * as S from "./styles";
 import { useState } from "react";
 const { Option } = Select;
@@ -23,6 +13,7 @@ function RegisterPage() {
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
   };
+  const navigate = useNavigate();
   const { registerData } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -53,9 +44,13 @@ function RegisterPage() {
   const handleRegister = (values) => {
     dispatch(
       registerAction({
-        email: values.email,
-        password: values.password,
-        phoneNumber: values.phoneNumber,
+        data: {
+          fullName: values.fullName,
+          email: values.email,
+          password: values.password,
+          role: "user",
+        },
+        callback: () => navigate(ROUTES.USER.ACCOUNT),
       })
     );
   };
@@ -78,6 +73,19 @@ function RegisterPage() {
             scrollToFirstError
           >
             <Form.Item
+              name="fullName"
+              label="Full Name"
+              rules={[
+                {
+                  required: true,
+                  whitespace: true,
+                  message: "Please input your name!",
+                },
+              ]}
+            >
+              <S.StyleCustomInput />
+            </Form.Item>
+            <Form.Item
               name="email"
               label="E-mail"
               rules={[
@@ -94,7 +102,6 @@ function RegisterPage() {
             >
               <S.StyleCustomInput />
             </Form.Item>
-
             <Form.Item
               name="password"
               label="Password"
@@ -108,7 +115,6 @@ function RegisterPage() {
             >
               <S.StyleCustomInputPass />
             </Form.Item>
-
             <Form.Item
               name="confirm"
               label="Confirm Password"
@@ -135,7 +141,6 @@ function RegisterPage() {
             >
               <S.StyleCustomInputPass />
             </Form.Item>
-
             <Form.Item
               name="phoneNumber"
               label="Phone Number"
@@ -148,7 +153,6 @@ function RegisterPage() {
             >
               <S.StyleCustomInput />
             </Form.Item>
-
             {/* <Form.Item
             name="gender"
             label="Gender"
@@ -165,7 +169,6 @@ function RegisterPage() {
               <Option value="other">Other</Option>
             </Select>
           </Form.Item> */}
-
             <Form.Item
               name="agreement"
               valuePropName="checked"
