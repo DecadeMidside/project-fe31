@@ -1,10 +1,50 @@
 import { Row, Col, Form, Input, Checkbox, Button } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { loginAction } from "../../redux/actions";
 
 import { ROUTES } from "../../constant/routes";
 import * as S from "./styles";
 function AccountPage() {
+  const [loginForm] = Form.useForm();
+  const navigate = useNavigate();
+  const { loginData } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (loginData.error) {
+      loginForm.setFields([
+        {
+          name: "email",
+          errors: [" "],
+        },
+        {
+          name: "password",
+          errors: [loginData.error],
+        },
+      ]);
+    }
+  }, [loginData.error]);
+
+  const handleLogin = (values) => {
+    dispatch(
+      loginAction({
+        data: {
+          email: values.email,
+          password: values.password,
+        },
+        callback: (role) =>
+          navigate(
+            role === "admin" ? ROUTES.ADMIN.DASHBOARD : ROUTES.USER.HOME
+          ),
+      })
+    );
+  };
+
   return (
     <div>
       <S.StyleSlider>
@@ -27,15 +67,16 @@ function AccountPage() {
           <S.StyleBoxContent>
             <h1>I ALREADY HAVE AN ACCOUNT</h1>
             <S.StyleCustomFormLogin
-              name="normal_login"
-              className="login-form"
+              form={loginForm}
+              name="loginForm"
+              className="loginForm"
+              onFinish={(values) => handleLogin(values)}
               initialValues={{
                 remember: true,
               }}
-              // onFinish={onFinish}
             >
               <Form.Item
-                name="username"
+                name="email"
                 rules={[
                   {
                     required: true,

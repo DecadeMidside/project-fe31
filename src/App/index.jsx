@@ -1,19 +1,29 @@
+import { useEffect } from "react";
 import { ConfigProvider } from "antd";
 import { Routes, Route } from "react-router-dom";
-
+import jwtDecode from "jwt-decode";
 import "../App.css";
 import UserLayout from "../layout/UserLayout";
-
+import { useDispatch } from "react-redux";
 import AccountPage from "../pages/Account";
-// import LoginPage from "../pages/Login";
 
 import { ROUTES } from "../constant/routes";
 import HomePage from "../pages/Home";
 import RegisterPage from "../pages/Register";
 import ProductList from "../pages/ProductList";
 import ProductDetail from "../pages/ProductDetail";
+import { getUserInfoAction } from "../redux/actions";
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken) {
+      const tokenData = jwtDecode(accessToken);
+      dispatch(getUserInfoAction({ id: tokenData.sub }));
+    }
+  }, []);
+
   return (
     <ConfigProvider>
       <Routes>
