@@ -1,7 +1,10 @@
-import { Col, Row } from "antd";
+import { Button, Col, Row } from "antd";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
+import { useSelector, useDispatch } from "react-redux";
 import { ROUTES } from "../../constant/routes";
+import { logoutAction } from "../../redux/actions";
 import {
   FaSearch,
   FaPhoneAlt,
@@ -13,6 +16,10 @@ import Logo from "../../images/breitling.svg";
 import * as S from "./styles";
 
 function Header() {
+  const navigate = useNavigate();
+  const { userInfo } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
   return (
     <>
       <S.TopHeader>
@@ -59,6 +66,23 @@ function Header() {
             </S.StyledListIcon>
           </S.CustomCol>
         </Row>
+        <div
+        // style={{
+        //   backgroundColor: "white",
+        // }}
+        >
+          {" "}
+          {userInfo.data.id ? <h3>{userInfo.data.fullName}</h3> : []}
+          <span
+            onClick={() => dispatch(logoutAction())}
+            style={{
+              fontSize: "16px",
+            }}
+          >
+            {" "}
+            Log Out
+          </span>
+        </div>
       </S.TopHeader>
     </>
   );

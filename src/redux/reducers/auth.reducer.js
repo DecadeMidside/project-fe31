@@ -6,7 +6,7 @@ import { REQUEST, SUCCESS, FAIL } from "../constants/actionType";
 const initialState = {
   userInfo: {
     data: {},
-    load: false,
+    load: true, //để check đúng khi đăng nhập bằng admin/user nên để load = true ngay từ đầu. Vì userInfo luôn được gọi API đầu tiên để check.
     error: "",
   },
   loginData: {
@@ -25,7 +25,6 @@ const authReducer = createReducer(initialState, {
     return {
       ...state,
       loginData: {
-        ...state.loginData,
         load: true,
         error: "",
       },
@@ -37,7 +36,10 @@ const authReducer = createReducer(initialState, {
       ...state,
       userInfo: {
         ...state.userInfo,
-        data: data,
+        data: data.user,
+      },
+      loginData: {
+        ...state.loginData,
         load: false,
       },
     };
@@ -46,8 +48,7 @@ const authReducer = createReducer(initialState, {
     const { error } = action.payload;
     return {
       ...state,
-      userInfo: {
-        ...state.userInfo,
+      loginData: {
         load: false,
         error: error,
       },
@@ -77,6 +78,51 @@ const authReducer = createReducer(initialState, {
     return {
       ...state,
       registerData: {
+        load: false,
+        error: error,
+      },
+    };
+  },
+  //logout
+  [REQUEST(AUTH_ACTION.LOGOUT)]: (state, action) => {
+    localStorage.removeItem("accessToken");
+    return {
+      ...state,
+      userInfo: {
+        data: {},
+        load: false,
+        error: "",
+      },
+    };
+  },
+  //getInfo
+  [REQUEST(AUTH_ACTION.GET_USER_INFO)]: (state, action) => {
+    return {
+      ...state,
+      userInfo: {
+        ...state.userInfo,
+        load: true,
+        error: "",
+      },
+    };
+  },
+  [SUCCESS(AUTH_ACTION.GET_USER_INFO)]: (state, action) => {
+    const { data } = action.payload;
+    return {
+      ...state,
+      userInfo: {
+        ...state.userInfo,
+        data: data,
+        load: false,
+      },
+    };
+  },
+  [FAIL(AUTH_ACTION.GET_USER_INFO)]: (state, action) => {
+    const { error } = action.payload;
+    return {
+      ...state,
+      userInfo: {
+        ...state.userInfo,
         load: false,
         error: error,
       },

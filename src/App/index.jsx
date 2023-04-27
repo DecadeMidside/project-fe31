@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { ConfigProvider } from "antd";
 import { Routes, Route } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -7,9 +8,8 @@ import "moment/locale/vi";
 
 import "../App.css";
 import UserLayout from "../layout/UserLayout";
-
+import { useDispatch } from "react-redux";
 import AccountPage from "../pages/Account";
-// import LoginPage from "../pages/Login";
 
 import { ROUTES } from "../constant/routes";
 import HomePage from "../pages/Home";

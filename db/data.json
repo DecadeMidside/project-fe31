@@ -1,28 +1,22 @@
 {
   "users": [
     {
-      "email": "vinh96@gmail.com",
-      "password": "$2a$10$Z9R8aM/Cvcq2GcKdYpbRUugeOmQ0Z9aZ48n6FwLuw2LT3MVnNlnk2",
-      "phoneNumber": "123123",
-      "createdAt": 1682560047610,
-      "updatedAt": 1682560047610,
-      "id": 3
+      "email": "long123@gmail.com",
+      "password": "$2a$10$cf8m0PMVqsdpUl3t5gvfQe7uRQUIBVRw6vQ0CwTZbFyz1MgpdkmeG",
+      "fullName": "Long Huynh",
+      "role": "admin",
+      "createdAt": 1682273428109,
+      "updatedAt": 1682273428110,
+      "id": 1
     },
     {
-      "email": "ptvinh@gmail.com",
-      "password": "$2a$10$nnvTkCKHjpq35l6C8KiLle35X5Zts/.hgBQ3HIE4mcNyCYGxgL57m",
-      "fullName": "vinhvinh",
-      "createdAt": 1682584508741,
-      "updatedAt": 1682584508741,
-      "id": 4
-    },
-    {
-      "email": "vinh9612@gmail.com",
-      "password": "$2a$10$rtIJ5ZZbWu56ReNT/wLAkuBlayw0vEQZGElWy8MPrjAKhUETpPfy.",
-      "fullName": "vinh",
-      "createdAt": 1682585379985,
-      "updatedAt": 1682585379986,
-      "id": 5
+      "email": "long999@gmail.com",
+      "password": "$2a$10$xvf5zLssKCLSC1bmarTKDezkCNWkF10fQo1xLnjwnqlyBdS3ndLaS",
+      "fullName": "Lieu Ho",
+      "role": "user",
+      "createdAt": 1682273545552,
+      "updatedAt": 1682273545553,
+      "id": 2
     }
   ],
   "products": [
