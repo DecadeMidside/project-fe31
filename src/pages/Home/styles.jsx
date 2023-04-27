@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Col, Row } from "antd";
+import { Col, Collapse, Row } from "antd";
 import {
   StyleSlider,
   StyleText,
@@ -110,7 +110,6 @@ export const styledCustomRowService = styled(Row)`
   align-items: center;
 `;
 export const styledColService = styled(Col)`
-  width: 25%;
   font-size: 14px;
   padding: 8px;
   height: 164px;
@@ -213,8 +212,8 @@ export const styledCustomColStore = styled(Col)`
   text-align: center;
   flex-direction: column;
   min-height: 550px;
-  width: 100%;
+  max-width: 100%;
   justify-content: space-between;
   padding: 30px 50px;
-  margin: 0 8px;
 `;
+

@@ -1,4 +1,4 @@
-import { Card, Row, Col } from "antd";
+import { Card, Row, Col, Input } from "antd";
 import styled from "styled-components";
 
 export const ProductListWrapper = styled.div`
@@ -44,6 +44,18 @@ export const CustomCol = styled(Col)`
   width: auto;
   height: auto;
 `;
+export const CustomInput = styled(Input)`
+  background-color: #ffffff;
+  border-color: #d5d5d5;
+  border-radius: 5.28px 5.28px 0px 0px;
+  border-style: solid;
+  border-width: 1px;
+  display: inline-block;
+  font-size: 17.6px;
+  font-weight: 100;
+  line-height: 21.12px;
+  padding: 11.44px 35.2px 9.68px 17.6px;
+`;
 export const CustomColSort = styled(Col)`
   display: flex;
   align-items: center;
@@ -84,13 +96,13 @@ export const StyledProductItem = styled(Card)`
   flex-direction: column;
   background-color: #fafafa;
   width: 100%;
-  height: 450px;
+  min-height: 450px;
   text-align: center;
   font-size: 14px;
   border: none;
-  border-radius: 0 !important;
+  border-radius: 0;
   > div {
-    padding: 0 4px 0 !important ;
+    padding: 0 4px 0;
     margin: -24px;
   }
 

@@ -139,9 +139,10 @@ function ProductList() {
           <Col span={18}>
             <Row gutter={[16, 16]}>
               <Col span={16}>
-                <Input.Search
+                <S.CustomInput
                   onChange={(e) => handleFilter("searchKey", e.target.value)}
-                ></Input.Search>
+                  placeholder="What is Looking for..."
+                ></S.CustomInput>
               </Col>
               <Col span={8}>
                 <Select
@@ -164,10 +165,6 @@ function ProductList() {
           </Col>
         </Row>
       </S.ProductListWrapper>
-      {/* <Select style={{ width: "100%" }}>
-        <Select.Option value="desc">Giá tăng dần</Select.Option>
-        <Select.Option value="asc">Giá giảm dần</Select.Option>
-      </Select> */}
     </>
   );
 }

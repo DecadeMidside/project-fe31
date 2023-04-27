@@ -1,30 +1,22 @@
+import { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { registerAction } from "../../redux/actions/auth.action";
-import { useEffect } from "react";
-import {
-  AutoComplete,
-  Button,
-  Cascader,
-  Checkbox,
-  Col,
-  Form,
-  Input,
-  InputNumber,
-  Row,
-  Select,
-} from "antd";
+import { useNavigate, Navigate } from "react-router-dom";
+import { Button, Form, Input } from "antd";
+
+import { registerAction } from "../../redux/actions";
+import { ROUTES } from "../../constants/routes";
+
 import * as S from "./styles";
-import { useState } from "react";
-const { Option } = Select;
 
 function RegisterPage() {
   const [registerForm] = Form.useForm();
-  const onFinish = (values) => {
-    console.log("Received values of form: ", values);
-  };
+
   const { registerData } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const accessToken = useMemo(() => localStorage.getItem("accessToken"), []);
+
   useEffect(() => {
     if (registerData.error) {
       registerForm.setFields([
@@ -36,161 +28,112 @@ function RegisterPage() {
     }
   }, [registerData.error]);
 
-  const [autoCompleteResult, setAutoCompleteResult] = useState([]);
-  const onWebsiteChange = (value) => {
-    if (!value) {
-      setAutoCompleteResult([]);
-    } else {
-      setAutoCompleteResult(
-        [".com", ".org", ".net"].map((domain) => `${value}${domain}`)
-      );
-    }
-  };
-  const websiteOptions = autoCompleteResult.map((website) => ({
-    label: website,
-    value: website,
-  }));
   const handleRegister = (values) => {
     dispatch(
       registerAction({
-        email: values.email,
-        password: values.password,
-        phoneNumber: values.phoneNumber,
+        data: {
+          fullName: values.fullName,
+          email: values.email,
+          password: values.password,
+          role: "user",
+        },
+        callback: () => navigate(ROUTES.LOGIN),
       })
     );
   };
+
+  if (accessToken) return <Navigate to={ROUTES.USER.HOME} />;
   return (
-    <>
-      <S.StyleCustomRow>
-        <S.StyleTitle>CREATE MY ACCOUNT</S.StyleTitle>
-      </S.StyleCustomRow>
-      <S.StyleCustomRowForm>
-        <S.styleFormContent>
-          <Form
-            form={registerForm}
-            layout="vertical"
-            name="register"
-            onFinish={(values) => handleRegister(values)}
-            initialValues={{
-              residence: ["zhejiang", "hangzhou", "xihu"],
-              prefix: "86",
-            }}
-            scrollToFirstError
-          >
-            <Form.Item
-              name="email"
-              label="E-mail"
-              rules={[
-                {
-                  type: "email",
-                  message: "The input is not valid E-mail!",
-                },
-                {
-                  required: true,
-                  whitespace: true,
-                  message: "Please input your E-mail!",
-                },
-              ]}
-            >
-              <S.StyleCustomInput />
-            </Form.Item>
-
-            <Form.Item
-              name="password"
-              label="Password"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your password!",
-                },
-              ]}
-              hasFeedback
-            >
-              <S.StyleCustomInputPass />
-            </Form.Item>
-
-            <Form.Item
-              name="confirm"
-              label="Confirm Password"
-              dependencies={["password"]}
-              hasFeedback
-              rules={[
-                {
-                  required: true,
-                  message: "Please confirm your password!",
-                },
-                ({ getFieldValue }) => ({
-                  validator(_, value) {
-                    if (!value || getFieldValue("password") === value) {
-                      return Promise.resolve();
-                    }
-                    return Promise.reject(
-                      new Error(
-                        "The two passwords that you entered do not match!"
-                      )
-                    );
-                  },
-                }),
-              ]}
-            >
-              <S.StyleCustomInputPass />
-            </Form.Item>
-
-            <Form.Item
-              name="phoneNumber"
-              label="Phone Number"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your phone number!",
-                },
-              ]}
-            >
-              <S.StyleCustomInput />
-            </Form.Item>
-
-            {/* <Form.Item
-            name="gender"
-            label="Gender"
+    <S.RegisterWrapper>
+      <S.RegisterContainer>
+        <h3>Register</h3>
+        <Form
+          form={registerForm}
+          name="registerForm"
+          layout="vertical"
+          onFinish={(values) => handleRegister(values)}
+          autoComplete="off"
+        >
+          <Form.Item
+            label="Full name"
+            name="fullName"
             rules={[
               {
                 required: true,
-                message: "Please select gender!",
+                whitespace: true,
+                message: "Please input your name!",
               },
             ]}
           >
-            <Select placeholder="select your gender">
-              <Option value="male">Male</Option>
-              <Option value="female">Female</Option>
-              <Option value="other">Other</Option>
-            </Select>
-          </Form.Item> */}
-
-            <Form.Item
-              name="agreement"
-              valuePropName="checked"
-              rules={[
-                {
-                  validator: (_, value) =>
-                    value
-                      ? Promise.resolve()
-                      : Promise.reject(new Error("Should accept agreement")),
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="Email"
+            name="email"
+            rules={[
+              {
+                required: true,
+                whitespace: true,
+                message: "Please input your email!",
+              },
+              {
+                type: "email",
+                message: "Email không đúng định dạng!",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="Password"
+            name="password"
+            rules={[
+              {
+                required: true,
+                message: "Please input your password!",
+              },
+            ]}
+          >
+            <Input.Password />
+          </Form.Item>
+          <Form.Item
+            name="confirm"
+            label="Confirm Password"
+            dependencies={["password"]}
+            hasFeedback
+            rules={[
+              {
+                required: true,
+                message: "Please confirm your password!",
+              },
+              ({ getFieldValue }) => ({
+                validator(_, value) {
+                  if (!value || getFieldValue("password") === value) {
+                    return Promise.resolve();
+                  }
+                  return Promise.reject(
+                    new Error(
+                      "The two passwords that you entered do not match!"
+                    )
+                  );
                 },
-              ]}
-            >
-              <Checkbox>
-                I have read the <a href="">agreement</a>
-              </Checkbox>
-            </Form.Item>
-            <Form.Item>
-              <S.StyleButtonCreate type="primary" htmlType="submit">
-                CREATE MY ACCOUNT
-              </S.StyleButtonCreate>
-            </Form.Item>
-          </Form>
-        </S.styleFormContent>
-      </S.StyleCustomRowForm>
-    </>
+              }),
+            ]}
+          >
+            <Input.Password />
+          </Form.Item>
+          <Button
+            type="primary"
+            htmlType="submit"
+            block
+            loading={registerData.load}
+          >
+            Submit
+          </Button>
+        </Form>
+      </S.RegisterContainer>
+    </S.RegisterWrapper>
   );
 }
+
 export default RegisterPage;
