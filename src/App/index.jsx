@@ -2,13 +2,11 @@ import { useEffect } from "react";
 import { ConfigProvider } from "antd";
 import { Routes, Route } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
 import jwtDecode from "jwt-decode";
 import "moment/locale/vi";
 
 import "../App.css";
 import UserLayout from "../layout/UserLayout";
-import { useDispatch } from "react-redux";
 import AccountPage from "../pages/Account";
 
 import { ROUTES } from "../constant/routes";

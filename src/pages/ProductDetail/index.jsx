@@ -78,7 +78,7 @@ function ProductDetail() {
       return (
         <Card size="small" key={item.id}>
           <Space>
-            {/* <h3>{item.user.fullName}</h3> */}
+            <h3>{item.user.fullName}</h3>
             <span>{moment(item.createdAt).fromNow()}</span>
           </Space>
           <Rate value={item.rate} disabled style={{ fontSize: 12 }} />
@@ -198,7 +198,7 @@ function ProductDetail() {
               </li>
               <li>
                 <h4>Diameter</h4>
-                <p>28,800 v.p.h</p>
+                <p>{productDetail.data.diametter}</p>
               </li>
               <li>
                 <h4>Thickness</h4>
@@ -259,54 +259,61 @@ function ProductDetail() {
         </S.styleRowFeature>
       </S.styleTechnical>
       <S.styleTechnical>
-        {/* {userInfo.data.id && ( */}
-
-        <Card title="Review" size="small">
-          <Form
-            form={reviewForm}
-            name="reviewForm"
-            layout="vertical"
-            onFinish={(values) => handleReview(values)}
-            autoComplete="off"
-          >
-            <Form.Item
-              label="Rate"
-              name="rate"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your rate!",
-                },
-              ]}
+        {userInfo.data.id && (
+          <Card size="small">
+            <h1>REVIEW {productDetail.data.name}</h1>
+            <Form
+              form={reviewForm}
+              name="reviewForm"
+              layout="vertical"
+              onFinish={(values) => handleReview(values)}
+              autoComplete="off"
             >
-              <Rate />
-            </Form.Item>
-            <Form.Item
-              label="Comment"
-              name="comment"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your comment!",
-                },
-              ]}
-            >
-              <Input.TextArea
-                autoSize={{
-                  minRows: 2,
-                  maxRows: 4,
-                }}
-              />
-            </Form.Item>
+              <Form.Item
+                label="Rate"
+                name="rate"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your rate!",
+                  },
+                ]}
+              >
+                <Rate />
+              </Form.Item>
+              <Form.Item
+                label="Comment"
+                name="comment"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your comment!",
+                  },
+                ]}
+              >
+                <Input.TextArea
+                  autoSize={{
+                    minRows: 2,
+                    maxRows: 4,
+                  }}
+                />
+              </Form.Item>
 
-            <S.styleReviewBtn type="primary" htmlType="submit" block>
-              Submit
-            </S.styleReviewBtn>
-          </Form>
-        </Card>
-        {/* )} */}
+              <Form.Item>
+                <S.styleButton
+                  style={{ width: "100%" }}
+                  htmlType="submit"
+                  block
+                >
+                  REVIEW
+                </S.styleButton>
+              </Form.Item>
+            </Form>
+          </Card>
+        )}
         {renderReviewList}
       </S.styleTechnical>
+      <div dangerouslySetInnerHTML={{ __html: productDetail.data.store }}></div>
       <S.styleTechnical>
         <h1>WARRANTY</h1>
         <Row style={{ display: "flex" }} gutter={[16, 16]}>

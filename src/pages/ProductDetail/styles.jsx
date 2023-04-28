@@ -297,11 +297,12 @@ export const styleReview = styled.div`
 export const styleReviewBtn = styled(Button)`
   width: 160px;
   height: 50px;
-  background-color: #ffc62d;
-  border-radius: 0;
+  background-color: #d1d1d1;
+
+  font-size: 20 !important;
   font-weight: 700;
   border: none;
   :hover {
-    color: white;
+    background-color: #918d83;
   }
 `;
