@@ -198,8 +198,8 @@ function HomePage() {
         </S.styledCustomRowNew>
       </div>
       <S.styledWrapper>
-        <S.styledCustomRowService>
-          <S.styledColStrapsWrapper span={11}>
+        <S.styledCustomRowService gutter={[16, 16]}>
+          <S.styledColStrapsWrapper span={12}>
             <div>
               <S.styledTitleStrapsService>STRAPS</S.styledTitleStrapsService>
               <S.styledContentStrapsService>
@@ -210,7 +210,7 @@ function HomePage() {
               <S.styledCustomButton>BUY NOW</S.styledCustomButton>
             </div>
           </S.styledColStrapsWrapper>
-          <S.styledColServiceWrapper span={11}>
+          <S.styledColServiceWrapper span={12}>
             <div>
               <S.styledTitleStrapsService>SERVICE</S.styledTitleStrapsService>
               <S.styledContentStrapsService>
@@ -225,14 +225,14 @@ function HomePage() {
       <S.styledWrapper>
         <Row
           style={{
-            width: "100%",
-            flexGrow: "1",
-            justifyContent: "center",
+            maxWidth: "1216px",
+            margin: "0 auto",
+            justifyContent: "space-between",
             alignItems: "center",
-            alignSelf: "center",
           }}
+          gutter={[8, 8]}
         >
-          <S.styledCustomColStore span={7}>
+          <S.styledCustomColStore span={8}>
             <div>
               <div>
                 <h2
@@ -421,7 +421,7 @@ function HomePage() {
               </div>
             </div>
           </S.styledCustomColStore>
-          <S.styledCustomColStore span={7}>
+          <S.styledCustomColStore span={8}>
             <div>
               <div>
                 <h2
@@ -610,7 +610,7 @@ function HomePage() {
               </div>
             </div>
           </S.styledCustomColStore>
-          <S.styledCustomColStore span={7}>
+          <S.styledCustomColStore span={8}>
             <div>
               <div>
                 <h2

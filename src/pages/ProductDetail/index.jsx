@@ -1,17 +1,20 @@
 import * as S from "./styles";
+import moment from "moment";
 
 import {
-  Input,
-  Button,
-  Card,
+  Spin,
   Row,
   Col,
-  Select,
-  Checkbox,
+  Card,
+  InputNumber,
+  Input,
+  Button,
+  Form,
+  Rate,
   Space,
   Image,
 } from "antd";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, useParams, generatePath } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -21,18 +24,34 @@ import { PRODUCT_LIMIT } from "../../constant/paging";
 import {
   getProductDetailAction,
   getProductListAction,
+  getReviewListAction,
+  sendReviewAction,
 } from "../../redux/actions";
 import { FaPhoneAlt, FaCalendarAlt } from "react-icons/fa";
 
 function ProductDetail() {
   const { id } = useParams();
+  const [reviewForm] = Form.useForm();
 
   const dispatch = useDispatch();
 
+  const { userInfo } = useSelector((state) => state.auth);
   const { productList, productDetail } = useSelector((state) => state.product);
+  const { reviewList } = useSelector((state) => state.review);
+
+  const totalRate = useMemo(
+    () =>
+      reviewList.data.length
+        ? reviewList.data
+            .map((item) => item.rate)
+            .reduce((total, item) => total + item)
+        : 0,
+    [reviewList.data]
+  );
 
   useEffect(() => {
     dispatch(getProductDetailAction({ id: id }));
+    dispatch(getReviewListAction({ productId: id }));
     dispatch(
       getProductListAction({
         page: 1,
@@ -40,6 +59,34 @@ function ProductDetail() {
       })
     );
   }, [id]);
+
+  const handleReview = (values) => {
+    dispatch(
+      sendReviewAction({
+        data: {
+          ...values,
+          userId: userInfo.data.id,
+          productId: parseInt(id),
+        },
+        callback: () => reviewForm.resetFields(),
+      })
+    );
+  };
+
+  const renderReviewList = useMemo(() => {
+    return reviewList.data.map((item) => {
+      return (
+        <Card size="small" key={item.id}>
+          <Space>
+            <h3>{item.user.fullName}</h3>
+            <span>{moment(item.createdAt).fromNow()}</span>
+          </Space>
+          <Rate value={item.rate} disabled style={{ fontSize: 12 }} />
+          <p>{item.comment}</p>
+        </Card>
+      );
+    });
+  }, [reviewList.data]);
   const renderProductList = useMemo(() => {
     return productList.data.map((item) => {
       return (
@@ -61,6 +108,7 @@ function ProductDetail() {
       );
     });
   }, [productList.data]);
+
   return (
     <div>
       <S.WrapperDetail>
@@ -70,6 +118,12 @@ function ProductDetail() {
         <S.CustomColDetail span={12}>
           <h5>{productDetail.data.codeNumber}</h5>
           <h1>{productDetail.data.name}</h1>
+          <Space>
+            <Rate value={totalRate / reviewList.data.length} disabled />
+            <span>{`(${(totalRate / reviewList.data.length).toFixed(
+              1
+            )})`}</span>
+          </Space>
           <h3>USD {productDetail.data.price}</h3>
           <h5>Boutique delivery available</h5>
           <S.styleButton outline={true}>ADD TO BAG</S.styleButton>
@@ -144,7 +198,7 @@ function ProductDetail() {
               </li>
               <li>
                 <h4>Diameter</h4>
-                <p>28,800 v.p.h</p>
+                <p>{productDetail.data.diametter}</p>
               </li>
               <li>
                 <h4>Thickness</h4>
@@ -199,8 +253,67 @@ function ProductDetail() {
 
       <S.styleTechnical gutter={[16, 16]}>
         <h1>YOU MAY ALSO LIKE</h1>
-        <S.styleRowFeature> {renderProductList}</S.styleRowFeature>
+        <S.styleRowFeature gutter={[16, 16]}>
+          {" "}
+          {renderProductList}
+        </S.styleRowFeature>
       </S.styleTechnical>
+      <S.styleTechnical>
+        {userInfo.data.id && (
+          <Card size="small">
+            <h1>REVIEW {productDetail.data.name}</h1>
+            <Form
+              form={reviewForm}
+              name="reviewForm"
+              layout="vertical"
+              onFinish={(values) => handleReview(values)}
+              autoComplete="off"
+            >
+              <Form.Item
+                label="Rate"
+                name="rate"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your rate!",
+                  },
+                ]}
+              >
+                <Rate />
+              </Form.Item>
+              <Form.Item
+                label="Comment"
+                name="comment"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your comment!",
+                  },
+                ]}
+              >
+                <Input.TextArea
+                  autoSize={{
+                    minRows: 2,
+                    maxRows: 4,
+                  }}
+                />
+              </Form.Item>
+
+              <Form.Item>
+                <S.styleButton
+                  style={{ width: "100%" }}
+                  htmlType="submit"
+                  block
+                >
+                  REVIEW
+                </S.styleButton>
+              </Form.Item>
+            </Form>
+          </Card>
+        )}
+        {renderReviewList}
+      </S.styleTechnical>
+      <div dangerouslySetInnerHTML={{ __html: productDetail.data.store }}></div>
       <S.styleTechnical>
         <h1>WARRANTY</h1>
         <Row style={{ display: "flex" }} gutter={[16, 16]}>

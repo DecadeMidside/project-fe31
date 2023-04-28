@@ -268,3 +268,41 @@ export const StyledBtnProduct = styled.button`
     color: white;
   }
 `;
+// export const styleStartBox = styled.div`
+//   align-items: center;
+//   border-color: #dddddd;
+//   border-radius: 7px;
+//   border-style: solid;
+//   border-width: 1px;
+//   display: flex;
+//   font-size: 14px;
+//   justify-content: space-between;
+//   line-height: 21px;
+//   margin: 16px auto;
+//   padding: 16px;
+//   max-width: 1232px;
+// `;
+// export const styleReviewBar = styled.div`
+//   font-size: 14px;
+//   line-height: 14px;
+// `;
+export const styleReview = styled.div`
+  align-items: center;
+  display: flex;
+  font-size: 14px;
+  justify-content: space-between;
+  line-height: 14px;
+  padding: 0px 0px 10px;
+`;
+export const styleReviewBtn = styled(Button)`
+  width: 160px;
+  height: 50px;
+  background-color: #d1d1d1;
+
+  font-size: 20 !important;
+  font-weight: 700;
+  border: none;
+  :hover {
+    background-color: #918d83;
+  }
+`;

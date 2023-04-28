@@ -17,6 +17,15 @@
       "createdAt": 1682273545552,
       "updatedAt": 1682273545553,
       "id": 2
+    },
+    {
+      "email": "vinh96123@gmail.com",
+      "password": "$2a$10$GuH0rnXu4a076o3zCC2TPuWtkkMhPGrV300QLA04xE/QzYX2R433q",
+      "fullName": "Vinh",
+      "role": "user",
+      "createdAt": 1682586546388,
+      "updatedAt": 1682586546389,
+      "id": 3
     }
   ],
   "products": [
@@ -25,8 +34,8 @@
       "name": " B01 FORD THUNDERBIRD",
       "genderId": 1,
       "codeNumber": "AB01766A1A1X1",
+      "store": "",
       "price": "8000",
-
       "diametterId": 1,
       "categoryId": 1,
       "image": "https://www.breitling.com/media/image/3/cfg_site_hd/asset-version-c314a64086/ab01766a1a1x1-top-time-b01-ford-thunderbird-soldier.webp"
@@ -37,6 +46,7 @@
       "codeNumber": "AB01762A1L1X1",
       "genderId": 1,
       "diametterId": 2,
+      "store": "<h2> <span style='color: rgb(255, 198, 45);'>THE</span>&nbsp;STORY</h2><p>The 1960s was a decade of experimentation, fun, freedom and energy. Whether cruising on a motorcycle or revving up a sportscar, living life at full speed was the order of the day. Willy Breitling felt this change of pace and set out to design an unconventional chronograph that would capture the verve of era. He called it the Top Time. That spirited tradition continues today with Breitling partnering with some of the coolest names in wheels to create its Top Time designs. The first-generation Ford Mustang, produced from 1964 to 1974, became the car of choice for hitting the road in hip 1960s America. This living legend is still in production, but car buffs know that the coolest of all were those very first models that captured the freewheeling spirit of the sixties. The Top Time B01 Ford Mustang features the colors and emblem of its classic-car counterpart as well as a perforated leather racing strap, speed-measuring tachymeter scale and contrasting “squircle” (not quite square, not quite round) subdials that give the feel of vintage dashboard gauges. It also comes with a brag-worthy engine under the hood: the exceptional Breitling Manufacture Caliber 01.</p><ul> <li> <span style='font-size: 18px;'> <img src='https://www.breitling.com/media/image/3/gallery_square_700/asset-version-cbc4ab2a70/ab01762a1l1x1-top-time-b01-ford-mustang-three-quarter.png' alt='The 1960s was a decade of experimentation, fun, freedom and energy. Whether cruising on a motorcycle or revving up a sportscar, living life at full speed was the order of the day. Willy Breitling felt this change of pace and set out to design an unconventional chronograph that would capture the verve of era. He called it the Top Time.That spirited tradition continues today with Breitling partnering with some of the coolest names in wheels to create its Top Time designs. The first-generation Ford Mustang, produced from 1964 to 1974, became the car of choice for hitting the road in hip 1960s America. This living legend is still in production, but car buffs know that the coolest of all were those very first models that captured the freewheeling spirit of the sixties.The Top Time B01 Ford Mustang features the colors and emblem of its classic-car counterpart as well as a perforated leather racing strap, speed-measuring tachymeter scale and contrasting “squircle” (not quite square, not quite round) subdials that give the feel of vintage dashboard gauges. It also comes with a brag-worthy engine under the hood: the exceptional Breitling Manufacture Caliber 01.'> </span> </li></ul>",
       "price": "8000",
       "categoryId": 1,
       "image": "https://www.breitling.com/media/image/3/cfg_site_hd/asset-version-04db51d5d1/ab01762a1l1x1-top-time-b01-ford-mustang-soldier.webp"
@@ -47,6 +57,7 @@
       "codeNumber": "AB0145331K1P1",
       "price": "9100",
       "genderId": 1,
+      "store": "",
       "diametterId": 3,
       "categoryId": 2,
       "image": "https://www.breitling.com/media/image/3/cfg_site_hd/asset-version-ea58b1cb58/ab0145331k1p1-premier-b01-chronograph-42-soldier.webp"
@@ -56,6 +67,7 @@
       "name": " B01 CHRONOGRAPH 42",
       "codeNumber": "AB0145221B1P1",
       "price": "9100",
+      "store": "",
       "genderId": 1,
       "diametterId": 4,
       "categoryId": 2,
@@ -66,10 +78,11 @@
       "name": "  AUTOMATIC 42",
       "codeNumber": "A17375211I1S1",
       "price": "10100",
+      "store": "",
       "genderId": 2,
       "diametterId": 1,
       "categoryId": 3,
-      "image": "https://www.breitling.com/media/image/3/gallery_square_1080/asset-version-ccb394543a/rb0145371g1p1-premier-b01-chronograph-42-soldier.webp"
+      "image": "https://www.breitling.com/media/image/3/gallery_square/asset-version-d18419ba9d/ab01762a1l1x1-top-time-b01-ford-mustang-soldier.webp"
     },
     {
       "id": 6,
@@ -77,6 +90,7 @@
       "codeNumber": "A17378E71C1S1",
       "price": "9100",
       "genderId": 2,
+      "store": "",
       "diametterId": 3,
       "categoryId": 3,
       "image": "https://www.breitling.com/media/image/3/cfg_site_hd/asset-version-c969b9b221/ab0145221b1p1-premier-b01-chronograph-42-soldier.webp"
@@ -87,6 +101,7 @@
       "codeNumber": "A17378E71C1S1",
       "genderId": 2,
       "diametterId": 3,
+      "store": "",
       "price": "9100",
       "categoryId": 3,
       "image": "https://www.breitling.com/media/image/3/cfg_site_hd/asset-version-5a13dd8ed2/ab0145371l1a1-premier-b01-chronograph-42-soldier-3.webp"
@@ -160,6 +175,123 @@
     {
       "id": 1,
       "gender": "Women"
+    }
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "rate": 5,
+      "comment": "ABC",
+      "userId": 2,
+      "productId": 1,
+      "createdAt": 1682080507667,
+      "updatedAt": 1682080507668
+    },
+    {
+      "rate": 4,
+      "comment": "Ahoho",
+      "userId": 1,
+      "productId": 1,
+      "createdAt": 1682339637890,
+      "updatedAt": 1682339637890,
+      "id": 2
+    },
+    {
+      "rate": 4,
+      "comment": "Ahihi",
+      "userId": 2,
+      "productId": 2,
+      "createdAt": 1682339637890,
+      "updatedAt": 1682339637890,
+      "id": 3
+    },
+    {
+      "rate": 4,
+      "comment": "123",
+      "userId": 2,
+      "productId": 1,
+      "createdAt": 1682341736236,
+      "updatedAt": 1682341736240,
+      "id": 4
+    },
+    {
+      "rate": 4,
+      "comment": "ascdvzxvzxc",
+      "userId": 2,
+      "productId": 1,
+      "createdAt": 1682341992049,
+      "updatedAt": 1682341992049,
+      "id": 5
+    },
+    {
+      "rate": 1,
+      "comment": "te qua",
+      "userId": 2,
+      "productId": 1,
+      "createdAt": 1682342191956,
+      "updatedAt": 1682342191956,
+      "id": 6
+    },
+    {
+      "rate": 5,
+      "comment": "s",
+      "productId": 1,
+      "createdAt": 1682584241282,
+      "updatedAt": 1682584241284,
+      "id": 7
+    },
+    {
+      "rate": 5,
+      "comment": "dđ",
+      "productId": 1,
+      "createdAt": 1682584646294,
+      "updatedAt": 1682584646294,
+      "id": 8
+    },
+    {
+      "rate": 5,
+      "comment": "w",
+      "userId": 3,
+      "productId": 1,
+      "createdAt": 1682586680684,
+      "updatedAt": 1682586680684,
+      "id": 9
+    },
+    {
+      "rate": 5,
+      "comment": "ư",
+      "userId": 3,
+      "productId": 1,
+      "createdAt": 1682586838604,
+      "updatedAt": 1682586838604,
+      "id": 10
+    },
+    {
+      "rate": 4,
+      "comment": "ee",
+      "userId": 3,
+      "productId": 2,
+      "createdAt": 1682667326913,
+      "updatedAt": 1682667326914,
+      "id": 11
+    },
+    {
+      "rate": 5,
+      "comment": "c",
+      "userId": 3,
+      "productId": 2,
+      "createdAt": 1682667571727,
+      "updatedAt": 1682667571728,
+      "id": 12
+    },
+    {
+      "rate": 5,
+      "comment": "ss",
+      "userId": 3,
+      "productId": 2,
+      "createdAt": 1682667656550,
+      "updatedAt": 1682667656550,
+      "id": 13
     }
   ]
 }
