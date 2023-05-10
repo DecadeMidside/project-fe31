@@ -15,6 +15,7 @@ import RegisterPage from "../pages/Register";
 import ProductList from "../pages/ProductList";
 import ProductDetail from "../pages/ProductDetail";
 import CartPage from "../pages/Cart";
+import AboutPage from "../pages/About";
 import { getUserInfoAction } from "../redux/actions";
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
           <Route path={ROUTES.USER.REGISTER} element={<RegisterPage />} />
           <Route path={ROUTES.USER.PRODUCT_LIST} element={<ProductList />} />
           <Route path={ROUTES.USER.CART} element={<CartPage />} />
+          <Route path={ROUTES.USER.ABOUT} element={<AboutPage />} />
           <Route
             path={ROUTES.USER.PRODUCT_DETAIL}
             element={<ProductDetail />}

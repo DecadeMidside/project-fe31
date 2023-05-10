@@ -313,7 +313,9 @@ function ProductDetail() {
         )}
         {renderReviewList}
       </S.styleTechnical>
-      <div dangerouslySetInnerHTML={{ __html: productDetail.data.store }}></div>
+      <S.styleTechnical
+        dangerouslySetInnerHTML={{ __html: productDetail.data.store }}
+      ></S.styleTechnical>
       <S.styleTechnical>
         <h1>WARRANTY</h1>
         <Row style={{ display: "flex" }} gutter={[16, 16]}>

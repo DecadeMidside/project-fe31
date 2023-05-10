@@ -112,3 +112,17 @@ export const StyleButtonCreate = styled.button`
     cursor: pointer;
   }
 `;
+export const styleProfile = styled.div`
+  background-color: #f1f1f1;
+`;
+export const StyleBoxProfile = styled.div`
+  background-image: url("https://www.breitling.com/media/breitling/images/account/landing/asset-version-0d68d070c0/my-watches.jpg");
+  background-repeat: no-repeat;
+  width: 100%;
+  min-height: 400px;
+  object-fit: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+`;

@@ -4,13 +4,22 @@ import { PRODUCT_ACTION, REQUEST, SUCCESS, FAIL } from "../constants";
 
 function* getProductListSaga(action) {
   try {
-    const { page, limit, more, categoryId, diametterId, searchKey, sort } =
-      action.payload;
+    const {
+      page,
+      limit,
+      more,
+      categoryId,
+      diametterId,
+      searchKey,
+      sort,
+      genderId,
+    } = action.payload;
     const result = yield axios.get("http://localhost:4000/products", {
       params: {
         _page: page,
         _limit: limit,
         categoryId: categoryId,
+        genderId: genderId,
         diametterId: diametterId,
         q: searchKey,
         // ...sortParam,
@@ -63,7 +72,11 @@ function* getProductDetailSaga(action) {
 }
 
 export default function* productSaga() {
-  yield takeEvery(REQUEST(PRODUCT_ACTION.GET_PRODUCT_LIST), getProductListSaga);
+  yield debounce(
+    300,
+    REQUEST(PRODUCT_ACTION.GET_PRODUCT_LIST),
+    getProductListSaga
+  );
   yield takeEvery(
     REQUEST(PRODUCT_ACTION.GET_PRODUCT_DETAIL),
     getProductDetailSaga

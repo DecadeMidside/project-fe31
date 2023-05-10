@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
 import { ROUTES } from "../../constant/routes";
-import { logoutAction } from "../../redux/actions";
 import {
   FaSearch,
   FaPhoneAlt,
@@ -30,9 +29,9 @@ function Header() {
 
           <Col span={12}>
             <S.navBar>
-              <Link to={ROUTES.USER.PRODUCT_LIST}>
-                <li>WATCHES</li>
-              </Link>
+              <li>
+                <Link to={ROUTES.USER.PRODUCT_LIST}>WATCHES</Link>
+              </li>
               <li>STRAPS</li>
               <li>STORES</li>
               <li>SERVICE</li>
@@ -47,8 +46,10 @@ function Header() {
                 <FaSearch />
               </S.StyledIcon>
               <S.StyledIcon>
-                {" "}
-                <FaPhoneAlt />
+                <S.StyledIconPhone>
+                  {" "}
+                  <FaPhoneAlt />
+                </S.StyledIconPhone>
               </S.StyledIcon>
               <S.StyledIcon>
                 {" "}
@@ -66,23 +67,6 @@ function Header() {
             </S.StyledListIcon>
           </S.CustomCol>
         </Row>
-        <div
-        // style={{
-        //   backgroundColor: "white",
-        // }}
-        >
-          {" "}
-          {userInfo.data.id ? <h3>{userInfo.data.fullName}</h3> : []}
-          <span
-            onClick={() => dispatch(logoutAction())}
-            style={{
-              fontSize: "16px",
-            }}
-          >
-            {" "}
-            Log Out
-          </span>
-        </div>
       </S.TopHeader>
     </>
   );

@@ -10,6 +10,7 @@ import {
   Checkbox,
   Space,
   Image,
+  Search,
 } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineHeart } from "react-icons/ai";
@@ -19,6 +20,7 @@ import {
   getProductListAction,
   getCategoryListAction,
   getDiametterListAction,
+  getGenderListAction,
 } from "../../redux/actions";
 
 import * as S from "./styles";
@@ -28,6 +30,7 @@ function ProductList() {
   const dispatch = useDispatch();
   const [filterParams, setFilterParams] = useState({
     diametterId: [],
+    genderId: [],
     categoryId: [],
     searchKey: "",
     sort: "",
@@ -40,12 +43,14 @@ function ProductList() {
       })
     );
     dispatch(getDiametterListAction());
+    dispatch(getGenderListAction());
     dispatch(getCategoryListAction());
   }, []);
 
   const { productList } = useSelector((state) => state.product);
   const { categoryList } = useSelector((state) => state.category);
   const { diametterList } = useSelector((state) => state.diametter);
+  const { genderList } = useSelector((state) => state.gender);
 
   const handleShowMore = () => {
     dispatch(
@@ -68,6 +73,16 @@ function ProductList() {
     });
   }, [diametterList.data]);
 
+  const renderGenderFilter = useMemo(() => {
+    return genderList.data.map((item) => {
+      return (
+        <Col span={24} key={item.id}>
+          <Checkbox value={item.id}>{item.gender}</Checkbox>
+        </Col>
+      );
+    });
+  }, [genderList.data]);
+
   const handleFilter = (key, values) => {
     setFilterParams({
       ...filterParams,
@@ -85,7 +100,11 @@ function ProductList() {
   const renderCategoryFilter = useMemo(() => {
     return categoryList.data.map((item) => {
       return (
-        <S.CustomCol span={3} key={item.id}>
+        <S.CustomCol
+          span={3}
+          key={item.id}
+          onClick={() => console.log(item.id)}
+        >
           <S.StyledCollection cover={<img alt="example" src={item.image} />}>
             <Meta title={item.name} />
           </S.StyledCollection>
@@ -134,29 +153,41 @@ function ProductList() {
               >
                 <Row>{renderDiametterFilter}</Row>
               </Checkbox.Group>
+              <h3>GENDER</h3>
+              <Checkbox.Group
+                onChange={(values) => handleFilter("genderId", values)}
+              >
+                <Row>{renderGenderFilter}</Row>
+              </Checkbox.Group>
             </Card>
           </Col>
           <Col span={18}>
             <Row gutter={[16, 16]}>
               <Col span={16}>
-                <S.CustomInput
+                <Input.Search
                   onChange={(e) => handleFilter("searchKey", e.target.value)}
                   placeholder="What is Looking for..."
-                ></S.CustomInput>
+                ></Input.Search>
               </Col>
               <Col span={8}>
                 <Select
                   onChange={(value) => handleFilter("sort", value)}
                   style={{ width: "100%" }}
                 >
-                  <Select.Option value="price.asc">Giá tăng dần</Select.Option>
-                  <Select.Option value="price.desc">Giá giảm dần</Select.Option>
+                  <Select.Option value="price.asc">
+                    Price low-high
+                  </Select.Option>
+                  <Select.Option value="price.desc">
+                    Price high-low
+                  </Select.Option>
                   <Select.Option value="name.asc">A-Z</Select.Option>
                   <Select.Option value="name.desc">Z-A</Select.Option>
                 </Select>
               </Col>
             </Row>
-            <Row gutter={[16, 16]}>{renderProductList}</Row>
+            <Row gutter={[16, 16]} style={{ margin: "8px 0px" }}>
+              {renderProductList}
+            </Row>
             {productList.data.length !== productList.meta.total && (
               <Row justify="center" style={{ marginTop: 16 }}>
                 <Button onClick={() => handleShowMore()}>Show more</Button>
