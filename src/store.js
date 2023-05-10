@@ -4,6 +4,7 @@ import createSagaMiddleware from "redux-saga";
 import productReducer from "./redux/reducers/product.reducer";
 import categoryReducer from "./redux/reducers/category.reducer";
 import diametterReducer from "./redux/reducers/diametter.reducer";
+import genderReducer from "./redux/reducers/gender.reducer";
 import authReducer from "./redux/reducers/auth.reducer";
 import reviewReducer from "./redux/reducers/review.reducer";
 import cartReducer from "./redux/reducers/cart.reducer";
@@ -18,6 +19,7 @@ const store = configureStore({
     category: categoryReducer,
     diametter: diametterReducer,
     cart: cartReducer,
+    gender: genderReducer,
     review: reviewReducer,
 
     auth: authReducer,

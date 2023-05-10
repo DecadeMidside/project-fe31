@@ -32,12 +32,9 @@ function Footer() {
           <li>DOWNLOAD THE CATALOG </li>
           <li>CHECK YOUR ORDER</li>
         </S.styleFooterMenu>
-        <div>
-          <S.styleButton>
-            <TfiWorld />
-            UNITED STATES ENG
-          </S.styleButton>
-        </div>
+        <S.styleButton>
+          <p> UNITED STATES ENG</p>
+        </S.styleButton>
       </S.styleFooterWrapper>
 
       <S.styleFooterSocial>

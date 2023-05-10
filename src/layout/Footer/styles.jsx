@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const styleFooter = styled.div`
   width: 100%;
   height: auto;
-  padding: 60px 0 30px;
+  padding: 30px;
   font-size: 14px;
   color: #fff;
   background-color: #111820;
@@ -13,6 +13,7 @@ export const styleFooterHeading = styled.ul`
   display: flex;
   justify-content: center;
   list-style-type: none;
+  margin-bottom: 16px;
 
   > li {
     margin: 0 16px;
@@ -37,7 +38,9 @@ export const styleFooterSocial = styled.div`
 export const styleFooterMenu = styled.ul`
   display: flex;
   justify-content: center;
+  align-items: center;
   list-style-type: none;
+  font-size: 12px;
 
   > li {
     margin: 0 16px;
@@ -64,4 +67,14 @@ export const styleButton = styled.div`
     color: #333;
     background-color: #ffc62d;
   }
+`;
+export const styleLanguage = styled.div`
+  display: flex;
+
+  font-size: 14px;
+  font-weight: 500;
+  justify-content: center;
+  line-height: 22px;
+  padding: 8px;
+  text-align: center;
 `;

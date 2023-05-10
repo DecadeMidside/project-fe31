@@ -21,6 +21,8 @@ export const WrapperDetail = styled(Col)`
 `;
 export const CustomColDetail = styled(Col)`
   text-align: left;
+  padding: 16px 0;
+  max-height: 100%;
   > h5 {
     font-size: 16px;
     font-weight: 400;

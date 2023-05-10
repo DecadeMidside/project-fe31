@@ -9,11 +9,6 @@ export const TopHeader = styled.div`
   background-color: #fff;
   z-index: 999;
   top: 0;
-  /* > div {
-    text-align: end;
-    padding-right: 16px;
-    margin-top: -4px;
-  } */
 `;
 
 export const navBar = styled.ul`
@@ -22,12 +17,22 @@ export const navBar = styled.ul`
   font-size: 18px;
   justify-content: space-between;
   list-style-type: none;
-  > li:hover {
-    color: #ffc62d;
-    cursor: pointer;
-  }
+
   > li {
     font-weight: 500;
+    :hover {
+      color: #ffc62d;
+      cursor: pointer;
+    }
+
+    > a {
+      text-decoration: none;
+      color: #333;
+      :hover {
+        color: #ffc62d;
+        cursor: pointer;
+      }
+    }
   }
 `;
 
@@ -43,13 +48,30 @@ export const StyledListIcon = styled.div`
   justify-content: flex-end;
   font-size: 18px;
   width: 100%;
-  padding: 20px;
+  padding: 16px;
 `;
 export const StyledIcon = styled.div`
   margin: 0 16px;
   :hover {
     color: #ffc62d;
     cursor: pointer;
+  }
+`;
+export const StyledIconPhone = styled.div`
+  &:hover {
+    &::after {
+      content: "0123456789";
+      display: block;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      background-color: #ffffff;
+      box-shadow: #ccc 0px 0px 10px 0px;
+      font-size: 14px;
+      line-height: 22px;
+      padding: 20px 30px 22px;
+      text-align: center;
+    }
   }
 `;
 
@@ -65,43 +87,6 @@ export const HeaderBar = styled.div`
   padding-top: 10px;
   margin-bottom: 0;
   text-decoration: none;
-`;
-
-export const StyledSearchInput = styled(Input)`
-  width: 100%;
-  padding: 1px 2px;
-  background: transparent;
-  border: 1px solid rgb(168, 188, 158);
-  border-radius: 0;
-  margin: 0 0 10px;
-  max-width: 100%;
-  text-indent: 10px;
-  outline: none;
-  height: 44px;
-
-  :focus {
-    box-shadow: 0 0 3px #47474333;
-    min-height: 32px;
-  }
-`;
-
-export const SearchBtn = styled(Button)`
-  display: flex;
-  position: absolute;
-  right: 0;
-  top: 0;
-  height: 44px;
-  /* line-height: 150px; */
-  width: 44px;
-  background: transparent;
-  margin-bottom: 0;
-  justify-content: center;
-  align-items: center;
-
-  :hover {
-    border: dotted 1px black;
-    border-radius: 0;
-  }
 `;
 
 export const StyledImg = styled.img`
