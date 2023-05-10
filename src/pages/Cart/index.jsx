@@ -28,7 +28,6 @@ import { FaPhoneAlt, FaCalendarAlt } from "react-icons/fa";
 
 function CartPage() {
   const { cartList } = useSelector((state) => state.cart);
-  console.log("🚀 ~ file: index.jsx:31 ~ CartPage ~ cartList:", cartList);
 
   const cartTotalPrice = cartList.reduce(
     (total, item) => total + item.price,
@@ -101,7 +100,7 @@ function CartPage() {
             <h3>{item.name}</h3>
             <span>Remove</span>
             <p>Stainless steel - Blue</p>
-            <h4>{item.price.toLocaleString()} USD </h4>
+            <h4>{item.price} USD </h4>
             <div>Excl. Sales Tax.</div>
             <S.AddOption>
               <span>Add a traps</span>
@@ -126,7 +125,7 @@ function CartPage() {
           <S.Bill>
             <S.SubTotal>
               <div>SUBTOTAL</div>
-              <div> {cartTotalPrice.toLocaleString()} USD </div>
+              <div> {cartTotalPrice} USD </div>
             </S.SubTotal>
             <S.SubTotal>
               <div>DELIVERY FEE</div>
