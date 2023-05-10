@@ -1,5 +1,5 @@
-import { Button, Col, Row } from "antd";
-import { Link } from "react-router-dom";
+import { Button, Col, Row, Badge } from "antd";
+import { Link, Routes } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -18,6 +18,7 @@ import * as S from "./styles";
 function Header() {
   const navigate = useNavigate();
   const { userInfo } = useSelector((state) => state.auth);
+  const { cartList } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
   return (
@@ -60,8 +61,22 @@ function Header() {
                 </Link>
               </S.StyledIcon>
               <S.StyledIcon>
-                {" "}
-                <FaCartPlus />
+                <Link to={ROUTES.USER.CART}>
+                  <Badge
+                    count={cartList.length}
+                    size="small"
+                    style={{
+                      backgroundColor: "rgba(101, 100, 100, 0.5)",
+                    }}
+                  >
+                    <FaCartPlus
+                      style={{
+                        color: "black",
+                      }}
+                      size={20}
+                    />
+                  </Badge>
+                </Link>
               </S.StyledIcon>
             </S.StyledListIcon>
           </S.CustomCol>
@@ -80,7 +95,7 @@ function Header() {
             }}
           >
             {" "}
-            Log Out
+            {/* Log Out */}
           </span>
         </div>
       </S.TopHeader>

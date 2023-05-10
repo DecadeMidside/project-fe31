@@ -13,6 +13,7 @@ import {
   Rate,
   Space,
   Image,
+  notification,
 } from "antd";
 import { useEffect, useMemo, useState } from "react";
 import { Link, useParams, generatePath } from "react-router-dom";
@@ -26,6 +27,7 @@ import {
   getProductListAction,
   getReviewListAction,
   sendReviewAction,
+  addToCartAction,
 } from "../../redux/actions";
 import { FaPhoneAlt, FaCalendarAlt } from "react-icons/fa";
 
@@ -38,6 +40,7 @@ function ProductDetail() {
   const { userInfo } = useSelector((state) => state.auth);
   const { productList, productDetail } = useSelector((state) => state.product);
   const { reviewList } = useSelector((state) => state.review);
+  const { cartList } = useSelector((state) => state.cart);
 
   const totalRate = useMemo(
     () =>
@@ -60,6 +63,16 @@ function ProductDetail() {
     );
   }, [id]);
 
+  const handleAddToBag = () => {
+    dispatch(
+      addToCartAction({
+        id: parseInt(id),
+        name: productDetail.data.name,
+        image: productDetail.data.image,
+        price: parseInt(productDetail.data.price),
+      })
+    );
+  };
   const handleReview = (values) => {
     dispatch(
       sendReviewAction({
@@ -126,7 +139,9 @@ function ProductDetail() {
           </Space>
           <h3>USD {productDetail.data.price}</h3>
           <h5>Boutique delivery available</h5>
-          <S.styleButton outline={true}>ADD TO BAG</S.styleButton>
+          <S.styleButton outline={true} onClick={(id) => handleAddToBag(id)}>
+            ADD TO BAG
+          </S.styleButton>
           <S.styleTextOr>
             <span>or</span>
           </S.styleTextOr>
