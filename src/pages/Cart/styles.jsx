@@ -6,8 +6,36 @@ import { AiOutlineNodeCollapse } from "react-icons/ai";
 
 export const Container = styled.div`
   max-width: 1440px;
+  justify-content: center;
   padding: 32px;
+  margin: 0 auto;
   background-color: #fafafa;
+`;
+export const styleEmpty = styled.div`
+  text-align: center;
+
+  > img {
+    height: 118px;
+    width: 88px;
+    margin: 16px 0;
+  }
+  > button {
+    margin: 1rem 0;
+    width: 249px;
+    font-weight: 600;
+    padding: 0.75rem 1rem;
+    margin: 8px 0;
+    background-color: ${(props) => (props.outline ? "#ffc62d" : "#ebebeb")};
+    color: ${(props) => (props.outline ? "#333" : "#333")};
+    font-size: 1rem;
+    border: 3px solid black;
+    cursor: pointer;
+
+    &:hover {
+      background-color: ${(props) => (props.outline ? "#ffc62d" : "#ffc62d")};
+      color: ${(props) => (props.outline ? "#fff" : "#fff")};
+    }
+  }
 `;
 export const styleTitle = styled.div`
   align-items: center;
@@ -26,6 +54,9 @@ export const styleTitle = styled.div`
     font-weight: 700;
     line-height: 78.5714px;
     text-align: center;
+    > span {
+      color: black;
+    }
   }
 `;
 export const styleProductItem = styled(Row)`
