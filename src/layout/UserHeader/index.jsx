@@ -1,7 +1,8 @@
-import { Button, Col, Row, Badge } from "antd";
+import { Button, Col, Row, Badge, Menu, Drawer } from "antd";
 import { Link, Routes } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
+import { MenuOutlined } from "@ant-design/icons";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { ROUTES } from "../../constant/routes";
 import {
@@ -20,27 +21,49 @@ function Header() {
   const { cartList } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
+  const [visible, setVisible] = useState(false);
+
+  const showDrawer = () => {
+    setVisible(true);
+  };
+
+  const onClose = () => {
+    setVisible(false);
+  };
+
+  const menu = (
+    <S.customMenu mode="horizontal">
+      <Menu.Item key="watches">
+        <Link to={ROUTES.USER.PRODUCT_LIST}>WATCHES</Link>
+      </Menu.Item>
+      <Menu.Item key="straps">STRAPS</Menu.Item>
+      <Menu.Item key="stores">STORES</Menu.Item>
+      <Menu.Item key="service">SERVICE</Menu.Item>
+      <Menu.Item key="sustainability">SUSTAINABILITY</Menu.Item>
+      <Menu.Item key="about">ABOUT</Menu.Item>
+    </S.customMenu>
+  );
+
   return (
     <>
       <S.TopHeader>
-        <Row>
-          <S.CustomColLogo span={4}>
+        <Row justify="space-between" align="center">
+          <Col xs={4} md={4} lg={0}>
+            <S.StyledIcon>
+              <Button
+                type="text"
+                icon={<MenuOutlined />}
+                onClick={() => setVisible(true)}
+              />
+            </S.StyledIcon>
+          </Col>
+          <S.CustomColLogo xs={12} md={4}>
             <S.StyledImg src={Logo}></S.StyledImg>
           </S.CustomColLogo>
-
-          <Col span={12}>
-            <S.navBar>
-              <li>
-                <Link to={ROUTES.USER.PRODUCT_LIST}>WATCHES</Link>
-              </li>
-              <li>STRAPS</li>
-              <li>STORES</li>
-              <li>SERVICE</li>
-              <li>SUSTAINABILITY</li>
-              <li>ABOUT</li>
-            </S.navBar>
+          <Col xs={0} md={0} lg={16} justify="center">
+            <S.navBar>{menu}</S.navBar>
           </Col>
-          <S.CustomCol span={8}>
+          <S.CustomColMenu xs={6} md={8} lg={4}>
             <S.StyledListIcon>
               <S.StyledIcon>
                 {" "}
@@ -51,10 +74,6 @@ function Header() {
                   {" "}
                   <FaPhoneAlt />
                 </S.StyledIconPhone>
-              </S.StyledIcon>
-              <S.StyledIcon>
-                {" "}
-                <FaHeart />
               </S.StyledIcon>
               <S.StyledIcon>
                 <Link to={ROUTES.USER.ACCOUNT}>
@@ -70,19 +89,54 @@ function Header() {
                       backgroundColor: "rgba(101, 100, 100, 0.5)",
                     }}
                   >
-                    <FaCartPlus
-                      style={{
-                        color: "black",
-                      }}
-                      size={20}
-                    />
+                    <Link to={ROUTES.USER.CART}>
+                      <FaCartPlus
+                        style={{
+                          color: "black",
+                        }}
+                        size={20}
+                      />
+                    </Link>
                   </Badge>
                 </Link>
               </S.StyledIcon>
             </S.StyledListIcon>
-          </S.CustomCol>
+          </S.CustomColMenu>
         </Row>
       </S.TopHeader>
+      <Drawer
+        title={
+          <Link to={ROUTES.HOME}>
+            <S.StyledImg src={Logo} />
+          </Link>
+        }
+        placement="left"
+        style={{ marginTop: "86px" }}
+        closable={false}
+        onClose={() => setVisible(false)}
+        visible={visible}
+      >
+        <S.customMenuHide theme="light">
+          <Menu.Item key="watches" onClick={() => setVisible(false)}>
+            <Link to={ROUTES.USER.PRODUCT_LIST}>WATCHES</Link>
+          </Menu.Item>
+          <Menu.Item key="straps" onClick={() => setVisible(false)}>
+            STRAPS
+          </Menu.Item>
+          <Menu.Item key="stores" onClick={() => setVisible(false)}>
+            STORES
+          </Menu.Item>
+          <Menu.Item key="service" onClick={() => setVisible(false)}>
+            SERVICE
+          </Menu.Item>
+          <Menu.Item key="sustainability" onClick={() => setVisible(false)}>
+            SUSTAINABILITY
+          </Menu.Item>
+          <Menu.Item key="about" onClick={() => setVisible(false)}>
+            ABOUT
+          </Menu.Item>
+        </S.customMenuHide>
+      </Drawer>
     </>
   );
 }

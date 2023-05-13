@@ -1,4 +1,4 @@
-import { Button, Input, Col } from "antd";
+import { Button, Input, Col, Menu } from "antd";
 import styled from "styled-components";
 
 export const TopHeader = styled.div`
@@ -15,7 +15,7 @@ export const navBar = styled.ul`
   display: flex;
   padding: 20px;
   font-size: 18px;
-  justify-content: space-between;
+  justify-content: center;
   list-style-type: none;
 
   > li {
@@ -36,13 +36,47 @@ export const navBar = styled.ul`
   }
 `;
 
-export const CustomCol = styled(Col)`
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  width: auto;
-  height: inherit;
+export const CustomColMenu = styled(Col)`
+  display: none;
+  @media screen and (min-width: 768px) {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: auto;
+    height: inherit;
+  }
 `;
+export const customMenu = styled(Menu)`
+  display: none;
+  @media screen and (min-width: 768px) {
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: inherit;
+  }
+`;
+export const customMenuHide = styled(Menu)`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  background-color: white;
+  padding: 20px;
+  left: 0;
+  top: 0;
+
+  height: 100%;
+  /* @media screen and (min-width: 768px) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    width: auto;
+    height: inherit;
+  } */
+`;
+
 export const StyledListIcon = styled.div`
   display: flex;
   justify-content: flex-end;

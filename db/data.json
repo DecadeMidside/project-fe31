@@ -167,6 +167,16 @@
       "size": "size 45mm"
     }
   ],
+  "genders": [
+    {
+      "id": 1,
+      "gender": "Men"
+    },
+    {
+      "id": 2,
+      "gender": "Women"
+    }
+  ],
   "reviews": [
     {
       "id": 1,
