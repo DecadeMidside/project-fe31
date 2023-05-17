@@ -1,7 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { notification } from "antd";
-import { CART_ACTION, REQUEST } from "../constants";
-
+import { CART_ACTION, ORDER_ACTION, REQUEST, SUCCESS } from "../constants";
 const initialState = {
   cartList: JSON.parse(localStorage.getItem("cartList")) || [],
 };
@@ -33,8 +32,23 @@ const cartReducer = createReducer(initialState, {
   },
   //REMOVE_CART_ITEM
   [REQUEST(CART_ACTION.REMOVE_CART_ITEM)]: (state, action) => {
+    const { id } = action.payload;
+    const newCartList = [...state.cartList];
+    const productIndex = state.cartList.findIndex((item) => item.id === id);
+    newCartList.splice(productIndex, 1);
+    localStorage.setItem("cartList", JSON.stringify(newCartList));
+
     return {
       ...state,
+      cartList: newCartList,
+    };
+  },
+  //ORDER_PRODUCT_SUCCESS
+  [SUCCESS(ORDER_ACTION.ORDER_PRODUCT)]: (state, action) => {
+    localStorage.removeItem("cartList");
+    return {
+      ...state,
+      cartList: [],
     };
   },
 });
