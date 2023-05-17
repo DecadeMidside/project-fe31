@@ -16,6 +16,7 @@ import ProductList from "../pages/ProductList";
 import ProductDetail from "../pages/ProductDetail";
 import CartPage from "../pages/Cart";
 import CheckoutPage from "../pages/Checkout";
+import SuccessCheckoutPage from "../pages/Checkout/SuccessCheckout";
 import AboutPage from "../pages/About";
 import { getUserInfoAction } from "../redux/actions";
 
@@ -42,6 +43,7 @@ function App() {
           <Route path={ROUTES.USER.PRODUCT_LIST} element={<ProductList />} />
           <Route path={ROUTES.USER.CART} element={<CartPage />} />
           <Route path={ROUTES.USER.CHECKOUT} element={<CheckoutPage />} />
+          <Route path={ROUTES.USER.SUCCESS} element={<SuccessCheckoutPage />} />
           <Route path={ROUTES.USER.ABOUT} element={<AboutPage />} />
           <Route
             path={ROUTES.USER.PRODUCT_DETAIL}

@@ -13,6 +13,7 @@ import {
   Space,
   Table,
   Avatar,
+  Result,
 } from "antd";
 import {
   getCityListAction,
@@ -94,7 +95,7 @@ function CheckoutPage() {
           status: "pending",
         },
         products: cartList,
-        callback: () => navigate(ROUTES.USER.HOME),
+        callback: () => navigate(ROUTES.USER.SUCCESS),
       })
     );
   };

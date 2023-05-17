@@ -27,7 +27,9 @@ function CartPage() {
           <img src="https://www.breitling.com/media/breitling/images/store-2018/asset-version-baba55e64d/bag.png" />
           <h1>YOUR SHOPPING BAG IS EMPTY</h1>
           <p>Free shipping and returns</p>
-          <button>CONTINUE</button>
+          <button onClick={() => navigate(ROUTES.USER.PRODUCT_LIST)}>
+            CONTINUE
+          </button>
         </S.styleEmpty>
         <S.NeedHelp>
           <S.styleTitle>
