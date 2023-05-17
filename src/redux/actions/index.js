@@ -5,3 +5,5 @@ export * from "./diametter.action";
 export * from "./gender.action";
 export * from "./review.action";
 export * from "./cart.action";
+export * from "./location.action";
+export * from "./order.action";
