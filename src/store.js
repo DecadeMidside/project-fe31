@@ -8,6 +8,7 @@ import genderReducer from "./redux/reducers/gender.reducer";
 import authReducer from "./redux/reducers/auth.reducer";
 import reviewReducer from "./redux/reducers/review.reducer";
 import cartReducer from "./redux/reducers/cart.reducer";
+import locationReducer from "./redux/reducers/location.reducer";
 
 import rootSaga from "./redux/sagas";
 
@@ -19,6 +20,7 @@ const store = configureStore({
     category: categoryReducer,
     diametter: diametterReducer,
     cart: cartReducer,
+    location: locationReducer,
     gender: genderReducer,
     review: reviewReducer,
 

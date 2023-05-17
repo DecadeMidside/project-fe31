@@ -1,33 +1,15 @@
 import * as S from "./styles";
-import {
-  Input,
-  Button,
-  Card,
-  Row,
-  Col,
-  Select,
-  Checkbox,
-  Space,
-  Image,
-  Modal,
-  Collapse,
-} from "antd";
+import { Row, Col } from "antd";
 import { useEffect, useMemo, useState } from "react";
-import { Link, useParams, generatePath } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-
-import { AiOutlineHeart } from "react-icons/ai";
+import { Link, useParams, generatePath, useNavigate } from "react-router-dom";
 import { ROUTES } from "../../constant/routes";
-import { PRODUCT_LIMIT } from "../../constant/paging";
-import {
-  getProductDetailAction,
-  getProductListAction,
-  addToCartAction,
-} from "../../redux/actions";
-import { FaPhoneAlt, FaCalendarAlt } from "react-icons/fa";
 
+import { useDispatch, useSelector } from "react-redux";
+import { removeCartItemAction } from "../../redux/actions";
 function CartPage() {
   const { cartList } = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const cartTotalPrice = cartList.reduce(
     (total, item) => total + item.price,
@@ -93,12 +75,15 @@ function CartPage() {
   const renderCartList = useMemo(() => {
     return cartList.map((item) => {
       return (
-        <S.styleProductItem key={item.id}>
+        <S.styleProductItem>
           <img src={item.image} alt="" />
 
           <S.ProductInf>
             <h3>{item.name}</h3>
-            <span>Remove</span>
+            <span onClick={() => dispatch(removeCartItemAction(item.id))}>
+              Remove
+            </span>
+
             <p>Stainless steel - Blue</p>
             <h4>{item.price} USD </h4>
             <div>Excl. Sales Tax.</div>
@@ -119,76 +104,80 @@ function CartPage() {
   }, [cartList]);
 
   const renderPrice = useMemo(() => {
-    return renderCartList.map((item) => {
-      return (
-        <Row key={item.id}>
-          <S.Bill>
-            <S.SubTotal>
-              <div>SUBTOTAL</div>
-              <div> {cartTotalPrice} USD </div>
-            </S.SubTotal>
-            <S.SubTotal>
-              <div>DELIVERY FEE</div>
-              <div>FREE</div>
-            </S.SubTotal>
-            <S.Total>
-              <h3>TOTAL</h3>
-              <h3>{cartTotalPrice.toLocaleString()} USD</h3>
-            </S.Total>
-            <S.Content>
-              Free shipping to all US states, including Hawaii. All orders
-              require a signature upon delivery.
-            </S.Content>
-            <S.styleButton outline={true}>BUY NOW</S.styleButton>
+    return (
+      <Row>
+        <S.Bill>
+          <S.SubTotal>
+            <div>SUBTOTAL</div>
+            <div> {cartTotalPrice.toLocaleString()} USD </div>
+          </S.SubTotal>
+          <S.SubTotal>
+            <div>DELIVERY FEE</div>
+            <div>FREE</div>
+          </S.SubTotal>
+          <S.Total>
+            <h3>TOTAL</h3>
+            <h3>{cartTotalPrice.toLocaleString()} USD</h3>
+          </S.Total>
+          <S.Content>
+            Free shipping to all US states, including Hawaii. All orders require
+            a signature upon delivery.
+          </S.Content>
 
-            <S.styleButton outline={false}> CHECK OUT</S.styleButton>
-            <S.CardList>
-              <img
-                src="https://www.breitling.com/media/breitling/images/store-2018/payment/asset-version-07df0b6411/bit_pay.svg"
-                alt=""
-              />
-              <img
-                src="https://www.breitling.com/media/breitling/images/store-2018/payment/asset-version-6601145ba9/applepay.svg"
-                alt=""
-              />
-              <img
-                src="https://www.breitling.com/media/breitling/images/store-2018/payment/asset-version-dadba19646/mastercard.svg"
-                alt=""
-              />
-              <img
-                src="https://www.breitling.com/media/breitling/images/store-2018/payment/asset-version-cdcb46bb4b/dinersclub.svg"
-                alt=""
-              />
-              <img
-                src="https://www.breitling.com/media/breitling/images/store-2018/payment/asset-version-7a8a13d10e/jcb.svg"
-                alt=""
-              />
-              <img
-                src="https://www.breitling.com/media/breitling/images/store-2018/payment/asset-version-1372de9552/discover.svg"
-                alt=""
-              />
-              <img
-                src="https://www.breitling.com/media/breitling/images/store-2018/payment/asset-version-280faaf394/paypal.svg"
-                alt=""
-              />
-              <img
-                src="https://www.breitling.com/media/breitling/images/store-2018/payment/asset-version-9b09ce7e50/affirm.svg"
-                alt=""
-              />
-              <img
-                src="https://www.breitling.com/media/breitling/images/store-2018/payment/asset-version-7bf01f4136/paywithgoogle.svg"
-                alt=""
-              />
-            </S.CardList>
-            <div>
-              128-bit SSL encrypted payment. Breitling does not keep your
-              payment details for your next orders.
-            </div>
-          </S.Bill>{" "}
-        </Row>
-      );
-    });
-  }, [renderCartList]);
+          <S.styleButton
+            outline={true}
+            onClick={() => navigate(ROUTES.USER.CHECKOUT)}
+          >
+            CHECKOUT
+          </S.styleButton>
+
+          <S.styleButton outline={false}>PAY WITH PAYPAL</S.styleButton>
+          <S.CardList>
+            <img
+              src="https://www.breitling.com/media/breitling/images/store-2018/payment/asset-version-07df0b6411/bit_pay.svg"
+              alt=""
+            />
+            <img
+              src="https://www.breitling.com/media/breitling/images/store-2018/payment/asset-version-6601145ba9/applepay.svg"
+              alt=""
+            />
+            <img
+              src="https://www.breitling.com/media/breitling/images/store-2018/payment/asset-version-dadba19646/mastercard.svg"
+              alt=""
+            />
+            <img
+              src="https://www.breitling.com/media/breitling/images/store-2018/payment/asset-version-cdcb46bb4b/dinersclub.svg"
+              alt=""
+            />
+            <img
+              src="https://www.breitling.com/media/breitling/images/store-2018/payment/asset-version-7a8a13d10e/jcb.svg"
+              alt=""
+            />
+            <img
+              src="https://www.breitling.com/media/breitling/images/store-2018/payment/asset-version-1372de9552/discover.svg"
+              alt=""
+            />
+            <img
+              src="https://www.breitling.com/media/breitling/images/store-2018/payment/asset-version-280faaf394/paypal.svg"
+              alt=""
+            />
+            <img
+              src="https://www.breitling.com/media/breitling/images/store-2018/payment/asset-version-9b09ce7e50/affirm.svg"
+              alt=""
+            />
+            <img
+              src="https://www.breitling.com/media/breitling/images/store-2018/payment/asset-version-7bf01f4136/paywithgoogle.svg"
+              alt=""
+            />
+          </S.CardList>
+          <div>
+            128-bit SSL encrypted payment. Breitling does not keep your payment
+            details for your next orders.
+          </div>
+        </S.Bill>{" "}
+      </Row>
+    );
+  }, [cartTotalPrice]);
   function ExistCart() {
     return (
       <S.Container>
@@ -244,6 +233,7 @@ function CartPage() {
       </S.Container>
     );
   }
-  return localStorage.getItem("cartList") ? ExistCart() : EmptyCart();
+  return cartList.length > 0 ? ExistCart() : EmptyCart();
 }
+
 export default CartPage;
