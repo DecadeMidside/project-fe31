@@ -1,7 +1,72 @@
-import { Carousel, Row, Col } from "antd";
 import * as S from "./styles";
 
+import moment from "moment";
+
+import {
+  Carousel,
+  Row,
+  Col,
+  Card,
+  InputNumber,
+  Input,
+  Button,
+  Form,
+  Rate,
+  Space,
+  Image,
+  notification,
+} from "antd";
+import { useEffect, useMemo, useState } from "react";
+import { Link, useParams, generatePath } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
+import { AiOutlineHeart } from "react-icons/ai";
+import { ROUTES } from "../../constant/routes";
+import { PRODUCT_LIMIT } from "../../constant/paging";
+import {
+  getProductDetailAction,
+  getProductListAction,
+  getReviewListAction,
+  sendReviewAction,
+  addToCartAction,
+} from "../../redux/actions";
+import { FaPhoneAlt, FaCalendarAlt } from "react-icons/fa";
 function HomePage() {
+  const { productList, productDetail } = useSelector((state) => state.product);
+
+  const { id } = useParams();
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(
+      getProductListAction({
+        page: 1,
+        limit: PRODUCT_LIMIT,
+      })
+    );
+  }, [id]);
+  const renderProductList = useMemo(() => {
+    return productList.data.map((item) => {
+      return (
+        <Col key={item.id} span={6}>
+          <Link to={generatePath(ROUTES.USER.PRODUCT_DETAIL, { id: item.id })}>
+            <S.StyledProductItem
+              hoverable
+              cover={<img alt="example" src={item.image} />}
+            >
+              <h3>{item.name}</h3>
+              <h6>{item.price} </h6>
+              <S.StyledBtnProduct>ADD TO CART</S.StyledBtnProduct>
+              <S.HeartIconWrapper>
+                <AiOutlineHeart />
+              </S.HeartIconWrapper>
+            </S.StyledProductItem>{" "}
+          </Link>
+        </Col>
+      );
+    });
+  }, [productList.data]);
   return (
     <S.styledContainer>
       <Carousel swipeToSlide draggable>
@@ -71,7 +136,7 @@ function HomePage() {
         </S.styledCarousel3>
       </Carousel>
       <S.styledWrapper>
-        <Row>
+        <Row justify="center">
           <Col span={24}>
             <S.styledCustomTitle>
               <span
@@ -84,8 +149,11 @@ function HomePage() {
               </span>
               NOW{" "}
             </S.styledCustomTitle>
+            <S.styleRowFeature gutter={[16, 16]} justify="space-between">
+              {" "}
+              {renderProductList}
+            </S.styleRowFeature>
           </Col>
-          <S.styledContentWrapper></S.styledContentWrapper>
         </Row>
       </S.styledWrapper>
       <S.styledWrapper>
@@ -105,21 +173,21 @@ function HomePage() {
             </S.styledCustomTitle>
           </Col>
           <S.styledCustomRowService>
-            <S.styledColService span={6}>
+            <S.styledColService span={8}>
               <S.styledServiceBoxes>
-                <S.styledImgService src="https://www.breitling.com/media/breitling/images/br-11-20/asset-version-300ff763f3/icon-free-shipping-return.svg" />
+                <S.styledImgService src="https://www.breitling.com/media/breitling/images/br-11-20/asset-version-300ff783f3/icon-free-shipping-return.svg" />
                 <S.styledContentService>
                   FREE SHIPPINGS & RETURNS
                 </S.styledContentService>
               </S.styledServiceBoxes>
             </S.styledColService>
-            <S.styledColService span={6}>
+            <S.styledColService span={8}>
               <S.styledServiceBoxes>
                 <S.styledImgService src="https://www.breitling.com/media/breitling/images/br-11-20/asset-version-402c0f9a53/icon-gifting-service.svg" />
                 <S.styledContentService>GIVE A GIFT</S.styledContentService>
               </S.styledServiceBoxes>
             </S.styledColService>
-            <S.styledColService span={6}>
+            <S.styledColService span={8}>
               <S.styledServiceBoxes>
                 <S.styledImgService src="https://www.breitling.com/media/breitling/images/br-11-20/asset-version-0721303587/icon-exclusive-benefit.svg" />
                 <S.styledContentService>
@@ -150,34 +218,36 @@ function HomePage() {
         </S.styledCustomSlider>
       </div>
       <S.styledWrapper>
-        <S.styledCustomRowService>
-          <S.styledCustomColWoman span={7}>
+        <S.styledCustomRowService gutter={[16, 16]}>
+          <S.styledCustomColWoman span={8}>
             <S.styledCustomWoman> </S.styledCustomWoman>
           </S.styledCustomColWoman>
-          <S.styledCustomColWoman span={7}>
+          <S.styledCustomColWoman span={8}>
             <S.styledCustomWatchesWoman> </S.styledCustomWatchesWoman>
           </S.styledCustomColWoman>
           <S.styledCustomColWoman span={8}>
-            <S.styledTextWoman>
-              <h2
-                style={{
-                  color: "black",
-                  fontSize: "30px",
-                  marginBottom: "8px",
-                }}
-              >
-                <span>CHRONOMAT </span> AUTOMATIC 36
-              </h2>
-              <p
-                style={{
-                  marginBottom: "4px",
-                }}
-              >
-                See all the variations of the elegantly versatile Chronomat for
-                women.
-              </p>
-              <S.styledCustomButton>DISCOVER</S.styledCustomButton>
-            </S.styledTextWoman>
+            <Link to={generatePath(ROUTES.USER.PRODUCT_DETAIL, { id: 3 })}>
+              <S.styledTextWoman>
+                <h2
+                  style={{
+                    color: "black",
+                    fontSize: "30px",
+                    marginBottom: "8px",
+                  }}
+                >
+                  <span>CHRONOMAT </span> AUTOMATIC 36
+                </h2>
+                <p
+                  style={{
+                    marginBottom: "4px",
+                  }}
+                >
+                  See all the variations of the elegantly versatile Chronomat
+                  for women.
+                </p>
+                <S.styledCustomButton>DISCOVER</S.styledCustomButton>
+              </S.styledTextWoman>
+            </Link>
           </S.styledCustomColWoman>
         </S.styledCustomRowService>
       </S.styledWrapper>
@@ -198,38 +268,34 @@ function HomePage() {
         </S.styledCustomRowNew>
       </div>
       <S.styledWrapper>
-        <S.styledCustomRowService gutter={[16, 16]}>
-          <S.styledColStrapsWrapper span={12}>
-            <div>
-              <S.styledTitleStrapsService>STRAPS</S.styledTitleStrapsService>
-              <S.styledContentStrapsService>
-                Made from leather, rubber , or ECONYL™ fabric, the Breitling
-                straps will nicely complement your Breitling watch and give it a
-                fresh new look.
-              </S.styledContentStrapsService>
-              <S.styledCustomButton>BUY NOW</S.styledCustomButton>
-            </div>
-          </S.styledColStrapsWrapper>
+        <S.styleRowFeature gutter={[16, 16]} justify="space-between">
           <S.styledColServiceWrapper span={12}>
-            <div>
-              <S.styledTitleStrapsService>SERVICE</S.styledTitleStrapsService>
-              <S.styledContentStrapsService>
-                Explore our comprenhensive set of services and assistance
-                designed for you and your Breitling.
-              </S.styledContentStrapsService>
-              <S.styledCustomButton>DISCOVER NOW</S.styledCustomButton>
-            </div>
+            <S.styledTitleStrapsService>STRAPS</S.styledTitleStrapsService>
+            <S.styledContentStrapsService>
+              Made from leather, rubber , or ECONYL™ fabric, the Breitling
+              straps will nicely complement your Breitling watch and give it a
+              fresh new look.
+            </S.styledContentStrapsService>
+            <S.styledCustomButton>BUY NOW</S.styledCustomButton>
           </S.styledColServiceWrapper>
-        </S.styledCustomRowService>
+          <S.styledColServiceWrapper span={12}>
+            <S.styledTitleStrapsService>SERVICE</S.styledTitleStrapsService>
+            <S.styledContentStrapsService>
+              Explore our comprenhensive set of services and assistance designed
+              for you and your Breitling.
+            </S.styledContentStrapsService>
+            <S.styledCustomButton>DISCOVER NOW</S.styledCustomButton>
+          </S.styledColServiceWrapper>
+        </S.styleRowFeature>
       </S.styledWrapper>
       <S.styledWrapper>
         <Row
-          style={{
-            maxWidth: "1216px",
-            margin: "0 auto",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
+          // style={{
+          //   maxWidth: "1216px",
+          //   margin: "0 auto",
+          //   justifyContent: "space-between",
+          //   alignItems: "center",
+          // }}
           gutter={[8, 8]}
         >
           <S.styledCustomColStore span={8}>

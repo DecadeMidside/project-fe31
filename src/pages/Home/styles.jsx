@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Col, Collapse, Row } from "antd";
+import { Col, Collapse, Row, Card } from "antd";
 import {
   StyleSlider,
   StyleText,
@@ -26,8 +26,9 @@ export const styledCarousel = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   min-height: 550px;
-  width: 100%;
+  max-width: 100%;
   object-fit: cover;
+  /* padding-top: 56.25%; */
 `;
 export const styledCarousel2 = styled.div`
   background-image: url("https://www.breitling.com/media/image/3/home_slide_desktop_1920/asset-version-e9c4ae309c/banner-web-jpg.webp");
@@ -65,6 +66,75 @@ export const styledTextTitle = styled.h2`
   font-size: 40px;
   font-weight: 700;
   margin-bottom: 16px;
+`;
+export const styleRowFeature = styled(Row)`
+  display: flex;
+  justify-content: center;
+  margin: 16px auto;
+  padding: 16px;
+  /* max-width: 1232px; */
+  font-size: 14px;
+  line-height: 22px;
+
+  > ul {
+    list-style-type: none;
+  }
+`;
+export const StyledProductItem = styled(Card)`
+  display: flex;
+  position: relative;
+
+  flex-direction: column;
+  background-color: #fafafa;
+  width: 100%;
+  height: 450px;
+  text-align: center;
+  font-size: 14px;
+  border: none;
+  border-radius: 0 !important;
+  > div {
+    padding: 0 4px 0 !important ;
+    margin: -24px;
+  }
+
+  &::before {
+    content: "HOT";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0 8px;
+    margin: 8px;
+    border-radius: 50%;
+    box-shadow: #ffc62d 2px;
+    border-top: solid 2px #ffc62d;
+    border-bottom: solid 2px #ffc62d;
+    background-color: #f30707;
+    color: #fafafa;
+    font-weight: 500;
+  }
+`;
+export const HeartIconWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  /* padding: 0 8px; */
+  margin: 4px;
+  color: #333;
+  font-size: 24px;
+  cursor: pointer;
+`;
+
+export const StyledBtnProduct = styled.button`
+  width: 160px;
+  height: 50px;
+  background-color: #ffc62d;
+  border-radius: 0;
+  font-weight: 700;
+  border: none;
+  :hover {
+    color: white;
+  }
 `;
 export const styledCustomButton = styled.button`
   display: inline-block;
@@ -105,8 +175,7 @@ export const styledCustomColProductItem = styled(Col)`
 `;
 export const styledCustomRowService = styled(Row)`
   width: 100%;
-  flex-grow: 1;
-  justify-content: center;
+  /* justify-content: space-between; */
   align-items: center;
 `;
 export const styledColService = styled(Col)`
@@ -156,10 +225,10 @@ export const styledCustomWoman = styled.div`
 `;
 export const styledCustomWatchesWoman = styled(styledCustomWoman)`
   background-image: url("https://www.breitling.com/media/image/2/single_entry_double_image_435/asset-version-78bdd0719f/chronomat36-still-u103800101l1a1_3000.webp");
-  margin: 0 8px;
+  /* margin: 0 8px; */
 `;
 export const styledCustomColWoman = styled(Col)`
-  margin: 4px;
+  /* margin: 4px; */
 `;
 export const styledTextWoman = styled.div`
   text-align: center;
@@ -171,7 +240,7 @@ export const styledCustomRowNew = styled(Row)`
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 550px;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   text-align: center;
   margin-bottom: 30px;
@@ -185,11 +254,8 @@ export const styledColStrapsWrapper = styled(Col)`
   background-size: cover;
   object-fit: cover;
   min-height: 550px;
-  width: 100%;
-  justify-content: center;
   align-items: center;
   text-align: center;
-  margin: 8px;
   padding: 70px 22px 0;
 `;
 export const styledColServiceWrapper = styled(styledColStrapsWrapper)`
@@ -197,7 +263,6 @@ export const styledColServiceWrapper = styled(styledColStrapsWrapper)`
     url("https://www.breitling.com/media/image/2/section_cta_1324/asset-version-108f1e5d72/_mg_9785.webp");
 `;
 export const styledTitleStrapsService = styled.h2`
-  margin-bottom: 0 0 20px;
   font-weight: 700 !important;
 `;
 export const styledContentStrapsService = styled.div`
@@ -210,10 +275,9 @@ export const styledContentStrapsService = styled.div`
 export const styledCustomColStore = styled(Col)`
   background-color: #ffc62d;
   text-align: center;
-  flex-direction: column;
+
   min-height: 550px;
   max-width: 100%;
   justify-content: space-between;
   padding: 30px 50px;
 `;
-

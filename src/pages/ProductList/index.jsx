@@ -10,7 +10,7 @@ import {
   Checkbox,
   Space,
   Image,
-  Search,
+  Spin,
 } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineHeart } from "react-icons/ai";
@@ -145,8 +145,8 @@ function ProductList() {
       <S.ProductListWrapper>
         <Row gutter={[16, 16]}>
           <Col span={6}>
-            <h1>FILTER</h1>
-            <Card>
+            <S.StyledFilter>
+              <h1>FILTER</h1>
               <h3>DIAMETTER</h3>
               <Checkbox.Group
                 onChange={(values) => handleFilter("diametterId", values)}
@@ -159,7 +159,7 @@ function ProductList() {
               >
                 <Row>{renderGenderFilter}</Row>
               </Checkbox.Group>
-            </Card>
+            </S.StyledFilter>
           </Col>
           <Col span={18}>
             <Row gutter={[16, 16]}>
@@ -186,7 +186,9 @@ function ProductList() {
               </Col>
             </Row>
             <Row gutter={[16, 16]} style={{ margin: "8px 0px" }}>
-              {renderProductList}
+              <Spin spinning={productList.load}>
+                <Row gutter={[16, 16]}>{renderProductList}</Row>
+              </Spin>
             </Row>
             {productList.data.length !== productList.meta.total && (
               <Row justify="center" style={{ marginTop: 16 }}>

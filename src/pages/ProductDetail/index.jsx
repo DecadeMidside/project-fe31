@@ -39,6 +39,10 @@ function ProductDetail() {
 
   const { userInfo } = useSelector((state) => state.auth);
   const { productList, productDetail } = useSelector((state) => state.product);
+  console.log(
+    "🚀 ~ file: index.jsx:42 ~ ProductDetail ~ productDetail:",
+    productDetail
+  );
   const { reviewList } = useSelector((state) => state.review);
   const { cartList } = useSelector((state) => state.cart);
 
@@ -213,7 +217,7 @@ function ProductDetail() {
               </li>
               <li>
                 <h4>Diameter</h4>
-                <p>{productDetail.data.diametter}</p>
+                <p>{productDetail.data.diametter?.size}</p>
               </li>
               <li>
                 <h4>Thickness</h4>
@@ -329,7 +333,7 @@ function ProductDetail() {
         {renderReviewList}
       </S.styleTechnical>
       <S.styleTechnical
-        dangerouslySetInnerHTML={{ __html: productDetail.data.store }}
+        dangerouslySetInnerHTML={{ __html: productDetail.data.content }}
       ></S.styleTechnical>
       <S.styleTechnical>
         <h1>WARRANTY</h1>

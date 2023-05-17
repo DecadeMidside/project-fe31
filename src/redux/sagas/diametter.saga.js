@@ -3,7 +3,11 @@ import axios from "axios";
 
 function* getDiametterListSaga(action) {
   try {
-    const result = yield axios.get("http://localhost:4000/diametters");
+    const result = yield axios.get("http://localhost:4000/diametters", {
+      params: {
+        _embed: "products",
+      },
+    });
     yield put({
       type: "GET_DIAMETTER_LIST_SUCCESS",
       payload: {

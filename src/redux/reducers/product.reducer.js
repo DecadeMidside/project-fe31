@@ -81,6 +81,98 @@ const productReducer = createReducer(initialState, {
       },
     };
   },
+  [REQUEST(PRODUCT_ACTION.CREATE_PRODUCT)]: (state, action) => {
+    return {
+      ...state,
+      createProductData: {
+        ...state.createProductData,
+        load: true,
+        error: "",
+      },
+    };
+  },
+  [SUCCESS(PRODUCT_ACTION.CREATE_PRODUCT)]: (state, action) => {
+    return {
+      ...state,
+      createProductData: {
+        ...state.createProductData,
+        load: false,
+      },
+    };
+  },
+  [FAIL(PRODUCT_ACTION.CREATE_PRODUCT)]: (state, action) => {
+    const { error } = action.payload;
+    return {
+      ...state,
+      createProductData: {
+        ...state.createProductData,
+        load: false,
+        error: error,
+      },
+    };
+  },
+  // UPDATE_PRODUCT
+  [REQUEST(PRODUCT_ACTION.UPDATE_PRODUCT)]: (state, action) => {
+    return {
+      ...state,
+      updateProductData: {
+        ...state.updateProductData,
+        load: true,
+        error: "",
+      },
+    };
+  },
+  [SUCCESS(PRODUCT_ACTION.UPDATE_PRODUCT)]: (state, action) => {
+    return {
+      ...state,
+      updateProductData: {
+        ...state.updateProductData,
+        load: false,
+      },
+    };
+  },
+  [FAIL(PRODUCT_ACTION.UPDATE_PRODUCT)]: (state, action) => {
+    const { error } = action.payload;
+    return {
+      ...state,
+      updateProductData: {
+        ...state.updateProductData,
+        load: false,
+        error: error,
+      },
+    };
+  },
+  // DELETE_PRODUCT
+  [REQUEST(PRODUCT_ACTION.DELETE_PRODUCT)]: (state, action) => {
+    return {
+      ...state,
+      deleteProductData: {
+        ...state.deleteProductData,
+        load: true,
+        error: "",
+      },
+    };
+  },
+  [SUCCESS(PRODUCT_ACTION.DELETE_PRODUCT)]: (state, action) => {
+    return {
+      ...state,
+      deleteProductData: {
+        ...state.deleteProductData,
+        load: false,
+      },
+    };
+  },
+  [FAIL(PRODUCT_ACTION.DELETE_PRODUCT)]: (state, action) => {
+    const { error } = action.payload;
+    return {
+      ...state,
+      deleteProductData: {
+        ...state.deleteProductData,
+        load: false,
+        error: error,
+      },
+    };
+  },
 });
 
 export default productReducer;

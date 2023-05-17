@@ -1,4 +1,4 @@
-import { Button, Input, Col, Row, Form } from "antd";
+import { Button, Input, Col, Row, Form, Tabs } from "antd";
 import styled from "styled-components";
 
 export const StyleSlider = styled.div`
@@ -12,6 +12,12 @@ export const StyleSlider = styled.div`
   align-items: center;
   text-align: center;
 `;
+export const StyleTitleChildren = styled.div`
+  text-align: center;
+  color: #ffc62d;
+  font-size: 20px;
+  font-weight: 700;
+`;
 export const StyleTitle = styled.div`
   text-align: center;
   color: #ffc62d;
@@ -19,7 +25,7 @@ export const StyleTitle = styled.div`
   font-weight: 700;
   line-height: 50px;
   letter-spacing: 0;
-  margin: 40px auto;
+  margin: 20px auto;
 `;
 export const StyleText = styled.div`
   color: #ffffff;
@@ -101,10 +107,11 @@ export const StyleButtonCreate = styled.button`
   height: 50px;
   margin: 30px 0;
   font-weight: 700;
+  color: #ffc62d;
   font-size: 14px;
   background: transparent;
   box-shadow: inset 0 0 0 2px #fff;
-  color: #fff;
+
   :hover {
     color: #fff;
     background-color: #ffc62d;
@@ -113,16 +120,17 @@ export const StyleButtonCreate = styled.button`
   }
 `;
 export const styleProfile = styled.div`
-  background-color: #f1f1f1;
+  background-color: #333;
+  min-width: 1000px;
 `;
-export const StyleBoxProfile = styled.div`
-  background-image: url("https://www.breitling.com/media/breitling/images/account/landing/asset-version-0d68d070c0/my-watches.jpg");
-  background-repeat: no-repeat;
-  width: 100%;
-  min-height: 400px;
-  object-fit: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+
+export const ProfileWrapper = styled.div`
+  margin: 4px 20px 4px 25%;
+  padding: 16px;
+  max-width: 1232px;
+  min-width: 723px;
+  border: 1px solid #333;
+  background-color: #f1f1f1;
+
+  min-height: 500px;
 `;

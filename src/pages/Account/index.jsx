@@ -1,4 +1,4 @@
-import { Row, Col, Form, Input, Checkbox, Button } from "antd";
+import { Row, Col, Form, Input, Checkbox, Button, Tabs } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginAction } from "../../redux/actions";
 import { ROUTES } from "../../constant/routes";
 import { logoutAction } from "../../redux/actions";
+
+import { UserProfile, UpdatePassword } from "./component";
 
 import * as S from "./styles";
 function AccountPage() {
@@ -46,37 +48,63 @@ function AccountPage() {
       })
     );
   };
-  function Profile() {
-    return <h1>hihi</h1>;
-  }
 
   return (
     <div>
       {userInfo.data.id ? (
         <S.styleProfile>
-          <div>
-            {" "}
-            {userInfo.data.id ? <h3>{userInfo.data.fullName}</h3> : []}
-            <span
-              onClick={() => dispatch(logoutAction())}
-              style={{
-                fontSize: "16px",
-              }}
-            >
-              {" "}
-              Log Out
-            </span>
-          </div>
           <S.StyleTitle>MY ACCOUNT</S.StyleTitle>
           <Row>
-            <Col span={6}>
-              <S.StyleBoxProfile>
-                <h2>MY WATCHES</h2>
-              </S.StyleBoxProfile>
-            </Col>
-            <Col span={6}></Col>
-            <Col span={6}></Col>
-            <Col span={6}></Col>
+            <S.ProfileWrapper>
+              <Tabs
+                tabPosition="left"
+                items={[
+                  {
+                    label: "Thông tin cá nhân",
+                    key: 1,
+                    children: <UserProfile />,
+                  },
+                  {
+                    label: "Lịch sử mua hàng",
+                    key: 2,
+                    // children: <OrderHistories />,
+                  },
+                  {
+                    label: "Đổi mật khẩu",
+                    key: 3,
+                    children: <UpdatePassword />,
+                  },
+                  {
+                    label: "Đăng xuất",
+                    key: 4,
+                    children: (
+                      <div>
+                        {" "}
+                        {userInfo.data.id ? (
+                          <>
+                            <S.StyleTitleChildren>
+                              USER NAME
+                            </S.StyleTitleChildren>
+                            <h3>{userInfo.data.fullName}</h3>
+                          </>
+                        ) : (
+                          []
+                        )}
+                        <S.StyleButtonCreate
+                          onClick={() => dispatch(logoutAction())}
+                          style={{
+                            fontSize: "16px",
+                          }}
+                        >
+                          {" "}
+                          Log Out
+                        </S.StyleButtonCreate>
+                      </div>
+                    ),
+                  },
+                ]}
+              />
+            </S.ProfileWrapper>
           </Row>
         </S.styleProfile>
       ) : (

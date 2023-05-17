@@ -1,10 +1,10 @@
-import { Button, Col, Row, Badge, Menu, Drawer } from "antd";
+import { Button, Col, Row, Badge, Menu, Drawer, Space } from "antd";
 import { Link, Routes } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { MenuOutlined } from "@ant-design/icons";
+import { MenuOutlined, BellFilled, MailOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { ROUTES } from "../../constant/routes";
+import { ROUTES } from "../../../../constant/routes";
 import {
   FaSearch,
   FaPhoneAlt,
@@ -12,7 +12,7 @@ import {
   FaUser,
   FaCartPlus,
 } from "react-icons/fa";
-import Logo from "../../images/breitling.svg";
+import Logo from "../../../../images/breitling.svg";
 import * as S from "./styles";
 
 function Header() {
@@ -58,52 +58,24 @@ function Header() {
             <S.navBar>{menu}</S.navBar>
           </Col>
           <S.CustomColMenu>
-            <S.StyledListIcon xs={16} md={12} lg={8}>
-              <S.StyledIcon>
-                {" "}
-                <FaSearch />
-              </S.StyledIcon>
-              <S.StyledIcon>
-                <S.StyledIconPhone>
-                  {" "}
-                  <FaPhoneAlt />
-                </S.StyledIconPhone>
-              </S.StyledIcon>
-              <S.StyledIcon>
-                <Link to={ROUTES.USER.ACCOUNT}>
-                  <FaUser />
-                </Link>
-              </S.StyledIcon>
-              <S.StyledIcon>
-                <Link to={ROUTES.USER.CART}>
-                  <Badge
-                    count={cartList.length}
-                    size="small"
-                    style={{
-                      backgroundColor: "rgba(101, 100, 100, 0.5)",
-                    }}
-                  >
-                    <Link to={ROUTES.USER.CART}>
-                      <FaCartPlus
-                        style={{
-                          color: "black",
-                        }}
-                        size={20}
-                      />
-                    </Link>
-                  </Badge>
-                </Link>
-              </S.StyledIcon>
-              <Col xs={4} md={4} lg={0}>
-                <S.StyledIcon>
-                  <Button
-                    type="text"
-                    icon={<MenuOutlined />}
-                    onClick={() => setVisible(true)}
-                  />
-                </S.StyledIcon>
-              </Col>
-            </S.StyledListIcon>
+            <Space>
+              <Badge count={1} dot>
+                <MailOutlined
+                  style={{ fontSize: 24 }}
+                  onClick={() => {
+                    // setCommentsOpen(true);
+                  }}
+                />
+              </Badge>
+              <Badge count={2}>
+                <BellFilled
+                  style={{ fontSize: 24 }}
+                  onClick={() => {
+                    // setNotificationsOpen(true);
+                  }}
+                />
+              </Badge>
+            </Space>
           </S.CustomColMenu>
         </Row>
       </S.TopHeader>

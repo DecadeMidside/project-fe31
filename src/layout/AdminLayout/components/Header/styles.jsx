@@ -38,14 +38,9 @@ export const navBar = styled.ul`
 `;
 
 export const CustomColMenu = styled(Col)`
-  display: none;
-  @media screen and (min-width: 768px) {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    width: auto;
-    height: inherit;
-  }
+  display: flex;
+
+  padding: 0 20px;
 `;
 export const customMenu = styled(Menu)`
   display: none;

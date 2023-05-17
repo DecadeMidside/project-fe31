@@ -143,3 +143,13 @@ export const StyledBtnProduct = styled.button`
     color: white;
   }
 `;
+export const StyledFilter = styled(Card)`
+  justify-content: center;
+  position: sticky;
+  top: 86px;
+  padding: 0 8px;
+  border-radius: 0;
+  background-color: #f1f1f1;
+  margin-top: 30px;
+  min-height: 600px;
+`;
