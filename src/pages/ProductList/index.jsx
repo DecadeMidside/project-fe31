@@ -47,7 +47,15 @@ function ProductList() {
     dispatch(getCategoryListAction());
   }, []);
 
-  const { productList } = useSelector((state) => state.product);
+  const { productList, productDetail } = useSelector((state) => state.product);
+  console.log(
+    "🚀 ~ file: index.jsx:51 ~ ProductList ~ productDetail:",
+    productDetail
+  );
+  console.log(
+    "🚀 ~ file: index.jsx:51 ~ ProductList ~ productList:",
+    productList
+  );
   const { categoryList } = useSelector((state) => state.category);
   const { diametterList } = useSelector((state) => state.diametter);
   const { genderList } = useSelector((state) => state.gender);
@@ -63,6 +71,7 @@ function ProductList() {
       })
     );
   };
+
   const renderDiametterFilter = useMemo(() => {
     return diametterList.data.map((item) => {
       return (
@@ -112,6 +121,7 @@ function ProductList() {
       );
     });
   }, [categoryList.data]);
+
   const renderProductList = useMemo(() => {
     return productList.data.map((item) => {
       return (
@@ -119,7 +129,7 @@ function ProductList() {
           <Link to={generatePath(ROUTES.USER.PRODUCT_DETAIL, { id: item.id })}>
             <S.StyledProductItem
               hoverable
-              cover={<img alt="example" src={item.image} />}
+              cover={<img src={item.images[0].url} />}
             >
               <h3>{item.name}</h3>
               <h6>{item.price} </h6>

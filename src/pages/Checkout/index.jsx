@@ -68,13 +68,13 @@ function CheckoutPage() {
       title: "Giá tiền",
       dataIndex: "price",
       key: "Price",
-      render: (price) => `${price.toLocaleString()} VND`,
+      render: (price) => `${price?.toLocaleString()} VND`,
     },
     {
       title: "Thành tiền",
       dataIndex: "total",
       key: "total",
-      render: (_, item) => `${item.price.toLocaleString()} VND`,
+      render: (_, item) => `${item.price?.toLocaleString()} VND`,
     },
   ];
 

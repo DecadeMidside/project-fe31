@@ -25,6 +25,7 @@ import ProductManagement from "../pages/admin/ProductManagement";
 import UpdateProduct from "../pages/admin/UpdateProduct";
 import CreateProduct from "../pages/admin/CreateProduct";
 import UserManagement from "../pages/admin/UserManagement";
+import OderManagement from "../pages/admin/OderManagement";
 
 function App() {
   const dispatch = useDispatch();
@@ -75,6 +76,10 @@ function App() {
           <Route
             path={ROUTES.ADMIN.USER_MANAGEMENT}
             element={<UserManagement />}
+          />
+          <Route
+            path={ROUTES.ADMIN.ODER_MANAGEMENT}
+            element={<OderManagement />}
           />
         </Route>
       </Routes>

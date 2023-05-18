@@ -27,6 +27,8 @@ function* getProductListSaga(action) {
           _sort: sort.split(".")[0],
           _order: sort.split(".")[1],
         }),
+        _expand: "category",
+        _embed: "images",
       },
     });
 

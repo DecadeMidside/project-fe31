@@ -72,7 +72,7 @@ function ProductDetail() {
       addToCartAction({
         id: parseInt(id),
         name: productDetail.data.name,
-        image: productDetail.data.image,
+        image: productDetail.data.images[0].url,
         price: parseInt(productDetail.data.price),
       })
     );
@@ -111,7 +111,7 @@ function ProductDetail() {
           <Link to={generatePath(ROUTES.USER.PRODUCT_DETAIL, { id: item.id })}>
             <S.StyledProductItem
               hoverable
-              cover={<img alt="example" src={item.image} />}
+              cover={<img src={item.images[0].url} />}
             >
               <h3>{item.name}</h3>
               <h6>{item.price} </h6>
@@ -125,15 +125,22 @@ function ProductDetail() {
       );
     });
   }, [productList.data]);
-
+  // const renderProductImages = useMemo(() => {
+  //   return productDetail.data.images.map((item) => {
+  //     return (
+  //       <img key={item.id} src={item.url} width="300px" height="auto" alt="" />
+  //     );
+  //   });
+  // }, [productDetail.data.images]);
   return (
     <div>
       <S.WrapperDetail>
         <Col span={12}>
-          <img src={productDetail.data.image}></img>
+          {productDetail.data && productDetail.data.images && (
+            <Image src={productDetail.data.images[0].url} />
+          )}
         </Col>
         <S.CustomColDetail span={12}>
-          <h5>{productDetail.data.codeNumber}</h5>
           <h1>{productDetail.data.name}</h1>
           <Space>
             <Rate value={totalRate / reviewList.data.length} disabled />

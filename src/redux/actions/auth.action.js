@@ -9,3 +9,4 @@ export const logoutAction = createAction(REQUEST(AUTH_ACTION.LOGOUT));
 export const getUserInfoAction = createAction(
   REQUEST(AUTH_ACTION.GET_USER_INFO)
 );
+export const getUserAction = createAction(REQUEST(AUTH_ACTION.GET_USER));

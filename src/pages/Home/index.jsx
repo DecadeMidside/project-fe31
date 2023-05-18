@@ -53,7 +53,7 @@ function HomePage() {
           <Link to={generatePath(ROUTES.USER.PRODUCT_DETAIL, { id: item.id })}>
             <S.StyledProductItem
               hoverable
-              cover={<img alt="example" src={item.image} />}
+              cover={<img src={item.images[0].url} />}
             >
               <h3>{item.name}</h3>
               <h6>{item.price} </h6>

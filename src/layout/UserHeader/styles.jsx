@@ -38,7 +38,7 @@ export const navBar = styled.ul`
 `;
 
 export const CustomColMenu = styled(Col)`
-  display: none;
+  display: flex;
   @media screen and (min-width: 768px) {
     display: flex;
     align-items: center;
@@ -48,7 +48,7 @@ export const CustomColMenu = styled(Col)`
   }
 `;
 export const customMenu = styled(Menu)`
-  display: none;
+  display: flex;
   @media screen and (min-width: 768px) {
     justify-content: center;
     display: flex;
@@ -85,7 +85,7 @@ export const StyledListIcon = styled.div`
   font-size: 18px;
   width: 100%;
 `;
-export const StyledIcon = styled.div`
+export const StyledIcon = styled(Col)`
   margin: 0 16px;
   :hover {
     color: #ffc62d;

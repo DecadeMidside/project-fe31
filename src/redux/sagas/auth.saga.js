@@ -73,9 +73,30 @@ function* getUserInfoSaga(action) {
     });
   }
 }
+// function* getUserSaga(action) {
+//   try {
+//     const { data } = action.payload;
+//     const result = yield axios.get(`http://localhost:4000/users`, data);
+
+//     yield put({
+//       type: SUCCESS(AUTH_ACTION.GET_USER_INFO),
+//       payload: {
+//         data: result.data,
+//       },
+//     });
+//   } catch (e) {
+//     yield put({
+//       type: FAIL(AUTH_ACTION.GET_USER_INFO),
+//       payload: {
+//         error: "error",
+//       },
+//     });
+//   }
+// }
 
 export default function* authSaga() {
   yield takeEvery(REQUEST(AUTH_ACTION.LOGIN), loginSaga);
   yield takeEvery(REQUEST(AUTH_ACTION.REGISTER), registerSaga);
   yield takeEvery(REQUEST(AUTH_ACTION.GET_USER_INFO), getUserInfoSaga);
+  // yield takeEvery(REQUEST(AUTH_ACTION.GET_USER), getUserSaga);
 }

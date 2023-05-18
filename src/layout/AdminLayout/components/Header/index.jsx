@@ -1,35 +1,41 @@
-import { Button, Col, Row, Badge, Menu, Drawer, Space } from "antd";
+import {
+  Button,
+  Col,
+  Row,
+  Badge,
+  Menu,
+  Drawer,
+  Space,
+  List,
+  Typography,
+  Card,
+  Rate,
+} from "antd";
 import { Link, Routes } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { MenuOutlined, BellFilled, MailOutlined } from "@ant-design/icons";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { ROUTES } from "../../../../constant/routes";
-import {
-  FaSearch,
-  FaPhoneAlt,
-  FaHeart,
-  FaUser,
-  FaCartPlus,
-} from "react-icons/fa";
 import Logo from "../../../../images/breitling.svg";
+import {
+  getReviewListAction,
+  sendReviewAction,
+} from "../../../../redux/actions";
 import * as S from "./styles";
 
-function Header() {
+function Header(props) {
   const navigate = useNavigate();
   const { userInfo } = useSelector((state) => state.auth);
-  const { cartList } = useSelector((state) => state.cart);
+  const { reviewList } = useSelector((state) => state.review);
+  console.log("🚀 ~ file: index.jsx:31 ~ Header ~ reviewList:", reviewList);
   const dispatch = useDispatch();
 
-  const [visible, setVisible] = useState(false);
-
-  const showDrawer = () => {
-    setVisible(true);
-  };
-
-  const onClose = () => {
-    setVisible(false);
-  };
+  const { isShowSidebar, setIsShowSidebar } = props;
+  const [comments, setComments] = useState([]);
+  const [orders, setOrders] = useState([]);
+  const [commentsOpen, setCommentsOpen] = useState(false);
+  const [notificationsOpen, setNotificationsOpen] = useState(false);
 
   const menu = (
     <S.customMenu mode="horizontal">
@@ -46,6 +52,22 @@ function Header() {
       </Menu.Item>
     </S.customMenu>
   );
+  useEffect(() => {
+    dispatch(getReviewListAction());
+  }, []);
+  const renderReviewList = useMemo(() => {
+    return reviewList.data.map((item) => {
+      return (
+        <Card size="small" key={item.id}>
+          {/* <Space>
+            <h3>{item.user.fullName}</h3>
+          </Space>
+          <Rate value={item.rate} disabled style={{ fontSize: 12 }} /> */}
+          <p>{item.comment}</p>
+        </Card>
+      );
+    });
+  }, [reviewList.data]);
 
   return (
     <>
@@ -53,6 +75,15 @@ function Header() {
         <Row justify="space-between" align="center">
           <S.CustomColLogo xs={8} md={4} lg={4}>
             <S.StyledImg src={Logo}></S.StyledImg>
+
+            <S.StyledBtnProduct
+              type="primary"
+              width="100px"
+              onClick={() => setIsShowSidebar(!isShowSidebar)}
+            >
+              <MenuOutlined />
+              Menu
+            </S.StyledBtnProduct>
           </S.CustomColLogo>
           <Col xs={0} md={0} lg={12} justify="center">
             <S.navBar>{menu}</S.navBar>
@@ -63,7 +94,7 @@ function Header() {
                 <MailOutlined
                   style={{ fontSize: 24 }}
                   onClick={() => {
-                    // setCommentsOpen(true);
+                    setCommentsOpen(true);
                   }}
                 />
               </Badge>
@@ -71,47 +102,44 @@ function Header() {
                 <BellFilled
                   style={{ fontSize: 24 }}
                   onClick={() => {
-                    // setNotificationsOpen(true);
+                    setNotificationsOpen(true);
                   }}
                 />
               </Badge>
             </Space>
+            <Drawer
+              title="Comments"
+              open={commentsOpen}
+              onClose={() => {
+                setCommentsOpen(false);
+              }}
+              maskClosable
+            >
+              <div>{renderReviewList}</div>
+            </Drawer>
+            <Drawer
+              title="Notifications"
+              open={notificationsOpen}
+              onClose={() => {
+                setNotificationsOpen(false);
+              }}
+              maskClosable
+            >
+              <List
+                // dataSource={orders}
+                renderItem={(item) => {
+                  return (
+                    <List.Item>
+                      <Typography.Text strong>{item.title}</Typography.Text> has
+                      been ordered!
+                    </List.Item>
+                  );
+                }}
+              ></List>
+            </Drawer>
           </S.CustomColMenu>
         </Row>
       </S.TopHeader>
-      <Drawer
-        title={
-          <Link to={ROUTES.HOME}>
-            <S.StyledImg src={Logo} />
-          </Link>
-        }
-        placement="left"
-        style={{ marginTop: "86px" }}
-        closable={false}
-        onClose={() => setVisible(false)}
-        visible={visible}
-      >
-        <S.customMenuHide theme="light">
-          <Menu.Item key="watches" onClick={() => setVisible(false)}>
-            <Link to={ROUTES.USER.PRODUCT_LIST}>WATCHES</Link>
-          </Menu.Item>
-          <Menu.Item key="straps" onClick={() => setVisible(false)}>
-            STRAPS
-          </Menu.Item>
-          <Menu.Item key="stores" onClick={() => setVisible(false)}>
-            STORES
-          </Menu.Item>
-          <Menu.Item key="service" onClick={() => setVisible(false)}>
-            SERVICE
-          </Menu.Item>
-          <Menu.Item key="sustainability" onClick={() => setVisible(false)}>
-            SUSTAINABILITY
-          </Menu.Item>
-          <Menu.Item key="about" onClick={() => setVisible(false)}>
-            ABOUT
-          </Menu.Item>
-        </S.customMenuHide>
-      </Drawer>
     </>
   );
 }

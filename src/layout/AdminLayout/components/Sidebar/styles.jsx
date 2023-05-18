@@ -3,20 +3,20 @@ import { Link } from "react-router-dom";
 
 export const SidebarWrapper = styled.div`
   position: absolute;
-  /* left: -250px; */
-  /* margin-top: 86px; */
+  left: -350px;
+
   padding: 8px;
-  width: 250px;
+  width: 350px;
   height: calc(100% - 56px);
   background-color: #f1f1f1;
   overflow: hidden;
   transition: all 0.4s;
 
-  /* ${(props) =>
+  ${(props) =>
     props.isShow &&
     css`
       left: 0;
-    `} */
+    `}
 `;
 
 export const SidebarItem = styled(Link)`

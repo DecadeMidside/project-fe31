@@ -108,13 +108,13 @@ const CreateProductPage = () => {
     <S.Wrapper>
       <S.TopWrapper>
         <h3>Create Product</h3>
-        <Button
+        <S.StyledBtnProduct
           type="primary"
           //   loading={createProductData.load}
           onClick={() => createForm.submit()}
         >
           Create
-        </Button>
+        </S.StyledBtnProduct>
       </S.TopWrapper>
       <Form
         form={createForm}

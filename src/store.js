@@ -8,6 +8,7 @@ import genderReducer from "./redux/reducers/gender.reducer";
 import authReducer from "./redux/reducers/auth.reducer";
 import reviewReducer from "./redux/reducers/review.reducer";
 import cartReducer from "./redux/reducers/cart.reducer";
+import userReducer from "./redux/reducers/user.reducer";
 import locationReducer from "./redux/reducers/location.reducer";
 
 import rootSaga from "./redux/sagas";
@@ -23,7 +24,7 @@ const store = configureStore({
     location: locationReducer,
     gender: genderReducer,
     review: reviewReducer,
-
+    user: userReducer,
     auth: authReducer,
   },
   middleware: (getDefaultMiddleware) => [

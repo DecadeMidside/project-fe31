@@ -1,4 +1,11 @@
 import { useLocation } from "react-router-dom";
+import {
+  AppstoreOutlined,
+  ShopOutlined,
+  ShoppingCartOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
+import { Space } from "antd";
 
 import { ROUTES } from "../../../../constant/routes";
 
@@ -8,19 +15,27 @@ const SIDEBAR_ITEMS = [
   {
     label: "Dashboard",
     path: ROUTES.ADMIN.DASHBOARD,
+    icon: <AppstoreOutlined />,
   },
   {
     label: "Product Management",
     path: ROUTES.ADMIN.PRODUCT_MANAGEMENT,
+    icon: <ShopOutlined />,
   },
   {
     label: "User Management",
     path: ROUTES.ADMIN.USER_MANAGEMENT,
+    icon: <UserOutlined />,
+  },
+  {
+    label: "Order Management",
+    path: ROUTES.ADMIN.ODER_MANAGEMENT,
+    icon: <ShoppingCartOutlined />,
   },
 ];
 
-function AdminSidebar() {
-  //   const { isShowSidebar } = props;
+function AdminSidebar(props) {
+  const { isShowSidebar } = props;
 
   const { pathname } = useLocation();
 
@@ -32,13 +47,20 @@ function AdminSidebar() {
           to={item.path}
           active={pathname === item.path}
         >
-          {item.label}
+          <Space>
+            {item.icon}
+            {item.label}
+          </Space>
         </S.SidebarItem>
       );
     });
   };
 
-  return <S.SidebarWrapper>{renderSidebarItems()}</S.SidebarWrapper>;
+  return (
+    <S.SidebarWrapper isShow={isShowSidebar}>
+      {renderSidebarItems()}
+    </S.SidebarWrapper>
+  );
 }
 
 export default AdminSidebar;
