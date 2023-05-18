@@ -9,7 +9,7 @@ import { loginAction } from "../../redux/actions";
 import { ROUTES } from "../../constant/routes";
 import { logoutAction } from "../../redux/actions";
 
-import { UserProfile, UpdatePassword } from "./component";
+import { UserProfile, UpdatePassword, OrderHistories } from "./component";
 
 import * as S from "./styles";
 function AccountPage() {
@@ -60,22 +60,22 @@ function AccountPage() {
                 tabPosition="left"
                 items={[
                   {
-                    label: "Thông tin cá nhân",
+                    label: "Personal Information",
                     key: 1,
                     children: <UserProfile />,
                   },
                   {
-                    label: "Lịch sử mua hàng",
+                    label: "Ordered Histories",
                     key: 2,
-                    // children: <OrderHistories />,
+                    children: <OrderHistories />,
                   },
                   {
-                    label: "Đổi mật khẩu",
+                    label: "Changed Password",
                     key: 3,
                     children: <UpdatePassword />,
                   },
                   {
-                    label: "Đăng xuất",
+                    label: "Logout",
                     key: 4,
                     children: (
                       <div>

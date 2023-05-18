@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import {
   Form,
   Button,
@@ -19,6 +19,7 @@ import {
   getDistrictListAction,
   getWardListAction,
   orderProductAction,
+  getUserInfoAction,
 } from "../../redux/actions";
 
 import { ROUTES } from "../../constant/routes";
@@ -36,14 +37,18 @@ function CheckoutPage() {
     (state) => state.location
   );
   const { cartList } = useSelector((state) => state.cart);
+  console.log("🚀 ~ file: index.jsx:40 ~ CheckoutPage ~ cartList:", cartList);
   const { userInfo } = useSelector((state) => state.auth);
-
+  console.log("🚀 ~ file: index.jsx:41 ~ CheckoutPage ~ userInfo:", userInfo);
   const initialValues = {};
   const data = JSON.parse(localStorage.getItem("cartList"));
-  console.log("🚀 ~ file: index.jsx:42 ~ CheckoutPage ~ data:", data);
+  const cartTotalPrice = cartList.reduce(
+    (total, item) => total + parseInt(item.price),
+    0
+  );
   const tableColumn = [
     {
-      title: "Hình ảnh",
+      title: "Product Images",
       dataIndex: "image",
       key: "image",
       align: "center",
@@ -60,41 +65,46 @@ function CheckoutPage() {
       },
     },
     {
-      title: "Tên sản phẩm",
+      title: "Name",
       dataIndex: "name",
       key: "name",
     },
     {
-      title: "Giá tiền",
+      title: "Price",
       dataIndex: "price",
       key: "Price",
-      render: (price) => `${price.toLocaleString()} VND`,
+      render: (price) => `USD ${parseInt(price).toLocaleString()} `,
     },
     {
-      title: "Thành tiền",
+      title: "Total",
       dataIndex: "total",
       key: "total",
-      render: (_, item) => `${item.price.toLocaleString()} VND`,
+      render: (_, item) => `USD ${parseInt(item.price).toLocaleString()} `,
     },
   ];
 
   const handleSubmitCheckoutForm = (values) => {
-    console.log(
-      "🚀 ~ file: index.jsx:69 ~ handleSubmitCheckoutForm ~ values:",
-      values
+    const totalPrice = cartList.reduce(
+      (total, item) => total + parseInt(item.price),
+      0
     );
 
-    const totalPrice = cartList.reduce((total, item) => total + item.price, 0);
     dispatch(
       orderProductAction({
         data: {
           ...values,
+          city: cityList.data.find((item) => item.code === values.city)?.name,
+          // district: districtList.map.find(
+          //   (item) => item.code === values.district
+          // )?.name,
           userId: userInfo.data.id,
           totalPrice: totalPrice,
           status: "pending",
         },
         products: cartList,
-        callback: () => navigate(ROUTES.USER.HOME),
+        callback: () => {
+          navigate(ROUTES.USER.SUCCESSCHECKOUT, { state: values });
+        },
       })
     );
   };
@@ -129,10 +139,11 @@ function CheckoutPage() {
     });
   }, [wardList.data]);
 
+  if (!cartList.length) return <Navigate to={ROUTES.USER.CART} />;
   return (
     <div>
-      <h2 style={{ marginBottom: 24 }}>Thủ tục thanh toán</h2>
-      <Card size="small" title="Giỏ hàng" style={{ marginBottom: 24 }}>
+      <h2 style={{ marginBottom: 24 }}>Payment</h2>
+      <Card size="small" title="Shopping Bag" style={{ marginBottom: 24 }}>
         <Table
           size="small"
           columns={tableColumn}
@@ -140,6 +151,7 @@ function CheckoutPage() {
           rowKey="id"
           pagination={false}
         />
+        Totally: USD {cartTotalPrice}
       </Card>
       <Form
         name="checkoutForm"
@@ -150,14 +162,15 @@ function CheckoutPage() {
       >
         <Card
           size="small"
-          title="Thông tin giao hàng"
+          title="Shipment Information"
           style={{ marginBottom: 24 }}
         >
-          <Row gutter={[16, 16]}>
+          <Row gutter={[16, 16]} key={userInfo.data.id}>
             <Col span={24}>
               <Form.Item
-                label="Họ và tên"
+                label="Full Name"
                 name="fullName"
+                initialValue={userInfo.data.fullName}
                 rules={[{ required: true, message: "Required!" }]}
               >
                 <Input />
@@ -167,6 +180,7 @@ function CheckoutPage() {
               <Form.Item
                 label="Email"
                 name="email"
+                initialValue={userInfo.data.email}
                 rules={[{ required: true, message: "Required!" }]}
               >
                 <Input />
@@ -174,7 +188,7 @@ function CheckoutPage() {
             </Col>
             <Col span={12}>
               <Form.Item
-                label="Số điện thoại"
+                label="Phone Number"
                 name="phoneNumber"
                 rules={[{ required: true, message: "Required!" }]}
               >
@@ -183,7 +197,7 @@ function CheckoutPage() {
             </Col>
             <Col span={8}>
               <Form.Item
-                label="Tỉnh/Thành"
+                label="City/Province"
                 name="cityCode"
                 rules={[{ required: true, message: "Required!" }]}
               >
@@ -202,7 +216,7 @@ function CheckoutPage() {
             </Col>
             <Col span={8}>
               <Form.Item
-                label="Quận/Huyện"
+                label="District"
                 name="districtCode"
                 rules={[{ required: true, message: "Required!" }]}
               >
@@ -221,7 +235,7 @@ function CheckoutPage() {
             </Col>
             <Col span={8}>
               <Form.Item
-                label="Phường/Xã"
+                label="Ward"
                 name="wardCode"
                 rules={[{ required: true, message: "Required!" }]}
               >
@@ -232,7 +246,7 @@ function CheckoutPage() {
             </Col>
             <Col span={24}>
               <Form.Item
-                label="Địa chỉ"
+                label="Address"
                 name="address"
                 rules={[{ required: true, message: "Required!" }]}
               >
@@ -241,15 +255,11 @@ function CheckoutPage() {
             </Col>
           </Row>
         </Card>
-        <Card
-          size="small"
-          title="Thông tin thanh toán"
-          style={{ marginBottom: 24 }}
-        >
+        <Card size="small" title="Payment" style={{ marginBottom: 24 }}>
           <Row gutter={[16, 16]}>
             <Col span={24}>
               <Form.Item
-                label="Phương thức thanh toán"
+                label="Payment Method"
                 name="paymentMethod"
                 rules={[{ required: true, message: "Required!" }]}
               >
@@ -265,11 +275,14 @@ function CheckoutPage() {
         </Card>
 
         <Row justify="space-between">
-          <Button onClick={() => navigate(ROUTES.USER.CART_LIST)}>
-            Trở lại
-          </Button>
-          <Button type="primary" htmlType="submit">
-            Thanh toán
+          <Button onClick={() => navigate(ROUTES.USER.CART_LIST)}>Back</Button>
+
+          <Button
+            type="primary"
+            htmlType="submit"
+            onClick={() => checkoutForm.submit()}
+          >
+            Pay
           </Button>
         </Row>
       </Form>

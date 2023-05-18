@@ -17,6 +17,7 @@ import ProductList from "../pages/ProductList";
 import ProductDetail from "../pages/ProductDetail";
 import CartPage from "../pages/Cart";
 import CheckoutPage from "../pages/Checkout";
+import SuccessCheckoutPage from "../pages/Checkout/SuccessCheckOut";
 import AboutPage from "../pages/About";
 import { getUserInfoAction } from "../redux/actions";
 import ServicePage from "../pages/Serviced";
@@ -48,6 +49,10 @@ function App() {
           <Route path={ROUTES.USER.REGISTER} element={<RegisterPage />} />
           <Route path={ROUTES.USER.PRODUCT_LIST} element={<ProductList />} />
           <Route path={ROUTES.USER.CHECKOUT} element={<CheckoutPage />} />
+          <Route
+            path={ROUTES.USER.SUCCESSCHECKOUT}
+            element={<SuccessCheckoutPage />}
+          />
           <Route path={ROUTES.USER.ABOUT} element={<AboutPage />} />
           <Route path={ROUTES.USER.CART} element={<CartPage />} />
           <Route path={ROUTES.USER.SERVICE} element={<ServicePage />} />
