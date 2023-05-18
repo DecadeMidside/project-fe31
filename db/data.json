@@ -58,7 +58,6 @@
       "updatedAt": 1684372036830,
       "categoryId": 1
     },
-
     {
       "name": "CASIO 400",
       "categoryId": 4,
@@ -408,6 +407,22 @@
       "createdAt": 1684327166932,
       "updatedAt": 1684327166932,
       "id": 6
+    },
+    {
+      "fullName": "i",
+      "email": "a@gmail.com",
+      "phoneNumber": "454545",
+      "cityCode": "48",
+      "districtCode": "491",
+      "wardCode": "20215",
+      "address": "5454545",
+      "paymentMethod": "cod",
+      "userId": 1,
+      "totalPrice": 48000,
+      "status": "pending",
+      "createdAt": 1684386465506,
+      "updatedAt": 1684386465507,
+      "id": 7
     }
   ],
   "orderDetails": [
@@ -500,6 +515,24 @@
       "createdAt": 1684327167037,
       "updatedAt": 1684327167037,
       "id": 10
+    },
+    {
+      "orderId": 7,
+      "productId": 1,
+      "name": " B01 FORD THUNDERBIRD",
+      "price": 8000,
+      "createdAt": 1684386465561,
+      "updatedAt": 1684386465561,
+      "id": 11
+    },
+    {
+      "orderId": 7,
+      "productId": 2,
+      "name": "CASIO 400",
+      "price": 40000,
+      "createdAt": 1684386465601,
+      "updatedAt": 1684386465601,
+      "id": 12
     }
   ],
   "cities": [
