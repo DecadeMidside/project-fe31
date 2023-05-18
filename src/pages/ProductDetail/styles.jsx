@@ -127,6 +127,16 @@ export const styleRowService = styled(Row)`
   line-height: 22px;
   margin: 20px -15px 0px 0px;
 `;
+export const styleContent = styled(Col)`
+  display: flex;
+  padding: 20px;
+  align-items: center;
+  font-size: 13px;
+  background-color: #f1f1f1;
+  justify-content: space-between;
+  margin: 8px auto;
+`;
+
 export const styleColService = styled(Col)`
   max-width: 100%;
   align-items: center;
@@ -290,6 +300,7 @@ export const StyledBtnProduct = styled.button`
 // `;
 export const styleReview = styled.div`
   align-items: center;
+  max-width: 1232px;
   display: flex;
   font-size: 14px;
   justify-content: space-between;

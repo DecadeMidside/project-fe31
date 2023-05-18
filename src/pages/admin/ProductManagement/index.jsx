@@ -49,7 +49,7 @@ function ProductManagement() {
       render: (_, item) => {
         return (
           <Space>
-            <Avatar size={"large"} src={item?.image} />
+            <Avatar size={"large"} src={item?.images[0].url} />
             <h4>{item?.name}</h4>
           </Space>
         );

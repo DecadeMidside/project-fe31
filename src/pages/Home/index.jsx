@@ -1,21 +1,6 @@
 import * as S from "./styles";
 
-import moment from "moment";
-
-import {
-  Carousel,
-  Row,
-  Col,
-  Card,
-  InputNumber,
-  Input,
-  Button,
-  Form,
-  Rate,
-  Space,
-  Image,
-  notification,
-} from "antd";
+import { Carousel, Row, Col } from "antd";
 import { useEffect, useMemo, useState } from "react";
 import { Link, useParams, generatePath } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,14 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineHeart } from "react-icons/ai";
 import { ROUTES } from "../../constant/routes";
 import { PRODUCT_LIMIT } from "../../constant/paging";
-import {
-  getProductDetailAction,
-  getProductListAction,
-  getReviewListAction,
-  sendReviewAction,
-  addToCartAction,
-} from "../../redux/actions";
-import { FaPhoneAlt, FaCalendarAlt } from "react-icons/fa";
+import { getProductListAction } from "../../redux/actions";
+import { AiFillInfoCircle } from "react-icons/ai";
 function HomePage() {
   const { productList, productDetail } = useSelector((state) => state.product);
 
@@ -56,7 +35,10 @@ function HomePage() {
               cover={<img src={item.images[0].url} />}
             >
               <h3>{item.name}</h3>
-              <h6>USD {parseInt(item.price).toLocaleString()} </h6>
+              <h4>
+                USD {parseInt(item.price).toLocaleString()}{" "}
+                <AiFillInfoCircle style={{ color: "#ffc62d" }} />{" "}
+              </h4>
               <S.StyledBtnProduct>ADD TO CART</S.StyledBtnProduct>
               <S.HeartIconWrapper>
                 <AiOutlineHeart />
