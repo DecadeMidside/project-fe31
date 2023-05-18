@@ -114,7 +114,7 @@ function ProductDetail() {
               cover={<img src={item.images[0].url} />}
             >
               <h3>{item.name}</h3>
-              <h6>{item.price} </h6>
+              <h6>USD {parseInt(item.price).toLocaleString()} </h6>
               <S.StyledBtnProduct>ADD TO CART</S.StyledBtnProduct>
               <S.HeartIconWrapper>
                 <AiOutlineHeart />
@@ -148,7 +148,7 @@ function ProductDetail() {
               1
             )})`}</span>
           </Space>
-          <h3>USD {productDetail.data.price}</h3>
+          <h3>USD {parseInt(productDetail.data.price).toLocaleString()}</h3>
           <h5>Boutique delivery available</h5>
           <S.styleButton outline={true} onClick={(id) => handleAddToBag(id)}>
             ADD TO BAG

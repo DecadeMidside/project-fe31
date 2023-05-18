@@ -12,6 +12,7 @@ import userReducer from "./redux/reducers/user.reducer";
 import locationReducer from "./redux/reducers/location.reducer";
 
 import rootSaga from "./redux/sagas";
+import orderReducer from "redux/reducers/order.reducer";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -21,6 +22,7 @@ const store = configureStore({
     category: categoryReducer,
     diametter: diametterReducer,
     cart: cartReducer,
+    order: orderReducer,
     location: locationReducer,
     gender: genderReducer,
     review: reviewReducer,

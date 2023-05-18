@@ -1,6 +1,9 @@
-import { Checkbox, Form, Select, Upload, DatePicker } from "antd";
+import { Checkbox, Form, Select, Upload, DatePicker, Table } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
+import { getOrderList } from "../../../redux/actions";
+import { useEffect } from "react";
+import moment from "moment";
 
 import * as S from "./styles";
 const { Option } = Select;
@@ -112,6 +115,71 @@ export const UserProfile = () => {
         </S.styleFormContent>
       </S.StyleCustomRowForm>
     </>
+  );
+};
+export const OrderHistories = () => {
+  const dispatch = useDispatch();
+  const { cartList } = useSelector((state) => state.cart);
+  console.log(
+    "🚀 ~ file: index.jsx:121 ~ OrderHistories ~ cartList:",
+    cartList
+  );
+
+  const { userInfo } = useSelector((state) => state.auth);
+  const { orderList } = useSelector((state) => state.order);
+
+  useEffect(() => {
+    if (userInfo.data.id) {
+      dispatch(getOrderList({ userId: userInfo.data.id }));
+    }
+  }, [userInfo.data.id]);
+
+  const tableColumns = [
+    {
+      title: "Ordered Codes",
+      dataIndex: "createdAt",
+      key: "id",
+    },
+    {
+      title: "Quantity",
+      dataIndex: "orderDetails",
+      key: "orderDetails",
+      render: (orderDetails) => `${orderDetails.length} products`,
+    },
+    {
+      title: "Total",
+      dataIndex: "totalPrice",
+      key: "totalPrice",
+      render: (cartTotalPrice) =>
+        `USD ${parseInt(cartTotalPrice).toLocaleString()}`,
+    },
+    {
+      title: "Order Date",
+      dataIndex: "createdAt",
+      key: "createdAt",
+      render: (createdAt) => moment(createdAt).format("DD/MM/YYYY HH:mm"),
+    },
+  ];
+
+  return (
+    <Table
+      columns={tableColumns}
+      dataSource={orderList.data}
+      rowKey="id"
+      pagination={false}
+      expandable={{
+        expandedRowRender: (record) => (
+          <ul>
+            {record.orderDetails.map((item) => (
+              <li key={item.id}>
+                {item.name}
+                {` - USD ${parseInt(item.price).toLocaleString()}`}
+              </li>
+            ))}
+          </ul>
+        ),
+      }}
+    />
   );
 };
 export const UpdatePassword = () => {
