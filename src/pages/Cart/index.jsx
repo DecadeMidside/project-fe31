@@ -12,7 +12,7 @@ function CartPage() {
   const navigate = useNavigate();
 
   const cartTotalPrice = cartList.reduce(
-    (total, item) => total + item.price,
+    (total, item) => total + parseInt(item.price),
     0
   );
   function EmptyCart() {
@@ -27,7 +27,9 @@ function CartPage() {
           <img src="https://www.breitling.com/media/breitling/images/store-2018/asset-version-baba55e64d/bag.png" />
           <h1>YOUR SHOPPING BAG IS EMPTY</h1>
           <p>Free shipping and returns</p>
-          <button>CONTINUE</button>
+          <button onClick={() => navigate(ROUTES.USER.PRODUCT_LIST)}>
+            CONTINUE
+          </button>
         </S.styleEmpty>
         <S.NeedHelp>
           <S.styleTitle>
@@ -85,7 +87,7 @@ function CartPage() {
             </span>
 
             <p>Stainless steel - Blue</p>
-            <h4>{item.price} USD </h4>
+            <h4>USD {parseInt(item.price).toLocaleString()} </h4>
             <div>Excl. Sales Tax.</div>
             <S.AddOption>
               <span>Add a traps</span>
@@ -109,7 +111,7 @@ function CartPage() {
         <S.Bill>
           <S.SubTotal>
             <div>SUBTOTAL</div>
-            <div> {cartTotalPrice.toLocaleString()} USD </div>
+            <div> USD {cartTotalPrice.toLocaleString()} </div>
           </S.SubTotal>
           <S.SubTotal>
             <div>DELIVERY FEE</div>
@@ -117,7 +119,7 @@ function CartPage() {
           </S.SubTotal>
           <S.Total>
             <h3>TOTAL</h3>
-            <h3>{cartTotalPrice.toLocaleString()} USD</h3>
+            <h3>USD {cartTotalPrice.toLocaleString()}</h3>
           </S.Total>
           <S.Content>
             Free shipping to all US states, including Hawaii. All orders require
@@ -182,7 +184,9 @@ function CartPage() {
     return (
       <S.Container>
         <S.styleTitle>
-          <h1>SHOPPING BAG</h1>
+          <h1>
+            SHOPPING <span>BAG </span>{" "}
+          </h1>
         </S.styleTitle>
         <Row gutter={[16, 32]}>
           <Col span={16} style={{ minHeight: "500px" }}>

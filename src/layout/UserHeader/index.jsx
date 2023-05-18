@@ -52,7 +52,10 @@ function Header() {
       <S.TopHeader>
         <Row justify="space-between" align="center">
           <S.CustomColLogo xs={8} md={4} lg={4}>
-            <S.StyledImg src={Logo}></S.StyledImg>
+            <S.StyledImg
+              src={Logo}
+              onClick={() => navigate(ROUTES.USER.HOME)}
+            ></S.StyledImg>
           </S.CustomColLogo>
           <Col xs={0} md={0} lg={12} justify="center">
             <S.navBar>{menu}</S.navBar>
