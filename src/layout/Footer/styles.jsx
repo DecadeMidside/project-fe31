@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const styleFooter = styled.div`
-  width: 100%;
+  max-width: 100%;
   height: auto;
   padding: 30px;
   font-size: 14px;
@@ -22,10 +22,18 @@ export const styleFooterHeading = styled.ul`
     color: #ffc62d;
     cursor: pointer;
   }
+  @media (max-width: 1024px) {
+    /* Các thuộc tính và giá trị tương thích với màn hình nhỏ hơn 768px */
+    display: block;
+  }
 `;
 export const styleFooterWrapper = styled.div`
   display: flex;
   justify-content: center;
+  @media (max-width: 1024px) {
+    /* Các thuộc tính và giá trị tương thích với màn hình nhỏ hơn 768px */
+    display: none;
+  }
 `;
 export const styleFooterSocial = styled.div`
   display: flex;

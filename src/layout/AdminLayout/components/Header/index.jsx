@@ -11,24 +11,24 @@ import {
   Card,
   Rate,
 } from "antd";
-import { Link, Routes } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import { MenuOutlined, BellFilled, MailOutlined } from "@ant-design/icons";
+import { Link, Routes, generatePath } from "react-router-dom";
+
+import {
+  MenuOutlined,
+  BellFilled,
+  MailOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
 import { useEffect, useMemo, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { ROUTES } from "../../../../constant/routes";
 import Logo from "../../../../images/breitling.svg";
-import {
-  getReviewListAction,
-  sendReviewAction,
-} from "../../../../redux/actions";
+import { getReviewListAdminAction } from "../../../../redux/actions";
 import * as S from "./styles";
 
 function Header(props) {
-  const navigate = useNavigate();
-  const { userInfo } = useSelector((state) => state.auth);
   const { reviewList } = useSelector((state) => state.review);
-  console.log("🚀 ~ file: index.jsx:31 ~ Header ~ reviewList:", reviewList);
+  console.log("🚀 ~ file: index.jsx:28 ~ Header ~ reviewList:", reviewList);
   const dispatch = useDispatch();
 
   const { isShowSidebar, setIsShowSidebar } = props;
@@ -53,18 +53,33 @@ function Header(props) {
     </S.customMenu>
   );
   useEffect(() => {
-    dispatch(getReviewListAction());
+    dispatch(getReviewListAdminAction());
   }, []);
   const renderReviewList = useMemo(() => {
     return reviewList.data.map((item) => {
       return (
-        <Card size="small" key={item.id}>
-          {/* <Space>
-            <h3>{item.user.fullName}</h3>
-          </Space>
-          <Rate value={item.rate} disabled style={{ fontSize: 12 }} /> */}
-          <p>{item.comment}</p>
-        </Card>
+        <Link
+          to={generatePath(ROUTES.USER.PRODUCT_DETAIL, { id: item.productId })}
+        >
+          <S.StyledCardReview size="small" key={item.id}>
+            <h3>
+              <MailOutlined style={{ color: "#ffc26d" }} />
+              <span>Product:</span> {item.product?.name}
+            </h3>
+            <Space>
+              <h3>
+                <UserOutlined style={{ color: "#ffc26d" }} />{" "}
+                {item.user.fullName}
+              </h3>
+              <Rate value={item.rate} disabled style={{ fontSize: 12 }} />
+            </Space>
+            <p>comment: {item.comment}</p>
+            <Space>
+              <S.StyledBtnProduct>Reply</S.StyledBtnProduct>
+              <S.StyledBtnProduct>Delete</S.StyledBtnProduct>
+            </Space>
+          </S.StyledCardReview>
+        </Link>
       );
     });
   }, [reviewList.data]);

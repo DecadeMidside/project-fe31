@@ -15,13 +15,19 @@ import {
   Image,
   notification,
 } from "antd";
+import {
+  MenuOutlined,
+  BellFilled,
+  MailOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
 import { useEffect, useMemo, useState } from "react";
 import { Link, useParams, generatePath } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineHeart, AiFillInfoCircle } from "react-icons/ai";
 import { ROUTES } from "../../constant/routes";
-import { PRODUCT_LIMIT } from "../../constant/paging";
+import { PRODUCT_LIMIT, PRODUCT_LIMIT_HOME } from "../../constant/paging";
 import {
   getProductDetailAction,
   getProductListAction,
@@ -29,15 +35,19 @@ import {
   sendReviewAction,
   addToCartAction,
 } from "../../redux/actions";
-import { FaPhoneAlt, FaCalendarAlt } from "react-icons/fa";
+
+import { FaPhoneAlt, FaCalendarAlt, FaReplyAll } from "react-icons/fa";
 
 function ProductDetail() {
   const { id } = useParams();
   const [reviewForm] = Form.useForm();
+  // const [replyForm] = Form.useForm(); // Add a new form for reply
 
   const dispatch = useDispatch();
 
   const { userInfo } = useSelector((state) => state.auth);
+  console.log("🚀 ~ file: index.jsx:47 ~ ProductDetail ~ userInfo:", userInfo);
+
   const { productList, productDetail } = useSelector((state) => state.product);
   console.log(
     "🚀 ~ file: index.jsx:42 ~ ProductDetail ~ productDetail:",
@@ -62,7 +72,7 @@ function ProductDetail() {
     dispatch(
       getProductListAction({
         page: 1,
-        limit: PRODUCT_LIMIT,
+        limit: PRODUCT_LIMIT_HOME,
       })
     );
   }, [id]);
@@ -77,6 +87,7 @@ function ProductDetail() {
       })
     );
   };
+
   const handleReview = (values) => {
     dispatch(
       sendReviewAction({
@@ -90,17 +101,41 @@ function ProductDetail() {
     );
   };
 
+  // const handleReply = (commentId, values) => {
+  //   // Here, you can dispatch an action to send the reply to the server
+  //   // and update the UI accordingly
+  //   console.log("Reply Comment ID:", commentId);
+  //   console.log("Reply Comment Values:", values);
+  // };
+
   const renderReviewList = useMemo(() => {
     return reviewList.data.map((item) => {
       return (
-        <Card size="small" key={item.id}>
+        <S.StyledCardReview size="small" key={item.id}>
           <Space>
-            <h3>{item.user.fullName}</h3>
+            <h3>
+              <UserOutlined style={{ color: "#ffc26d" }} /> :{" "}
+              {item.user.fullName}
+            </h3>
             <span>{moment(item.createdAt).fromNow()}</span>
+            <Rate value={item.rate} disabled style={{ fontSize: 12 }} />
           </Space>
-          <Rate value={item.rate} disabled style={{ fontSize: 12 }} />
-          <p>{item.comment}</p>
-        </Card>
+          <p>
+            {" "}
+            <MailOutlined style={{ color: "#ffc26d" }} /> : {item.comment}
+          </p>
+          {userInfo.data.role === "admin" && (
+            <Space>
+              <FaReplyAll />
+              <Input disabled={!userInfo.data.role === "admin"} />
+              <Button
+              // onClick={() => handleReply(item.id, replyForm.getFieldsValue())}
+              >
+                Reply
+              </Button>
+            </Space>
+          )}
+        </S.StyledCardReview>
       );
     });
   }, [reviewList.data]);
@@ -114,7 +149,10 @@ function ProductDetail() {
               cover={<img src={item.images[0].url} />}
             >
               <h3>{item.name}</h3>
-              <h6>USD {parseInt(item.price).toLocaleString()} </h6>
+              <h4>
+                USD {parseInt(item.price).toLocaleString()}{" "}
+                <AiFillInfoCircle style={{ color: "#ffc62d" }} />{" "}
+              </h4>
               <S.StyledBtnProduct>ADD TO CART</S.StyledBtnProduct>
               <S.HeartIconWrapper>
                 <AiOutlineHeart />
@@ -143,7 +181,7 @@ function ProductDetail() {
         <S.CustomColDetail span={12}>
           <h1>{productDetail.data.name}</h1>
           <Space>
-            <Rate value={totalRate / reviewList.data.length} disabled />
+            <Rate value={totalRate / reviewList.data.length || 0} disabled />
             <span>{`(${(totalRate / reviewList.data.length).toFixed(
               1
             )})`}</span>
@@ -286,58 +324,67 @@ function ProductDetail() {
       </S.styleTechnical>
       <S.styleTechnical>
         {userInfo.data.id && (
-          <Card size="small">
+          <S.StyledCardReview size="small">
             <h1>REVIEW {productDetail.data.name}</h1>
-            <Form
-              form={reviewForm}
-              name="reviewForm"
-              layout="vertical"
-              onFinish={(values) => handleReview(values)}
-              autoComplete="off"
-            >
-              <Form.Item
-                label="Rate"
-                name="rate"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input your rate!",
-                  },
-                ]}
-              >
-                <Rate />
-              </Form.Item>
-              <Form.Item
-                label="Comment"
-                name="comment"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input your comment!",
-                  },
-                ]}
-              >
-                <Input.TextArea
-                  autoSize={{
-                    minRows: 2,
-                    maxRows: 4,
-                  }}
-                />
-              </Form.Item>
 
-              <Form.Item>
-                <S.styleButton
-                  style={{ width: "100%" }}
-                  htmlType="submit"
-                  block
+            <Row gutter={[16, 16]}>
+              <Col span={12}>
+                {" "}
+                <Form
+                  form={reviewForm}
+                  name="reviewForm"
+                  layout="vertical"
+                  onFinish={(values) => handleReview(values)}
+                  autoComplete="off"
                 >
-                  REVIEW
-                </S.styleButton>
-              </Form.Item>
-            </Form>
-          </Card>
+                  <Form.Item
+                    label="Rate"
+                    name="rate"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input your rate!",
+                      },
+                    ]}
+                  >
+                    <Rate />
+                  </Form.Item>
+                  <Form.Item
+                    label="Comment"
+                    name="comment"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input your comment!",
+                      },
+                    ]}
+                  >
+                    <Input.TextArea
+                      autoSize={{
+                        minRows: 2,
+                        maxRows: 4,
+                      }}
+                    />
+                  </Form.Item>
+
+                  <Form.Item>
+                    <S.styleButton
+                      style={{ width: "100%" }}
+                      htmlType="submit"
+                      block
+                    >
+                      REVIEW
+                    </S.styleButton>
+                  </Form.Item>
+                </Form>
+                {renderReviewList}
+              </Col>
+              <Col span={12}>
+                <Image src={productDetail.data.images[0].url} />
+              </Col>
+            </Row>
+          </S.StyledCardReview>
         )}
-        {renderReviewList}
       </S.styleTechnical>
       <S.styleTechnical>
         <h1>THE STORY</h1>

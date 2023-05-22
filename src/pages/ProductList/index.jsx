@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import { Link, generatePath } from "react-router-dom";
+import { Link, generatePath, useLocation } from "react-router-dom";
 import {
   Input,
   Button,
@@ -13,7 +13,7 @@ import {
   Spin,
 } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineHeart, AiFillInfoCircle } from "react-icons/ai";
 import { ROUTES } from "../../constant/routes";
 import { PRODUCT_LIMIT } from "../../constant/paging";
 import {
@@ -26,12 +26,12 @@ import {
 import * as S from "./styles";
 
 function ProductList() {
+  const { state } = useLocation();
   const { Meta } = Card;
   const dispatch = useDispatch();
   const [filterParams, setFilterParams] = useState({
-    diametterId: [],
+    categoryId: state?.categoryId ? [state?.categoryId] : [],
     genderId: [],
-    categoryId: [],
     searchKey: "",
     sort: "",
   });
@@ -59,7 +59,10 @@ function ProductList() {
   const { categoryList } = useSelector((state) => state.category);
   const { diametterList } = useSelector((state) => state.diametter);
   const { genderList } = useSelector((state) => state.gender);
-
+  const [isFilterVisible, setIsFilterVisible] = useState(false);
+  const handleFilterButtonClick = () => {
+    setIsFilterVisible(!isFilterVisible);
+  };
   const handleShowMore = () => {
     dispatch(
       getProductListAction({
@@ -109,11 +112,7 @@ function ProductList() {
   const renderCategoryFilter = useMemo(() => {
     return categoryList.data.map((item) => {
       return (
-        <S.CustomCol
-          span={3}
-          key={item.id}
-          onClick={() => console.log(item.id)}
-        >
+        <S.CustomCol lg={3} key={item.id} onClick={() => console.log(item.id)}>
           <S.StyledCollection cover={<img alt="example" src={item.image} />}>
             <Meta title={item.name} />
           </S.StyledCollection>
@@ -121,18 +120,32 @@ function ProductList() {
       );
     });
   }, [categoryList.data]);
+  const renderCategoryFilterCheckbox = useMemo(() => {
+    return categoryList.data.map((item) => {
+      return (
+        <Col md={0} lg={24} xs={0} key={item.id}>
+          <Checkbox
+            value={item.id}
+          >{`${item.name} (${item.products.length})`}</Checkbox>
+        </Col>
+      );
+    });
+  }, [categoryList.data]);
 
   const renderProductList = useMemo(() => {
     return productList.data.map((item) => {
       return (
-        <Col key={item.id} span={8}>
+        <Col key={item.id} lg={8} md={12} xs={24}>
           <Link to={generatePath(ROUTES.USER.PRODUCT_DETAIL, { id: item.id })}>
             <S.StyledProductItem
               hoverable
               cover={<img src={item.images[0].url} />}
             >
               <h3>{item.name}</h3>
-              <h6>USD {parseInt(item.price).toLocaleString()} </h6>
+              <h4>
+                USD {parseInt(item.price).toLocaleString()}{" "}
+                <AiFillInfoCircle style={{ color: "#ffc62d" }} />{" "}
+              </h4>
               <S.StyledBtnProduct>ADD TO CART</S.StyledBtnProduct>
               <S.HeartIconWrapper>
                 <AiOutlineHeart />
@@ -148,6 +161,7 @@ function ProductList() {
       <S.StyleSlider>
         <S.StyleTitle>ALL WATCHES</S.StyleTitle>
       </S.StyleSlider>
+
       <S.WrapperCollection gutter={[16, 16]}>
         {renderCategoryFilter}
       </S.WrapperCollection>
@@ -157,6 +171,13 @@ function ProductList() {
           <Col span={6}>
             <S.StyledFilter>
               <h1>FILTER</h1>
+              <h3>CATEGORY</h3>
+              <Checkbox.Group
+                value={filterParams.categoryId}
+                onChange={(values) => handleFilter("categoryId", values)}
+              >
+                <Row>{renderCategoryFilterCheckbox}</Row>
+              </Checkbox.Group>
               <h3>DIAMETTER</h3>
               <Checkbox.Group
                 onChange={(values) => handleFilter("diametterId", values)}
@@ -171,18 +192,19 @@ function ProductList() {
               </Checkbox.Group>
             </S.StyledFilter>
           </Col>
-          <Col span={18}>
+          <Col lg={18} md={18} xs={24}>
             <Row gutter={[16, 16]}>
-              <Col span={16}>
+              <Col lg={16} md={12} xs={24}>
                 <Input.Search
+                  style={{ borderRadius: 0, margin: "8px" }}
                   onChange={(e) => handleFilter("searchKey", e.target.value)}
                   placeholder="What is Looking for..."
                 ></Input.Search>
               </Col>
-              <Col span={8}>
+              <Col lg={8} md={12} xs={24}>
                 <Select
+                  style={{ width: "100%", margin: "8px" }}
                   onChange={(value) => handleFilter("sort", value)}
-                  style={{ width: "100%" }}
                 >
                   <Select.Option value="price.asc">
                     Price low-high

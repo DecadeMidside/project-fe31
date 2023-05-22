@@ -43,6 +43,40 @@ const orderReducer = createReducer(initialState, {
       },
     };
   },
+  
+  [REQUEST(ORDER_ACTION.GET_ORDER_LIST_ADMIN)]: (state, action) => {
+    return {
+      ...state,
+      orderList: {
+        ...state.orderList,
+        loading: true,
+        error: "",
+      },
+    };
+  },
+
+  [SUCCESS(ORDER_ACTION.GET_ORDER_LIST_ADMIN)]: (state, action) => {
+    const { data } = action.payload; 
+    return {
+      ...state,
+      orderList: {
+        ...state.orderList,
+        data: data,
+        loading: false,
+      },
+    };
+  },
+  [FAIL(ORDER_ACTION.GET_ORDER_LIST_ADMIN)]: (state, action) => {
+    const { error } = action.payload;
+    return {
+      ...state,
+      orderList: {
+        ...state.orderList,
+        loading: false,
+        error: error,
+      },
+    };
+  },
 });
 
 export default orderReducer;

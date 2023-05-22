@@ -1,4 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
+import { CATEGORY_ACTION, REQUEST, SUCCESS, FAIL } from "../constants";
 
 const initialState = {
   categoryList: {
@@ -35,6 +36,36 @@ const categoryReducer = createReducer(initialState, {
       ...state,
       categoryList: {
         ...state.categoryList,
+        load: false,
+        error: error,
+      },
+    };
+  },
+  [REQUEST(CATEGORY_ACTION.DELETE_CATEGORY)]: (state, action) => {
+    return {
+      ...state,
+      deleteCategoryData: {
+        ...state.deleteCategoryData,
+        load: true,
+        error: "",
+      },
+    };
+  },
+  [SUCCESS(CATEGORY_ACTION.DELETE_CATEGORY)]: (state, action) => {
+    return {
+      ...state,
+      deleteCategoryData: {
+        ...state.deleteCategoryData,
+        load: false,
+      },
+    };
+  },
+  [FAIL(CATEGORY_ACTION.DELETE_CATEGORY)]: (state, action) => {
+    const { error } = action.payload;
+    return {
+      ...state,
+      deleteCategoryData: {
+        ...state.deleteCategoryData,
         load: false,
         error: error,
       },

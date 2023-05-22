@@ -6,3 +6,4 @@ export * from "./cart.constant";
 export * from "./location.constant";
 export * from "./order.constant";
 export * from "./user.constant";
+export * from "./category.constant";
