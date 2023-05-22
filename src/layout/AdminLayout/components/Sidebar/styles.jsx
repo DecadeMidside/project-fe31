@@ -2,12 +2,12 @@ import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
 export const SidebarWrapper = styled.div`
-  position: absolute;
+  position: fixed;
+  top: 86px;
   left: -350px;
-
   padding: 8px;
   width: 350px;
-  height: calc(100% - 56px);
+  height: 100%;
   background-color: #f1f1f1;
   overflow: hidden;
   transition: all 0.4s;

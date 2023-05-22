@@ -2,12 +2,12 @@ import * as S from "./styles";
 
 import { Carousel, Row, Col } from "antd";
 import { useEffect, useMemo, useState } from "react";
-import { Link, useParams, generatePath } from "react-router-dom";
+import { Link, useParams, generatePath, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { AiOutlineHeart } from "react-icons/ai";
 import { ROUTES } from "../../constant/routes";
-import { PRODUCT_LIMIT } from "../../constant/paging";
+import { PRODUCT_LIMIT, PRODUCT_LIMIT_HOME } from "../../constant/paging";
 import { getProductListAction } from "../../redux/actions";
 import { AiFillInfoCircle } from "react-icons/ai";
 function HomePage() {
@@ -21,10 +21,19 @@ function HomePage() {
     dispatch(
       getProductListAction({
         page: 1,
-        limit: PRODUCT_LIMIT,
+        limit: PRODUCT_LIMIT_HOME,
       })
     );
   }, [id]);
+  const navigate = useNavigate();
+
+  const handleSelectCategory = () => {
+    navigate(ROUTES.USER.PRODUCT_LIST, {
+      state: {
+        categoryId: 1,
+      },
+    });
+  };
   const renderProductList = useMemo(() => {
     return productList.data.map((item) => {
       return (
@@ -66,7 +75,9 @@ function HomePage() {
                   </span>{" "}
                   CLASSIC CARS
                 </S.styledTextTitle>
-                <S.styledCustomButton>DISCOVER</S.styledCustomButton>
+                <S.styledCustomButton onClick={() => handleSelectCategory()}>
+                  DISCOVER
+                </S.styledCustomButton>
               </S.styledBoxContent>
             </S.styledCustomColContainer>
 

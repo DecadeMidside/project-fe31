@@ -26,6 +26,8 @@ import ProductManagement from "../pages/admin/ProductManagement";
 import UpdateProduct from "../pages/admin/UpdateProduct";
 import CreateProduct from "../pages/admin/CreateProduct";
 import UserManagement from "../pages/admin/UserManagement";
+import CategoriesManagement from "../pages/admin/CategoriesManagement";
+import CustomersManagement from "../pages/admin/CustomersManagement";
 import OderManagement from "../pages/admin/OderManagement";
 
 function App() {
@@ -81,6 +83,14 @@ function App() {
           <Route
             path={ROUTES.ADMIN.USER_MANAGEMENT}
             element={<UserManagement />}
+          />{" "}
+          <Route
+            path={ROUTES.ADMIN.CATEGORIES_MANAGEMENT}
+            element={<CategoriesManagement />}
+          />{" "}
+          <Route
+            path={ROUTES.ADMIN.CUSTOMERS_MANAGEMENT}
+            element={<CustomersManagement />}
           />
           <Route
             path={ROUTES.ADMIN.ODER_MANAGEMENT}

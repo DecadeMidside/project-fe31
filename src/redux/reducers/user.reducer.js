@@ -43,6 +43,36 @@ const userReducer = createReducer(initialState, {
       },
     };
   },
+  [REQUEST(USER_ACTION.DELETE_USER)]: (state, action) => {
+    return {
+      ...state,
+      deleteUserData: {
+        ...state.deleteUserData,
+        load: true,
+        error: "",
+      },
+    };
+  },
+  [SUCCESS(USER_ACTION.DELETE_USER)]: (state, action) => {
+    return {
+      ...state,
+      deleteUserData: {
+        ...state.deleteUserData,
+        load: false,
+      },
+    };
+  },
+  [FAIL(USER_ACTION.DELETE_USER)]: (state, action) => {
+    const { error } = action.payload;
+    return {
+      ...state,
+      deleteUserData: {
+        ...state.deleteUserData,
+        load: false,
+        error: error,
+      },
+    };
+  },
 });
 
 export default userReducer;

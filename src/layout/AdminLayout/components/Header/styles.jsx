@@ -1,4 +1,4 @@
-import { Button, Input, Col, Menu } from "antd";
+import { Button, Input, Col, Menu, Card } from "antd";
 import styled from "styled-components";
 
 export const TopHeader = styled.div`
@@ -85,6 +85,15 @@ export const StyledIcon = styled.div`
   :hover {
     color: #ffc62d;
     cursor: pointer;
+  }
+`;
+export const StyledCardReview = styled(Card)`
+  margin: 8px;
+  border-radius: none;
+  :hover {
+    cursor: pointer;
+    scale: 1.1;
+    transition: 0.4s;
   }
 `;
 export const StyledIconPhone = styled.div`

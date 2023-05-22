@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, generatePath } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Row,
@@ -11,6 +11,7 @@ import {
   Space,
   Avatar,
   Pagination,
+  Popconfirm,
 } from "antd";
 
 import { ROUTES } from "../../../constant/routes";
@@ -18,6 +19,7 @@ import { ADMIN_TABLE_LIMIT } from "../../../constant/paging";
 import {
   getProductListAction,
   getCategoryListAction,
+  deleteProductAction,
 } from "../../../redux/actions";
 import * as S from "./styles";
 
@@ -77,16 +79,31 @@ function ProductManagement() {
             <S.StyledBtnProduct
               type="primary"
               outline={true}
-
-              // onClick={() =>
-              //   navigate(
-              //     generatePath(ROUTES.ADMIN.UPDATE_PRODUCT, { id: item.id })
-              //   )
-              // }
+              onClick={() =>
+                navigate(
+                  generatePath(ROUTES.ADMIN.UPDATE_PRODUCT, { id: item.id })
+                )
+              }
             >
               Update
-            </S.StyledBtnProduct>
-            <S.StyledBtnProduct outline={false}>Delete</S.StyledBtnProduct>
+            </S.StyledBtnProduct>{" "}
+            <Popconfirm
+              title="Are you sure you want to delete this product?"
+              onConfirm={() =>
+                dispatch(
+                  deleteProductAction({
+                    ...filterParams,
+                    id: item.id,
+                    page: 1,
+                    limit: ADMIN_TABLE_LIMIT,
+                  })
+                )
+              }
+              okText="Delete"
+              cancelText="Cancel"
+            >
+              <S.StyledBtnProduct outline={false}>Delete</S.StyledBtnProduct>
+            </Popconfirm>
           </Space>
         );
       },

@@ -127,6 +127,10 @@ export const OrderHistories = () => {
 
   const { userInfo } = useSelector((state) => state.auth);
   const { orderList } = useSelector((state) => state.order);
+  console.log(
+    "🚀 ~ file: index.jsx:130 ~ OrderHistories ~ orderList:",
+    orderList
+  );
 
   useEffect(() => {
     if (userInfo.data.id) {

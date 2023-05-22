@@ -240,7 +240,6 @@ export const StyledProductItem = styled(Card)`
   border-radius: 0 !important;
   > div {
     padding: 0 4px 0 !important ;
-    margin: -24px;
   }
 
   &::before {
@@ -318,4 +317,9 @@ export const styleReviewBtn = styled(Button)`
   :hover {
     background-color: #918d83;
   }
+`;
+export const StyledCardReview = styled(Card)`
+  border-radius: 0;
+  margin: 8px;
+  padding: 8px;
 `;

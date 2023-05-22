@@ -1,47 +1,61 @@
-import { useState, useEffect, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Row,
   Col,
   Button,
   Input,
-  Select,
+  Popconfirm,
   Table,
   Space,
   Avatar,
-  Pagination,
 } from "antd";
-
-import { getUserListAction } from "../../../redux/actions";
+import { getUserListAction, deleteUserAction } from "../../../redux/actions";
 import * as S from "./styles";
 
 function UserManagement() {
   const dispatch = useDispatch();
+  const { userInfo } = useSelector((state) => state.auth);
+  console.log("🚀 ~ file: index.jsx:10 ~ UserManagement ~ userInfo:", userInfo);
   const { userList } = useSelector((state) => state.user);
-  console.log("🚀 ~ file: index.jsx:11 ~ userList:", userList);
-
-  useEffect(() => {
-    dispatch(getUserListAction());
-  }, []);
-  const renderUser = useMemo(() => {
-    return userList.data.map((item) => {
-      return <h1>{item.fullName}</h1>;
+  console.log("🚀 ~ file: index.jsx:10 ~ UserManagement ~ userList:", userList);
+  const [filterParams, setFilterParams] = useState({
+    role: "",
+    searchKey: "",
+  });
+  const handleFilter = (key, values) => {
+    setFilterParams({
+      ...filterParams,
+      page: 1,
+      [key]: values,
     });
-  }, [userList.data]);
-  const tableColumn = [
+    dispatch(
+      getUserListAction({
+        ...filterParams,
+        page: 1,
+        [key]: values,
+      })
+    );
+  };
+  useEffect(() => {
+    dispatch(
+      getUserListAction({
+        ...filterParams,
+      })
+    );
+  }, []);
+
+  const tableColumns = [
     {
       title: "Name",
-      dataIndex: "name",
-      key: "name",
-      render: (_, item) => {
-        return (
-          <Space>
-            <Avatar size={"large"} src={item?.image} />
-            <h4>{item?.name}</h4>
-          </Space>
-        );
-      },
+      dataIndex: "fullName",
+      key: "fullName",
+      render: (_, item) => (
+        <Space>
+          <Avatar size={"large"} src={item?.image} />
+          <h4>{item?.fullName}</h4>
+        </Space>
+      ),
     },
     {
       title: "Email",
@@ -59,22 +73,36 @@ function UserManagement() {
       title: "Action",
       dataIndex: "action",
       key: "action",
-      render: (_, item) => {
-        return (
-          <Space>
-            <S.StyledBtnProduct type="primary" outline={true}>
-              Update
-            </S.StyledBtnProduct>
-            <S.StyledBtnProduct outline={false}>Delete</S.StyledBtnProduct>
-          </Space>
-        );
-      },
+      render: (_, item) => (
+        <Space>
+          <S.StyledBtnProduct type="primary" outline={true}>
+            Update
+          </S.StyledBtnProduct>
+
+          {userInfo.data.id !== item.id ? (
+            <Popconfirm
+              title="Are you sure you want to delete this product?"
+              onConfirm={() =>
+                dispatch(
+                  deleteUserAction({
+                    ...filterParams,
+                    id: item.id,
+                  })
+                )
+              }
+              okText="Delete"
+              cancelText="Cancel"
+            >
+              <S.StyledBtnProduct outline={false}>Delete</S.StyledBtnProduct>
+            </Popconfirm>
+          ) : null}
+        </Space>
+      ),
     },
   ];
 
   return (
     <div>
-      {renderUser}
       <Row justify="space-between" align="center">
         <h1>User Management</h1>
       </Row>
@@ -82,13 +110,16 @@ function UserManagement() {
         <h5>FILTER</h5>
         <Row gutter={[16, 16]} style={{ marginTop: 4 }}>
           <Col span={12}>
-            <Input placeholder="User Name" />
+            <Input
+              onChange={(e) => handleFilter("searchKey", e.target.value)}
+              placeholder="User Name"
+            />
           </Col>
         </Row>
       </S.FilterWrapper>
       <Table
-        columns={tableColumn}
-        dataSource={userList.data}
+        columns={tableColumns}
+        dataSource={userList?.data || []}
         rowKey="id"
         pagination={false}
       />

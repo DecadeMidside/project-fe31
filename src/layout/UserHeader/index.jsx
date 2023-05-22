@@ -101,6 +101,7 @@ function Header() {
                     type="text"
                     icon={<MenuOutlined />}
                     onClick={() => setVisible(true)}
+                    style={{ marginRight: "8px" }}
                   />
                 </S.StyledIcon>
               </Col>
