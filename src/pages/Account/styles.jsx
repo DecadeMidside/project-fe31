@@ -125,10 +125,10 @@ export const styleProfile = styled.div`
 `;
 
 export const ProfileWrapper = styled.div`
-  margin: 4px 20px 4px 25%;
+  margin: 4px auto;
   padding: 16px;
-  max-width: 1232px;
-  min-width: 723px;
+  /* max-width: 1232px;
+  min-width: 723px; */
   border: 1px solid #333;
   background-color: #f1f1f1;
 

@@ -5,13 +5,18 @@ import { useEffect, useMemo, useState } from "react";
 import { Link, useParams, generatePath, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineHeart, AiFillInfoCircle } from "react-icons/ai";
 import { ROUTES } from "../../constant/routes";
+import {
+  getProductDetailAction,
+  getProductListAction,
+  getReviewListAction,
+  sendReviewAction,
+  addToCartAction,
+} from "../../redux/actions";
 import { PRODUCT_LIMIT, PRODUCT_LIMIT_HOME } from "../../constant/paging";
-import { getProductListAction } from "../../redux/actions";
-import { AiFillInfoCircle } from "react-icons/ai";
 function HomePage() {
-  const { productList, productDetail } = useSelector((state) => state.product);
+  const { productList } = useSelector((state) => state.product);
 
   const { id } = useParams();
 
@@ -49,9 +54,6 @@ function HomePage() {
                 <AiFillInfoCircle style={{ color: "#ffc62d" }} />{" "}
               </h4>
               <S.StyledBtnProduct>ADD TO CART</S.StyledBtnProduct>
-              <S.HeartIconWrapper>
-                <AiOutlineHeart />
-              </S.HeartIconWrapper>
             </S.StyledProductItem>{" "}
           </Link>
         </Col>

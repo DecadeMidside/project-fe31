@@ -1,4 +1,4 @@
-import { Card, Row, Col, Input } from "antd";
+import { Card, Row, Col, Input, Button } from "antd";
 import styled from "styled-components";
 
 export const ProductListWrapper = styled.div`
@@ -144,7 +144,7 @@ export const StyledProductItem = styled(Card)`
     font-weight: 500;
   }
 `;
-export const HeartIconWrapper = styled.div`
+export const HeartIconWrapper = styled(Button)`
   position: absolute;
   top: 0;
   right: 0;
@@ -152,6 +152,7 @@ export const HeartIconWrapper = styled.div`
   margin: 4px;
   color: #333;
   font-size: 24px;
+
   cursor: pointer;
 `;
 

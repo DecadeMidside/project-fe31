@@ -9,7 +9,8 @@ import { loginAction } from "../../redux/actions";
 import { ROUTES } from "../../constant/routes";
 import { logoutAction } from "../../redux/actions";
 
-import { UserProfile, UpdatePassword, OrderHistories } from "./component";
+import { UserProfile, UpdatePassword } from "./component";
+import OrderHistories from "./component";
 
 import * as S from "./styles";
 function AccountPage() {

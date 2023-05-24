@@ -1,6 +1,7 @@
 export const ROUTES = {
   USER: {
     ACCOUNT: "/pages/Account",
+    ORDEREDHISTORIES: "/pages/Account/OrderedHistories",
     CART: "/pages/Cart",
     CHECKOUT: "/pages/Checkout",
     SUCCESSCHECKOUT: "/pages/Checkout/SuccessCheckoutPage",

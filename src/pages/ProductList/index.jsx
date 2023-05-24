@@ -11,9 +11,10 @@ import {
   Space,
   Image,
   Spin,
+  notification,
 } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { AiOutlineHeart, AiFillInfoCircle } from "react-icons/ai";
+import { AiOutlineHeart, AiFillHeart, AiFillInfoCircle } from "react-icons/ai";
 import { ROUTES } from "../../constant/routes";
 import { PRODUCT_LIMIT } from "../../constant/paging";
 import {
@@ -24,6 +25,8 @@ import {
 } from "../../redux/actions";
 
 import * as S from "./styles";
+import { hover } from "@testing-library/user-event/dist/hover";
+import ProductDetail from "pages/ProductDetail";
 
 function ProductList() {
   const { state } = useLocation();
@@ -35,6 +38,8 @@ function ProductList() {
     searchKey: "",
     sort: "",
   });
+  const { userInfo } = useSelector((state) => state.auth);
+
   useEffect(() => {
     dispatch(
       getProductListAction({
@@ -147,9 +152,6 @@ function ProductList() {
                 <AiFillInfoCircle style={{ color: "#ffc62d" }} />{" "}
               </h4>
               <S.StyledBtnProduct>ADD TO CART</S.StyledBtnProduct>
-              <S.HeartIconWrapper>
-                <AiOutlineHeart />
-              </S.HeartIconWrapper>
             </S.StyledProductItem>{" "}
           </Link>
         </Col>
