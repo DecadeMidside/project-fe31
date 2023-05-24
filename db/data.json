@@ -524,13 +524,6 @@
       "id": 1
     },
     {
-      "productId": 2,
-      "userId": 1,
-      "createdAt": 1684771539813,
-      "updatedAt": 1684771539813,
-      "id": 2
-    },
-    {
       "productId": 1,
       "userId": 5,
       "createdAt": 1684918816811,
@@ -544,6 +537,14 @@
       "updatedAt": 1684920662734,
       "isDelete": false,
       "id": 4
+    },
+    {
+      "productId": 2,
+      "userId": 1,
+      "createdAt": 1684935901051,
+      "updatedAt": 1684935901052,
+      "isDelete": false,
+      "id": 5
     }
   ],
   "orders": [
@@ -591,43 +592,23 @@
   "orderDetails": [
     {
       "orderId": 1,
-      "productId": 4,
-      "name": "SUPEROCEAN AUTOMATIC VER 44",
-      "price": 5050,
-      "createdAt": 1684933229604,
-      "updatedAt": 1684933229604,
+      "productId": 3,
+      "name": "PREMIER B01 CHRONOGRAPH 42",
+      "price": 10000,
+      "createdAt": 1684939250531,
+      "updatedAt": 1684939250531,
       "isDelete": false,
       "id": 1
     },
     {
       "orderId": 2,
-      "productId": 4,
-      "name": "SUPEROCEAN AUTOMATIC VER 44",
-      "price": 5050,
-      "createdAt": 1684933229704,
-      "updatedAt": 1684933229704,
+      "productId": 3,
+      "name": "PREMIER B01 CHRONOGRAPH 42",
+      "price": 10000,
+      "createdAt": 1684939250533,
+      "updatedAt": 1684939250533,
       "isDelete": false,
       "id": 2
-    },
-    {
-      "orderId": 1,
-      "productId": 2,
-      "name": "PREMIER B01 CHRONOGRAPH 42",
-      "price": 9100,
-      "createdAt": 1684933229710,
-      "updatedAt": 1684933229710,
-      "isDelete": false,
-      "id": 3
-    },
-    {
-      "orderId": 2,
-      "productId": 2,
-      "name": "PREMIER B01 CHRONOGRAPH 42",
-      "price": 9100,
-      "createdAt": 1684933229756,
-      "updatedAt": 1684933229756,
-      "isDelete": false,
-      "id": 4
     }
   ],
   "cities": [

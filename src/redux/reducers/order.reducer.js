@@ -43,7 +43,7 @@ const orderReducer = createReducer(initialState, {
       },
     };
   },
-  
+
   [REQUEST(ORDER_ACTION.GET_ORDER_LIST_ADMIN)]: (state, action) => {
     return {
       ...state,
@@ -56,7 +56,7 @@ const orderReducer = createReducer(initialState, {
   },
 
   [SUCCESS(ORDER_ACTION.GET_ORDER_LIST_ADMIN)]: (state, action) => {
-    const { data } = action.payload; 
+    const { data } = action.payload;
     return {
       ...state,
       orderList: {

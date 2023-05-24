@@ -4,7 +4,7 @@ export const ROUTES = {
     ORDEREDHISTORIES: "/pages/Account/OrderedHistories",
     CART: "/pages/Cart",
     CHECKOUT: "/pages/Checkout",
-    SUCCESSCHECKOUT: "/pages/Checkout/SuccessCheckoutPage",
+    SUCCESSCHECKOUT: "/pages/Checkout/SuccessCheckoutPage/:id",
     REGISTER: "/pages/Register",
     HOME: "/",
     PRODUCT_LIST: "/products",
