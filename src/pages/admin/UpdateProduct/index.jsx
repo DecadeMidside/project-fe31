@@ -10,6 +10,8 @@ import {
   getCategoryListAction,
   getProductDetailAction,
   updateProductAction,
+  getDiametterListAction,
+  getGenderListAction,
 } from "../../../redux/actions";
 import {
   convertBase64ToImage,
@@ -26,8 +28,20 @@ function UpdateProduct() {
 
   const [updateForm] = Form.useForm();
   const { diametterList } = useSelector((state) => state.diametter);
+  console.log(
+    "🚀 ~ file: index.jsx:29 ~ UpdateProduct ~ diametterList:",
+    diametterList
+  );
   const { genderList } = useSelector((state) => state.gender);
+  console.log(
+    "🚀 ~ file: index.jsx:31 ~ UpdateProduct ~ genderList:",
+    genderList
+  );
   const { categoryList } = useSelector((state) => state.category);
+  console.log(
+    "🚀 ~ file: index.jsx:31 ~ UpdateProduct ~ categoryList:",
+    categoryList
+  );
   const { productDetail } = useSelector((state) => state.product);
   console.log(
     "🚀 ~ file: index.jsx:28 ~ UpdateProduct ~ productDetail:",
@@ -38,8 +52,8 @@ function UpdateProduct() {
     name: productDetail.data.name,
     price: productDetail.data.price,
     categoryId: productDetail.data.category?.id,
-    diametterId: productDetail.data.diametter?.id,
-    genderId: productDetail.data.gender?.id,
+    diametterId: productDetail.data.diametter?.size,
+    genderId: productDetail.data.gender?.gender,
     content: productDetail.data.content,
     images: [],
   };
@@ -47,6 +61,8 @@ function UpdateProduct() {
   useEffect(() => {
     dispatch(getProductDetailAction({ id: id }));
     dispatch(getCategoryListAction());
+    dispatch(getDiametterListAction());
+    dispatch(getGenderListAction());
   }, [id]);
 
   useEffect(() => {
@@ -166,7 +182,7 @@ function UpdateProduct() {
         </Form.Item>
         <Form.Item
           label="Diameter"
-          name="DiameterId"
+          name="diametterId"
           rules={[{ required: true, message: "Required!" }]}
         >
           <Select>{renderDiametterOptions}</Select>
@@ -190,7 +206,7 @@ function UpdateProduct() {
               style={{ width: 200 }}
             />
           </Form.Item>
-          <span>VND</span>
+          <span>USD</span>
         </Space>
         <Form.Item
           label="Images"

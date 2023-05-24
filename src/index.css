@@ -31,3 +31,11 @@ span {
 button {
   transition: all 0.3s;
 }
+a {
+  color: black;
+  font-weight: 700 !important;
+}
+a:hover {
+  color: #ffc62d;
+  cursor: pointer;
+}

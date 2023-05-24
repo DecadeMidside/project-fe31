@@ -8,7 +8,7 @@ export const FilterWrapper = styled.div`
 `;
 export const StyledBtnProduct = styled.button`
   margin: 1rem 0;
-  width: 100pxpx;
+  width: 100px;
   font-weight: 600;
   padding: 4px;
   margin: 8px 0;

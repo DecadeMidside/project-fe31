@@ -43,6 +43,7 @@ export const CustomColMenu = styled(Col)`
   padding: 0 20px;
 `;
 export const customMenu = styled(Menu)`
+  color: black !important;
   display: none;
   @media screen and (min-width: 768px) {
     justify-content: center;
@@ -76,9 +77,18 @@ export const customMenuHide = styled(Menu)`
 export const StyledListIcon = styled.div`
   display: flex;
   align-items: center;
+  color: black;
   justify-content: flex-end;
   font-size: 18px;
   width: 100%;
+  > i {
+    text-decoration: none;
+    color: #333;
+    :hover {
+      color: #ffc62d;
+      cursor: pointer;
+    }
+  }
 `;
 export const StyledIcon = styled.div`
   margin: 0 16px;

@@ -60,8 +60,51 @@ function* deleteUserSaga(action) {
     });
   }
 }
+function* getUserInfoAdminSaga(action) {
+  try {
+    const { id } = action.payload;
+    const result = yield axios.get(`http://localhost:4000/users/${id}`);
+
+    yield put({
+      type: SUCCESS(USER_ACTION.GET_USER_INFO),
+      payload: {
+        data: result.data,
+      },
+    });
+  } catch (e) {
+    yield put({
+      type: FAIL(USER_ACTION.GET_USER_INFO),
+      payload: {
+        error: "error",
+      },
+    });
+  }
+}
+function* updateUserSaga(action) {
+  try {
+    const { id, data, callback } = action.payload;
+    const result = yield axios.patch(`http://localhost:4000/users/${id}`, data);
+
+    yield callback();
+    yield put({
+      type: SUCCESS(USER_ACTION.UPDATE_USER),
+      payload: {
+        data: result.data,
+      },
+    });
+  } catch (e) {
+    yield put({
+      type: FAIL(USER_ACTION.UPDATE_USER),
+      payload: {
+        error: "Đã có lỗi xảy ra!",
+      },
+    });
+  }
+}
 
 export default function* userSaga() {
   yield takeEvery(REQUEST(USER_ACTION.GET_USER_LIST), getUserListSaga);
   yield takeEvery(REQUEST(USER_ACTION.DELETE_USER), deleteUserSaga);
+  yield takeEvery(REQUEST(USER_ACTION.UPDATE_USER), updateUserSaga);
+  yield takeEvery(REQUEST(USER_ACTION.GET_USER_INFO), getUserInfoAdminSaga);
 }

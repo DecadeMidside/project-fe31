@@ -234,7 +234,7 @@ function ProductDetail() {
             {/* <AiFillHeart /> */}
           </S.HeartIconWrap>
           {productDetail.data && productDetail.data.images && (
-            <Image src={productDetail.data.images[0].url} />
+            <Image src={productDetail.data.images[0]?.url} />
           )}
         </Col>
         <S.CustomColDetail span={12}>

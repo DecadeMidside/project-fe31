@@ -1,4 +1,4 @@
-import { call, put, takeEvery } from "redux-saga/effects";
+import { put, takeEvery } from "redux-saga/effects";
 import axios from "axios";
 import { notification } from "antd";
 import { AUTH_ACTION, REQUEST, SUCCESS, FAIL } from "../constants";

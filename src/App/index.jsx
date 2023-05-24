@@ -25,6 +25,7 @@ import ServicePage from "../pages/Serviced";
 import Dashboard from "../pages/admin/Dashboard";
 import ProductManagement from "../pages/admin/ProductManagement";
 import UpdateProduct from "../pages/admin/UpdateProduct";
+import UpdateUser from "../pages/admin/UpdateUser";
 import CreateProduct from "../pages/admin/CreateProduct";
 import UserManagement from "../pages/admin/UserManagement";
 import CategoriesManagement from "../pages/admin/CategoriesManagement";
@@ -78,6 +79,7 @@ function App() {
             path={ROUTES.ADMIN.UPDATE_PRODUCT}
             element={<UpdateProduct />}
           />
+          <Route path={ROUTES.ADMIN.UPDATE_USER} element={<UpdateUser />} />
           <Route
             path={ROUTES.ADMIN.CREATE_PRODUCT}
             element={<CreateProduct />}

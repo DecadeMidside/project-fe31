@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, generatePath } from "react-router-dom";
 import {
   Row,
   Col,
@@ -11,10 +12,12 @@ import {
   Avatar,
 } from "antd";
 import { getUserListAction, deleteUserAction } from "../../../redux/actions";
+import { ROUTES } from "../../../constant/routes";
 import * as S from "./styles";
 
 function UserManagement() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { userInfo } = useSelector((state) => state.auth);
   console.log("🚀 ~ file: index.jsx:10 ~ UserManagement ~ userInfo:", userInfo);
   const { userList } = useSelector((state) => state.user);
@@ -75,7 +78,13 @@ function UserManagement() {
       key: "action",
       render: (_, item) => (
         <Space>
-          <S.StyledBtnProduct type="primary" outline={true}>
+          <S.StyledBtnProduct
+            type="primary"
+            outline={true}
+            onClick={() =>
+              navigate(generatePath(ROUTES.ADMIN.UPDATE_USER, { id: item.id }))
+            }
+          >
             Update
           </S.StyledBtnProduct>
 

@@ -24,7 +24,7 @@ import {
 
 import { ROUTES } from "../../constant/routes";
 
-// import * as S from "./styles";
+import * as S from "./styles";
 
 function CheckoutPage() {
   const [checkoutForm] = Form.useForm();
@@ -76,12 +76,6 @@ function CheckoutPage() {
       dataIndex: "price",
       key: "Price",
       render: (price) => `USD ${parseInt(price).toLocaleString()} `,
-    },
-    {
-      title: "Total",
-      dataIndex: "total",
-      key: "total",
-      render: (_, item) => `USD ${parseInt(item.price).toLocaleString()} `,
     },
   ];
 
@@ -146,172 +140,177 @@ function CheckoutPage() {
 
   if (!cartList.length) return <Navigate to={ROUTES.USER.CART} />;
   return (
-    <div>
-      <h2 style={{ marginBottom: 24, color: "black", alignItems: "center" }}>
-        Payment
-      </h2>
-      <Card size="small" title="Shopping Bag" style={{ marginBottom: 24 }}>
-        <Table
-          size="small"
-          columns={tableColumn}
-          dataSource={data}
-          rowKey="id"
-          pagination={false}
-        />
-        Totally: USD {cartTotalPrice.toLocaleString()}
-      </Card>
-      <Form
-        name="checkoutForm"
-        form={checkoutForm}
-        layout="vertical"
-        initialValues={initialValues}
-        onFinish={(values) => handleSubmitCheckoutForm(values)}
-      >
-        <Card
-          size="small"
-          title="Shipment Information"
-          style={{ marginBottom: 24 }}
-        >
-          <Row gutter={[16, 16]} key={userInfo.data.id}>
-            <Col span={24}>
-              <Form.Item
-                label="Full Name"
-                name="fullName"
-                initialValue={userInfo.data.fullName}
-                rules={[
-                  { required: true, message: "Please input your fullname!" },
-                ]}
-              >
-                <Input />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item
-                label="Email"
-                name="email"
-                initialValue={userInfo.data.email}
-                rules={[
-                  { required: true, message: "Please input your email!" },
-                ]}
-              >
-                <Input />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item
-                label="Phone Number"
-                name="phoneNumber"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input your phone number!",
-                  },
-                ]}
-              >
-                <Input />
-              </Form.Item>
-            </Col>
-            <Col span={8}>
-              <Form.Item
-                label="City/Province"
-                name="cityCode"
-                rules={[
-                  { required: true, message: "Choose your city/province!" },
-                ]}
-              >
-                <Select
-                  onChange={(value) => {
-                    dispatch(getDistrictListAction({ cityCode: value }));
-                    checkoutForm.setFieldsValue({
-                      districtCode: undefined,
-                      wardCode: undefined,
-                    });
-                  }}
-                >
-                  {renderCityOptions}
-                </Select>
-              </Form.Item>
-            </Col>
-            <Col span={8}>
-              <Form.Item
-                label="District"
-                name="districtCode"
-                rules={[{ required: true, message: "Choose your district!" }]}
-              >
-                <Select
-                  onChange={(value) => {
-                    dispatch(getWardListAction({ districtCode: value }));
-                    checkoutForm.setFieldsValue({
-                      wardCode: undefined,
-                    });
-                  }}
-                  disabled={!checkoutForm.getFieldValue("cityCode")}
-                >
-                  {renderDistrictOptions}
-                </Select>
-              </Form.Item>
-            </Col>
-            <Col span={8}>
-              <Form.Item
-                label="Ward"
-                name="wardCode"
-                rules={[{ required: true, message: "Choose your district!" }]}
-              >
-                <Select disabled={!checkoutForm.getFieldValue("districtCode")}>
-                  {renderWardListOptions}
-                </Select>
-              </Form.Item>
-            </Col>
-            <Col span={24}>
-              <Form.Item
-                label="Address"
-                name="address"
-                rules={[
-                  { required: true, message: "Please input your address!" },
-                ]}
-              >
-                <Input />
-              </Form.Item>
-            </Col>
-          </Row>
-        </Card>
-        <Card size="small" title="Payment" style={{ marginBottom: 24 }}>
-          <Row gutter={[16, 16]}>
-            <Col span={24}>
-              <Form.Item
-                label="Payment Method"
-                name="paymentMethod"
-                rules={[
-                  {
-                    required: true,
-                    message: "Which payment method do you like ?",
-                  },
-                ]}
-              >
-                <Radio.Group>
-                  <Space direction="vertical">
-                    <Radio value="cod">COD</Radio>
-                    <Radio value="atm">ATM</Radio>
-                  </Space>
-                </Radio.Group>
-              </Form.Item>
-            </Col>
-          </Row>
-        </Card>
+    <>
+      <S.styleTitle>
+        <h1>Payment</h1>
+      </S.styleTitle>
 
-        <Row justify="space-between">
-          <Button onClick={() => navigate(ROUTES.USER.CART_LIST)}>Back</Button>
+      <Row justify="center">
+        <S.checkoutWrapper gutter={[16, 16]}>
+          <Col span={8}>
+            <S.styleCard
+              size="small"
+              title="Shopping Bag"
+              style={{ marginBottom: 24 }}
+            >
+              <Table
+                size="small"
+                columns={tableColumn}
+                dataSource={data}
+                rowKey="id"
+                pagination={false}
+              />
+              <S.styleTotal>Totally: USD {cartTotalPrice}</S.styleTotal>
+            </S.styleCard>
+          </Col>
+          <Col span={16}>
+            <Form
+              name="checkoutForm"
+              form={checkoutForm}
+              layout="vertical"
+              initialValues={initialValues}
+              onFinish={(values) => handleSubmitCheckoutForm(values)}
+            >
+              <S.styleCard
+                size="small"
+                title="Shipment Information"
+                style={{ marginBottom: 24 }}
+              >
+                <Row gutter={[16, 16]} key={userInfo.data.id}>
+                  <Col span={24}>
+                    <Form.Item
+                      label="Full Name"
+                      name="fullName"
+                      initialValue={userInfo.data.fullName}
+                      rules={[{ required: true, message: "Required!" }]}
+                    >
+                      <Input />
+                    </Form.Item>
+                  </Col>
+                  <Col span={12}>
+                    <Form.Item
+                      label="Email"
+                      name="email"
+                      initialValue={userInfo.data.email}
+                      rules={[{ required: true, message: "Required!" }]}
+                    >
+                      <Input />
+                    </Form.Item>
+                  </Col>
+                  <Col span={12}>
+                    <Form.Item
+                      label="Phone Number"
+                      name="phoneNumber"
+                      rules={[{ required: true, message: "Required!" }]}
+                    >
+                      <Input />
+                    </Form.Item>
+                  </Col>
+                  <Col span={8}>
+                    <Form.Item
+                      label="City/Province"
+                      name="cityCode"
+                      rules={[{ required: true, message: "Required!" }]}
+                    >
+                      <Select
+                        onChange={(value) => {
+                          dispatch(getDistrictListAction({ cityCode: value }));
+                          checkoutForm.setFieldsValue({
+                            districtCode: undefined,
+                            wardCode: undefined,
+                          });
+                        }}
+                      >
+                        {renderCityOptions}
+                      </Select>
+                    </Form.Item>
+                  </Col>
+                  <Col span={8}>
+                    <Form.Item
+                      label="District"
+                      name="districtCode"
+                      rules={[{ required: true, message: "Required!" }]}
+                    >
+                      <Select
+                        onChange={(value) => {
+                          dispatch(getWardListAction({ districtCode: value }));
+                          checkoutForm.setFieldsValue({
+                            wardCode: undefined,
+                          });
+                        }}
+                        disabled={!checkoutForm.getFieldValue("cityCode")}
+                      >
+                        {renderDistrictOptions}
+                      </Select>
+                    </Form.Item>
+                  </Col>
+                  <Col span={8}>
+                    <Form.Item
+                      label="Ward"
+                      name="wardCode"
+                      rules={[{ required: true, message: "Required!" }]}
+                    >
+                      <Select
+                        disabled={!checkoutForm.getFieldValue("districtCode")}
+                      >
+                        {renderWardListOptions}
+                      </Select>
+                    </Form.Item>
+                  </Col>
+                  <Col span={24}>
+                    <Form.Item
+                      label="Address"
+                      name="address"
+                      rules={[{ required: true, message: "Required!" }]}
+                    >
+                      <Input />
+                    </Form.Item>
+                  </Col>
+                </Row>
+              </S.styleCard>
+              <S.styleCard
+                size="small"
+                title="Payment"
+                style={{ marginBottom: 8 }}
+              >
+                <Row gutter={[16, 16]}>
+                  <Col span={24}>
+                    <Form.Item
+                      label="Payment Method"
+                      name="paymentMethod"
+                      rules={[{ required: true, message: "Required!" }]}
+                    >
+                      <Radio.Group>
+                        <Space direction="vertical">
+                          <Radio value="cod">COD</Radio>
+                          <Radio value="atm">ATM</Radio>
+                        </Space>
+                      </Radio.Group>
+                    </Form.Item>
+                  </Col>
+                </Row>
+              </S.styleCard>
 
-          <Button
-            type="primary"
-            htmlType="submit"
-            onClick={() => checkoutForm.submit()}
-          >
-            Pay
-          </Button>
-        </Row>
-      </Form>
-    </div>
+              <Row justify="space-between">
+                <S.StyledBtnProduct
+                  onClick={() => navigate(ROUTES.USER.CART_LIST)}
+                >
+                  Back
+                </S.StyledBtnProduct>
+
+                <S.StyledBtnProduct
+                  type="primary"
+                  htmlType="submit"
+                  onClick={() => checkoutForm.submit()}
+                >
+                  Pay
+                </S.StyledBtnProduct>
+              </Row>
+            </Form>
+          </Col>
+        </S.checkoutWrapper>
+      </Row>
+    </>
   );
 }
 
