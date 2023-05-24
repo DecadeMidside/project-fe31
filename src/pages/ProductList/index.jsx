@@ -11,9 +11,10 @@ import {
   Space,
   Image,
   Spin,
+  notification,
 } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { ROUTES } from "../../constant/routes";
 import { PRODUCT_LIMIT } from "../../constant/paging";
 import {
@@ -24,6 +25,8 @@ import {
 } from "../../redux/actions";
 
 import * as S from "./styles";
+import { hover } from "@testing-library/user-event/dist/hover";
+import ProductDetail from "pages/ProductDetail";
 
 function ProductList() {
   const { Meta } = Card;
@@ -35,6 +38,12 @@ function ProductList() {
     searchKey: "",
     sort: "",
   });
+  const { userInfo } = useSelector((state) => state.auth);
+  const { productList } = useSelector((state) => state.product);
+  const { categoryList } = useSelector((state) => state.category);
+  const { diametterList } = useSelector((state) => state.diametter);
+  const { genderList } = useSelector((state) => state.gender);
+
   useEffect(() => {
     dispatch(
       getProductListAction({
@@ -46,11 +55,6 @@ function ProductList() {
     dispatch(getGenderListAction());
     dispatch(getCategoryListAction());
   }, []);
-
-  const { productList } = useSelector((state) => state.product);
-  const { categoryList } = useSelector((state) => state.category);
-  const { diametterList } = useSelector((state) => state.diametter);
-  const { genderList } = useSelector((state) => state.gender);
 
   const handleShowMore = () => {
     dispatch(
@@ -124,9 +128,6 @@ function ProductList() {
               <h3>{item.name}</h3>
               <h6>USD {parseInt(item.price).toLocaleString()} </h6>
               <S.StyledBtnProduct>ADD TO CART</S.StyledBtnProduct>
-              <S.HeartIconWrapper>
-                <AiOutlineHeart />
-              </S.HeartIconWrapper>
             </S.StyledProductItem>{" "}
           </Link>
         </Col>

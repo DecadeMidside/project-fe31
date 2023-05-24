@@ -1,14 +1,16 @@
 import { Button, Result } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { getOrderList } from "../../../redux/actions";
 import { useEffect } from "react";
+import { ROUTES } from "../../../constant/routes";
 import moment from "moment";
 
 const SuccessCheckoutPage = () => {
   const dispatch = useDispatch();
   const { state } = useLocation();
   console.log("🚀 ~ file: index.jsx:11 ~ SuccessCheckoutPage ~ state:", state);
+  const navigate = useNavigate();
 
   const { userInfo } = useSelector((state) => state.auth);
   const { orderList } = useSelector((state) => state.order);
@@ -30,20 +32,31 @@ const SuccessCheckoutPage = () => {
       extra={[
         <div>
           <h3> PURCHASE INFORMATION </h3>
-          <span> Purchased Code : {state.email} </span>
+          <span> Purchased Code : {orderList.data.createdAt} </span>
           <p> ---------------------- </p>
           <h3> SHIPMENT DETAILS </h3>
           <span> Full name : {userInfo.data.fullName} </span>
+          <br />
           <span> Address : {state.cityCode} </span>
-          <span> {state.phoneNumber}</span>
-          <span> {state.paymentMethod}</span>
-          <span> {state.address}</span>
+          <br />
+          <span> Telephone : {state.phoneNumber}</span>
+          <br />
+          <span> Payment Method : {state.paymentMethod}</span>
+          <br />
+          <span> Address : {state.address}</span>
+          <br />
           <span> {userInfo.city}</span>
         </div>,
-        <Button type="primary" key="console">
-          Go Console
+        <Button
+          type="primary"
+          key="console"
+          onClick={() => navigate(ROUTES.USER.ORDEREDHISTORIES)}
+        >
+          Checking Your Purchased
         </Button>,
-        <Button key="buy">Buy Again</Button>,
+        <Button key="buy" onClick={() => navigate(ROUTES.USER.PRODUCT_LIST)}>
+          Continue Shopping
+        </Button>,
       ]}
     />
   );

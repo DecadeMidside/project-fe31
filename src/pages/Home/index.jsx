@@ -30,9 +30,8 @@ import {
   sendReviewAction,
   addToCartAction,
 } from "../../redux/actions";
-import { FaPhoneAlt, FaCalendarAlt } from "react-icons/fa";
 function HomePage() {
-  const { productList, productDetail } = useSelector((state) => state.product);
+  const { productList } = useSelector((state) => state.product);
 
   const { id } = useParams();
 
@@ -58,9 +57,6 @@ function HomePage() {
               <h3>{item.name}</h3>
               <h6>USD {parseInt(item.price).toLocaleString()} </h6>
               <S.StyledBtnProduct>ADD TO CART</S.StyledBtnProduct>
-              <S.HeartIconWrapper>
-                <AiOutlineHeart />
-              </S.HeartIconWrapper>
             </S.StyledProductItem>{" "}
           </Link>
         </Col>

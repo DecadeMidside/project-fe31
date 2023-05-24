@@ -93,10 +93,12 @@ function CheckoutPage() {
       orderProductAction({
         data: {
           ...values,
-          city: cityList.data.find((item) => item.code === values.city)?.name,
-          // district: districtList.map.find(
-          //   (item) => item.code === values.district
-          // )?.name,
+          city: cityList.data.find((item) => item.code === values.cityCode)
+            ?.name,
+          city: cityList.data.find((item) => item.code === values.cityCode)
+            ?.name,
+          city: cityList.data.find((item) => item.code === values.cityCode)
+            ?.name,
           userId: userInfo.data.id,
           totalPrice: totalPrice,
           status: "pending",
@@ -142,7 +144,9 @@ function CheckoutPage() {
   if (!cartList.length) return <Navigate to={ROUTES.USER.CART} />;
   return (
     <div>
-      <h2 style={{ marginBottom: 24 }}>Payment</h2>
+      <h2 style={{ marginBottom: 24, color: "black", alignItems: "center" }}>
+        Payment
+      </h2>
       <Card size="small" title="Shopping Bag" style={{ marginBottom: 24 }}>
         <Table
           size="small"
@@ -151,7 +155,7 @@ function CheckoutPage() {
           rowKey="id"
           pagination={false}
         />
-        Totally: USD {cartTotalPrice}
+        Totally: USD {cartTotalPrice.toLocaleString()}
       </Card>
       <Form
         name="checkoutForm"
@@ -171,7 +175,9 @@ function CheckoutPage() {
                 label="Full Name"
                 name="fullName"
                 initialValue={userInfo.data.fullName}
-                rules={[{ required: true, message: "Required!" }]}
+                rules={[
+                  { required: true, message: "Please input your fullname!" },
+                ]}
               >
                 <Input />
               </Form.Item>
@@ -181,7 +187,9 @@ function CheckoutPage() {
                 label="Email"
                 name="email"
                 initialValue={userInfo.data.email}
-                rules={[{ required: true, message: "Required!" }]}
+                rules={[
+                  { required: true, message: "Please input your email!" },
+                ]}
               >
                 <Input />
               </Form.Item>
@@ -190,7 +198,12 @@ function CheckoutPage() {
               <Form.Item
                 label="Phone Number"
                 name="phoneNumber"
-                rules={[{ required: true, message: "Required!" }]}
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your phone number!",
+                  },
+                ]}
               >
                 <Input />
               </Form.Item>
@@ -199,7 +212,9 @@ function CheckoutPage() {
               <Form.Item
                 label="City/Province"
                 name="cityCode"
-                rules={[{ required: true, message: "Required!" }]}
+                rules={[
+                  { required: true, message: "Choose your city/province!" },
+                ]}
               >
                 <Select
                   onChange={(value) => {
@@ -218,7 +233,7 @@ function CheckoutPage() {
               <Form.Item
                 label="District"
                 name="districtCode"
-                rules={[{ required: true, message: "Required!" }]}
+                rules={[{ required: true, message: "Choose your district!" }]}
               >
                 <Select
                   onChange={(value) => {
@@ -237,7 +252,7 @@ function CheckoutPage() {
               <Form.Item
                 label="Ward"
                 name="wardCode"
-                rules={[{ required: true, message: "Required!" }]}
+                rules={[{ required: true, message: "Choose your district!" }]}
               >
                 <Select disabled={!checkoutForm.getFieldValue("districtCode")}>
                   {renderWardListOptions}
@@ -248,7 +263,9 @@ function CheckoutPage() {
               <Form.Item
                 label="Address"
                 name="address"
-                rules={[{ required: true, message: "Required!" }]}
+                rules={[
+                  { required: true, message: "Please input your address!" },
+                ]}
               >
                 <Input />
               </Form.Item>
@@ -261,7 +278,12 @@ function CheckoutPage() {
               <Form.Item
                 label="Payment Method"
                 name="paymentMethod"
-                rules={[{ required: true, message: "Required!" }]}
+                rules={[
+                  {
+                    required: true,
+                    message: "Which payment method do you like ?",
+                  },
+                ]}
               >
                 <Radio.Group>
                   <Space direction="vertical">

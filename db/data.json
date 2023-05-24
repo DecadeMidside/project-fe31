@@ -415,6 +415,29 @@
       "id": 15
     }
   ],
+  "favorites": [
+    {
+      "productId": 1,
+      "userId": 1,
+      "createdAt": 1684771522140,
+      "updatedAt": 1684771522141,
+      "id": 1
+    },
+    {
+      "productId": 2,
+      "userId": 1,
+      "createdAt": 1684771539813,
+      "updatedAt": 1684771539813,
+      "id": 2
+    },
+    {
+      "productId": 1,
+      "userId": 5,
+      "createdAt": 1684918816811,
+      "updatedAt": 1684918816811,
+      "id": 3
+    }
+  ],
   "orders": [
     {
       "fullName": "Huỳnh Hồ Hoàng Long",
@@ -890,6 +913,70 @@
       "createdAt": 1684330153462,
       "updatedAt": 1684330153462,
       "id": 32
+    },
+    {
+      "fullName": "Phan Thanh Vinh",
+      "email": "vinhphan2212@gmail.com",
+      "phoneNumber": "0904454838",
+      "cityCode": "31",
+      "districtCode": "303",
+      "wardCode": "11320",
+      "address": "22 abc",
+      "paymentMethod": "cod",
+      "userId": 5,
+      "totalPrice": 16000,
+      "status": "pending",
+      "createdAt": 1684386936717,
+      "updatedAt": 1684386936717,
+      "id": 33
+    },
+    {
+      "fullName": "Phan Thanh Vinh",
+      "email": "vinhphan2212@gmail.com",
+      "phoneNumber": "0904454838",
+      "cityCode": "31",
+      "districtCode": "303",
+      "wardCode": "11320",
+      "address": "22 abc",
+      "paymentMethod": "cod",
+      "userId": 5,
+      "totalPrice": 16000,
+      "status": "pending",
+      "createdAt": 1684386936776,
+      "updatedAt": 1684386936776,
+      "id": 34
+    },
+    {
+      "fullName": "Phan Thanh Vinh",
+      "email": "vinhphan2212@gmail.com",
+      "phoneNumber": "0904454838",
+      "cityCode": "31",
+      "districtCode": "309",
+      "wardCode": "11689",
+      "address": "323 Trần Cao Vân",
+      "paymentMethod": "cod",
+      "userId": 5,
+      "totalPrice": 8000,
+      "status": "pending",
+      "createdAt": 1684387085181,
+      "updatedAt": 1684387085181,
+      "id": 35
+    },
+    {
+      "fullName": "Phan Thanh Vinh",
+      "email": "vinhphan2212@gmail.com",
+      "phoneNumber": "0904454838",
+      "cityCode": "31",
+      "districtCode": "309",
+      "wardCode": "11689",
+      "address": "323 Trần Cao Vân",
+      "paymentMethod": "cod",
+      "userId": 5,
+      "totalPrice": 8000,
+      "status": "pending",
+      "createdAt": 1684387085255,
+      "updatedAt": 1684387085255,
+      "id": 36
     }
   ],
   "orderDetails": [
@@ -1378,6 +1465,60 @@
       "createdAt": 1684330153508,
       "updatedAt": 1684330153508,
       "id": 54
+    },
+    {
+      "orderId": 33,
+      "productId": 2,
+      "name": " B01 FORD MUSTANG",
+      "price": "8000",
+      "createdAt": 1684386936819,
+      "updatedAt": 1684386936819,
+      "id": 55
+    },
+    {
+      "orderId": 34,
+      "productId": 2,
+      "name": " B01 FORD MUSTANG",
+      "price": "8000",
+      "createdAt": 1684386936823,
+      "updatedAt": 1684386936823,
+      "id": 56
+    },
+    {
+      "orderId": 33,
+      "productId": 1,
+      "name": " B01 FORD THUNDERBIRD",
+      "price": "8000",
+      "createdAt": 1684386936909,
+      "updatedAt": 1684386936909,
+      "id": 57
+    },
+    {
+      "orderId": 34,
+      "productId": 1,
+      "name": " B01 FORD THUNDERBIRD",
+      "price": "8000",
+      "createdAt": 1684386936961,
+      "updatedAt": 1684386936961,
+      "id": 58
+    },
+    {
+      "orderId": 35,
+      "productId": 1,
+      "name": " B01 FORD THUNDERBIRD",
+      "price": "8000",
+      "createdAt": 1684387085300,
+      "updatedAt": 1684387085300,
+      "id": 59
+    },
+    {
+      "orderId": 36,
+      "productId": 1,
+      "name": " B01 FORD THUNDERBIRD",
+      "price": "8000",
+      "createdAt": 1684387085302,
+      "updatedAt": 1684387085302,
+      "id": 60
     }
   ],
   "cities": [

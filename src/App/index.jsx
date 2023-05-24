@@ -9,6 +9,7 @@ import "../App.css";
 import UserLayout from "../layout/UserLayout";
 import AdminLayout from "../layout/AdminLayout/index";
 import AccountPage from "../pages/Account";
+import OrderHistories from "../pages/Account/component";
 
 import { ROUTES } from "../constant/routes";
 import HomePage from "../pages/Home";
@@ -46,6 +47,11 @@ function App() {
         <Route element={<UserLayout />}>
           <Route path={ROUTES.USER.HOME} element={<HomePage />} />
           <Route path={ROUTES.USER.ACCOUNT} element={<AccountPage />} />
+          <Route
+            path={ROUTES.USER.ORDEREDHISTORIES}
+            element={<OrderHistories />}
+          />
+
           <Route path={ROUTES.USER.REGISTER} element={<RegisterPage />} />
           <Route path={ROUTES.USER.PRODUCT_LIST} element={<ProductList />} />
           <Route path={ROUTES.USER.CHECKOUT} element={<CheckoutPage />} />

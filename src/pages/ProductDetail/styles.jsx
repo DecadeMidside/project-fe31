@@ -259,6 +259,17 @@ export const HeartIconWrapper = styled.div`
   cursor: pointer;
 `;
 
+export const HeartIconWrap = styled(Button)`
+  position: absolute;
+  top: 0;
+  right: 0;
+  /* padding: 0 8px; */
+  margin: 4px;
+  color: #333;
+  font-size: 24px;
+
+  cursor: pointer;
+`;
 export const StyledBtnProduct = styled.button`
   width: 160px;
   height: 50px;
