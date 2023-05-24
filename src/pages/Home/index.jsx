@@ -5,10 +5,8 @@ import { useEffect, useMemo, useState } from "react";
 import { Link, useParams, generatePath, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineHeart, AiFillInfoCircle } from "react-icons/ai";
 import { ROUTES } from "../../constant/routes";
-<<<<<<< HEAD
-import { PRODUCT_LIMIT } from "../../constant/paging";
 import {
   getProductDetailAction,
   getProductListAction,
@@ -16,11 +14,7 @@ import {
   sendReviewAction,
   addToCartAction,
 } from "../../redux/actions";
-=======
 import { PRODUCT_LIMIT, PRODUCT_LIMIT_HOME } from "../../constant/paging";
-import { getProductListAction } from "../../redux/actions";
-import { AiFillInfoCircle } from "react-icons/ai";
->>>>>>> 57ce314f25204e150eac444051081b45de76e162
 function HomePage() {
   const { productList } = useSelector((state) => state.product);
 

@@ -14,11 +14,7 @@ import {
   notification,
 } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-<<<<<<< HEAD
-import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-=======
-import { AiOutlineHeart, AiFillInfoCircle } from "react-icons/ai";
->>>>>>> 57ce314f25204e150eac444051081b45de76e162
+import { AiOutlineHeart, AiFillHeart, AiFillInfoCircle } from "react-icons/ai";
 import { ROUTES } from "../../constant/routes";
 import { PRODUCT_LIMIT } from "../../constant/paging";
 import {
@@ -43,10 +39,6 @@ function ProductList() {
     sort: "",
   });
   const { userInfo } = useSelector((state) => state.auth);
-  const { productList } = useSelector((state) => state.product);
-  const { categoryList } = useSelector((state) => state.category);
-  const { diametterList } = useSelector((state) => state.diametter);
-  const { genderList } = useSelector((state) => state.gender);
 
   useEffect(() => {
     dispatch(
@@ -60,8 +52,6 @@ function ProductList() {
     dispatch(getCategoryListAction());
   }, []);
 
-<<<<<<< HEAD
-=======
   const { productList, productDetail } = useSelector((state) => state.product);
   console.log(
     "🚀 ~ file: index.jsx:51 ~ ProductList ~ productDetail:",
@@ -78,7 +68,6 @@ function ProductList() {
   const handleFilterButtonClick = () => {
     setIsFilterVisible(!isFilterVisible);
   };
->>>>>>> 57ce314f25204e150eac444051081b45de76e162
   const handleShowMore = () => {
     dispatch(
       getProductListAction({

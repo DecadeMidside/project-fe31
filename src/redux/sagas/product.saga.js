@@ -63,12 +63,8 @@ function* getProductDetailSaga(action) {
     const result = yield axios.get(`http://localhost:4000/products/${id}`, {
       params: {
         _expand: "category",
-<<<<<<< HEAD
         _embed: ["images", "favorites"],
-=======
-        _embed: "images",
         isDelete: false,
->>>>>>> 57ce314f25204e150eac444051081b45de76e162
       },
     });
 

@@ -15,25 +15,17 @@ import {
   Image,
   notification,
 } from "antd";
-<<<<<<< HEAD
-import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
-=======
 import {
   MenuOutlined,
   BellFilled,
   MailOutlined,
   UserOutlined,
 } from "@ant-design/icons";
->>>>>>> 57ce314f25204e150eac444051081b45de76e162
 import { useEffect, useMemo, useState } from "react";
 import { Link, useParams, generatePath } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-<<<<<<< HEAD
-=======
-import { AiOutlineHeart, AiFillInfoCircle } from "react-icons/ai";
->>>>>>> 57ce314f25204e150eac444051081b45de76e162
 import { ROUTES } from "../../constant/routes";
 import { PRODUCT_LIMIT, PRODUCT_LIMIT_HOME } from "../../constant/paging";
 import {
@@ -47,6 +39,7 @@ import {
 } from "../../redux/actions";
 
 import { FaPhoneAlt, FaCalendarAlt, FaReplyAll } from "react-icons/fa";
+import { AiOutlineHeart, AiFillInfoCircle, AiFillHeart } from "react-icons/ai";
 
 function ProductDetail() {
   const { id } = useParams();
@@ -216,7 +209,6 @@ function ProductDetail() {
     <div>
       <S.WrapperDetail>
         <Col span={12}>
-<<<<<<< HEAD
           <img
             src={productDetail.data.image}
             style={{ position: "relative" }}
@@ -241,11 +233,9 @@ function ProductDetail() {
           >
             {/* <AiFillHeart /> */}
           </S.HeartIconWrap>
-=======
           {productDetail.data && productDetail.data.images && (
             <Image src={productDetail.data.images[0].url} />
           )}
->>>>>>> 57ce314f25204e150eac444051081b45de76e162
         </Col>
         <S.CustomColDetail span={12}>
           <h1>{productDetail.data.name}</h1>

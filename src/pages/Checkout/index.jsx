@@ -93,11 +93,12 @@ function CheckoutPage() {
       orderProductAction({
         data: {
           ...values,
-          city: cityList.data.find((item) => item.code === values.cityCode)
+          cityName: cityList.data.find((item) => item.code === values.cityCode)
             ?.name,
-          city: cityList.data.find((item) => item.code === values.cityCode)
-            ?.name,
-          city: cityList.data.find((item) => item.code === values.cityCode)
+          districtName: districtList.data.find(
+            (item) => item.code === values.districtCode
+          )?.name,
+          wardName: wardList.data.find((item) => item.code === values.wardCode)
             ?.name,
           userId: userInfo.data.id,
           totalPrice: totalPrice,
