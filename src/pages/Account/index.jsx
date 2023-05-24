@@ -70,6 +70,7 @@ function AccountPage() {
                     key: 2,
                     children: <OrderHistories />,
                   },
+
                   {
                     label: "Changed Password",
                     key: 3,
