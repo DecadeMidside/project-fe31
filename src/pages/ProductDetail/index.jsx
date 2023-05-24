@@ -15,6 +15,7 @@ import {
   Image,
   notification,
 } from "antd";
+
 import {
   MenuOutlined,
   BellFilled,
@@ -25,7 +26,6 @@ import { useEffect, useMemo, useState } from "react";
 import { Link, useParams, generatePath } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { AiOutlineHeart, AiFillInfoCircle } from "react-icons/ai";
 import { ROUTES } from "../../constant/routes";
 import { PRODUCT_LIMIT, PRODUCT_LIMIT_HOME } from "../../constant/paging";
 import {
@@ -34,9 +34,12 @@ import {
   getReviewListAction,
   sendReviewAction,
   addToCartAction,
+  favoriteProductAction,
+  unFavoriteProductAction,
 } from "../../redux/actions";
 
 import { FaPhoneAlt, FaCalendarAlt, FaReplyAll } from "react-icons/fa";
+import { AiOutlineHeart, AiFillInfoCircle, AiFillHeart } from "react-icons/ai";
 
 function ProductDetail() {
   const { id } = useParams();
@@ -55,6 +58,14 @@ function ProductDetail() {
   );
   const { reviewList } = useSelector((state) => state.review);
   const { cartList } = useSelector((state) => state.cart);
+
+  const isLike = useMemo(
+    () =>
+      productDetail.data.favorites?.findIndex(
+        (item) => item.userId === userInfo.data.id
+      ) !== -1,
+    [productDetail.data.favorites, userInfo.data.id]
+  );
 
   const totalRate = useMemo(
     () =>
@@ -76,6 +87,33 @@ function ProductDetail() {
       })
     );
   }, [id]);
+
+  const handleToggleFavorite = () => {
+    if (userInfo.data.id) {
+      if (isLike) {
+        const favoriteData = productDetail.data.favorites?.find(
+          (item) => item.userId === userInfo.data.id
+        );
+        dispatch(
+          unFavoriteProductAction({
+            id: favoriteData.id,
+            productId: productDetail.data.id,
+          })
+        );
+      } else {
+        dispatch(
+          favoriteProductAction({
+            productId: productDetail.data.id,
+            userId: userInfo.data.id,
+          })
+        );
+      }
+    } else {
+      notification.error({
+        message: "Vui lòng đăng nhập để thực hiện chức năng này!",
+      });
+    }
+  };
 
   const handleAddToBag = () => {
     dispatch(
@@ -154,9 +192,6 @@ function ProductDetail() {
                 <AiFillInfoCircle style={{ color: "#ffc62d" }} />{" "}
               </h4>
               <S.StyledBtnProduct>ADD TO CART</S.StyledBtnProduct>
-              <S.HeartIconWrapper>
-                <AiOutlineHeart />
-              </S.HeartIconWrapper>
             </S.StyledProductItem>{" "}
           </Link>
         </Col>
@@ -174,6 +209,30 @@ function ProductDetail() {
     <div>
       <S.WrapperDetail>
         <Col span={12}>
+          <img
+            src={productDetail.data.image}
+            style={{ position: "relative" }}
+          />{" "}
+          <S.HeartIconWrap
+            hoverable
+            type="text"
+            style={{ position: "absolute", right: "100px" }}
+            danger={isLike}
+            icon={
+              isLike ? (
+                <AiFillHeart
+                  style={{
+                    color: "#ffc62d",
+                  }}
+                />
+              ) : (
+                <AiOutlineHeart />
+              )
+            }
+            onClick={() => handleToggleFavorite()}
+          >
+            {/* <AiFillHeart /> */}
+          </S.HeartIconWrap>
           {productDetail.data && productDetail.data.images && (
             <Image src={productDetail.data.images[0].url} />
           )}

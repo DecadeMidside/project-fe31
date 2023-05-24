@@ -87,10 +87,13 @@ function CheckoutPage() {
       orderProductAction({
         data: {
           ...values,
-          city: cityList.data.find((item) => item.code === values.city)?.name,
-          // district: districtList.map.find(
-          //   (item) => item.code === values.district
-          // )?.name,
+          cityName: cityList.data.find((item) => item.code === values.cityCode)
+            ?.name,
+          districtName: districtList.data.find(
+            (item) => item.code === values.districtCode
+          )?.name,
+          wardName: wardList.data.find((item) => item.code === values.wardCode)
+            ?.name,
           userId: userInfo.data.id,
           totalPrice: totalPrice,
           status: "pending",

@@ -117,7 +117,7 @@ export const UserProfile = () => {
     </>
   );
 };
-export const OrderHistories = () => {
+function OrderHistories() {
   const dispatch = useDispatch();
   const { cartList } = useSelector((state) => state.cart);
   console.log(
@@ -163,6 +163,13 @@ export const OrderHistories = () => {
       key: "createdAt",
       render: (createdAt) => moment(createdAt).format("DD/MM/YYYY HH:mm"),
     },
+    {
+      title: "Address",
+      dataIndex: "address",
+      key: "address",
+      render: (_, item) =>
+        `${item.address}, ${item.wardName}, ${item.districtName}, ${item.cityName}`,
+    },
   ];
 
   return (
@@ -185,7 +192,7 @@ export const OrderHistories = () => {
       }}
     />
   );
-};
+}
 export const UpdatePassword = () => {
   return (
     <>
@@ -250,7 +257,7 @@ export const UpdatePassword = () => {
 
             <Form.Item>
               <S.StyleButtonCreate type="primary" htmlType="submit">
-                UPDATE PASSWORD
+                PASSWORD UPDATED
               </S.StyleButtonCreate>
             </Form.Item>
           </Form>
@@ -259,3 +266,4 @@ export const UpdatePassword = () => {
     </>
   );
 };
+export default OrderHistories;

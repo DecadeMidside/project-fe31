@@ -19,6 +19,7 @@ function* getProductListSaga(action) {
       params: {
         _page: page,
         _limit: limit,
+
         categoryId: categoryId,
         genderId: genderId,
         diametterId: diametterId,
@@ -62,7 +63,8 @@ function* getProductDetailSaga(action) {
     const result = yield axios.get(`http://localhost:4000/products/${id}`, {
       params: {
         _expand: ["category", "diametter", "gender"],
-        _embed: "images",
+
+        _embed: ["images", "favorites"],
         isDelete: false,
       },
     });
