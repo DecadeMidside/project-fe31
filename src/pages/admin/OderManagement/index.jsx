@@ -1,7 +1,7 @@
 import { Checkbox, Form, Select, Space, DatePicker, Table } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
-import { getOrderListAdmin } from "../../../redux/actions";
+import { getOrderListAdmin, getCityListAction } from "../../../redux/actions";
 import { useEffect } from "react";
 import moment from "moment";
 
@@ -15,6 +15,9 @@ function OderManagement() {
   useEffect(() => {
     dispatch(getOrderListAdmin());
   }, []);
+    useEffect(() => {
+      dispatch(getCityListAction());
+    }, []);
 
   const tableColumns = [
     {

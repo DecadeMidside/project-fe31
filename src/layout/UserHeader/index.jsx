@@ -20,7 +20,9 @@ function Header() {
   const { userInfo } = useSelector((state) => state.auth);
   const { cartList } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-
+  const handleLogoClick = () => {
+    navigate(ROUTES.USER.HOME);
+  };
   const [visible, setVisible] = useState(false);
 
   const showDrawer = () => {
@@ -52,8 +54,9 @@ function Header() {
       <S.TopHeader>
         <Row style={{ height: "100%" }} justify="space-between" align="center">
           <S.CustomColLogo xs={4} md={4} lg={4}>
-            <S.StyledImg src={Logo}></S.StyledImg>
+            <S.StyledImg src={Logo} onClick={handleLogoClick}></S.StyledImg>
           </S.CustomColLogo>
+
           <Col xs={0} md={0} lg={12} justify="center">
             <S.navBar>{menu}</S.navBar>
           </Col>

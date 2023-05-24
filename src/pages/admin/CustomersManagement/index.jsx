@@ -7,6 +7,11 @@ import moment from "moment";
 function CustomersManagement() {
   const dispatch = useDispatch();
   const { userList } = useSelector((state) => state.user);
+  console.log(
+    "🚀 ~ file: index.jsx:10 ~ CustomersManagement ~ userList:",
+    userList
+  );
+  const { orderList } = useSelector((state) => state.order);
 
   useEffect(() => {
     dispatch(getUserListAction());

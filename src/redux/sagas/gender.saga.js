@@ -3,7 +3,11 @@ import axios from "axios";
 
 function* getGenderListSaga(action) {
   try {
-    const result = yield axios.get("http://localhost:4000/genders");
+    const result = yield axios.get("http://localhost:4000/genders", {
+      params: {
+        _embed: "products",
+      },
+    });
     yield put({
       type: "GET_GENDER_LIST_SUCCESS",
       payload: {

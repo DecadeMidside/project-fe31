@@ -70,11 +70,8 @@ export const styledTextTitle = styled.h2`
 export const styleRowFeature = styled(Row)`
   display: flex;
   justify-content: center;
-  margin: 16px auto;
-  padding: 16px;
-  /* max-width: 1232px; */
+  max-width: 1232px;
   font-size: 14px;
-  line-height: 22px;
 
   > ul {
     list-style-type: none;
@@ -155,6 +152,25 @@ export const styledCustomButton = styled.button`
     cursor: pointer;
   }
 `;
+export const StyleButtonBook = styled.button`
+  display: inline-block;
+  max-width: none;
+  height: auto;
+  margin: 16px 0 6px;
+  padding: 16px 32px;
+  font-weight: 700 !important;
+  font-size: 14px;
+  text-align: center;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 0;
+  font-weight: 700;
+  border: none;
+  :hover {
+    color: #ffc62d;
+    cursor: pointer;
+  }
+`;
 export const styledCustomTitle = styled.h2`
   width: 100%;
   height: 40px;
@@ -176,7 +192,7 @@ export const styledCustomColProductItem = styled(Col)`
 export const styledCustomRowService = styled(Row)`
   width: 100%;
   /* justify-content: space-between; */
-  align-items: center;
+  /* align-items: center; */
 `;
 export const styledColService = styled(Col)`
   font-size: 14px;
@@ -276,7 +292,7 @@ export const styledCustomColStore = styled(Col)`
   background-color: #ffc62d;
   text-align: center;
 
-  min-height: 550px;
+  min-height: 450px;
   max-width: 100%;
   justify-content: space-between;
   padding: 30px 50px;

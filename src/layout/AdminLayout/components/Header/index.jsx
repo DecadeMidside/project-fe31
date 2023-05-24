@@ -105,7 +105,7 @@ function Header(props) {
           </Col>
           <S.CustomColMenu>
             <Space>
-              <Badge count={1} dot>
+              <Badge count={reviewList.length} dot>
                 <MailOutlined
                   style={{ fontSize: 24 }}
                   onClick={() => {
@@ -113,7 +113,7 @@ function Header(props) {
                   }}
                 />
               </Badge>
-              <Badge count={2}>
+              <Badge count={2} dot>
                 <BellFilled
                   style={{ fontSize: 24 }}
                   onClick={() => {

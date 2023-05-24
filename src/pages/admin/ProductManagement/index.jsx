@@ -27,6 +27,7 @@ function ProductManagement() {
   const [filterParams, setFilterParams] = useState({
     categoryId: [],
     searchKey: "",
+    sort: "id.desc",
   });
 
   const dispatch = useDispatch();
@@ -67,7 +68,7 @@ function ProductManagement() {
       title: "Price",
       dataIndex: "price",
       key: "price",
-      render: (price) => `${price.toLocaleString()} VND`,
+      render: (price) => `${price.toLocaleString()} USD`,
     },
     {
       title: "Action",
@@ -171,13 +172,13 @@ function ProductManagement() {
       <S.FilterWrapper>
         <h5>FILTER</h5>
         <Row gutter={[16, 16]} style={{ marginTop: 4 }}>
-          <Col span={12}>
+          <Col span={8}>
             <Input
               onChange={(e) => handleFilter("searchKey", e.target.value)}
               placeholder="Product Name"
             />
           </Col>
-          <Col span={12}>
+          <Col span={8}>
             <Select
               mode="multiple"
               allowClear
@@ -186,6 +187,18 @@ function ProductManagement() {
               style={{ width: "100%" }}
             >
               {renderCategoryOptions}
+            </Select>
+          </Col>
+          <Col span={8}>
+            <Select
+              style={{ width: "100%" }}
+              onChange={(value) => handleFilter("sort", value)}
+              placeholder="Sort by"
+            >
+              <Select.Option value="price.asc">Price low-high</Select.Option>
+              <Select.Option value="price.desc">Price high-low</Select.Option>
+              <Select.Option value="name.asc">A-Z</Select.Option>
+              <Select.Option value="name.desc">Z-A</Select.Option>
             </Select>
           </Col>
         </Row>

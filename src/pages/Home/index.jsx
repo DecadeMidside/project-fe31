@@ -142,7 +142,15 @@ function HomePage() {
               </span>
               NOW{" "}
             </S.styledCustomTitle>
-            <S.styleRowFeature gutter={[16, 16]} justify="space-between">
+            <S.styleRowFeature
+              gutter={[16, 16]}
+              style={{
+                maxWidth: "1216px",
+                margin: "0 auto",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
               {" "}
               {renderProductList}
             </S.styleRowFeature>
@@ -165,7 +173,14 @@ function HomePage() {
               BREITLING E-BOUTIQUE SERVICES
             </S.styledCustomTitle>
           </Col>
-          <S.styledCustomRowService>
+          <S.styledCustomRowService
+            style={{
+              maxWidth: "1216px",
+              margin: "0 auto",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
             <S.styledColService span={8}>
               <S.styledServiceBoxes>
                 <S.styledImgService src="https://www.breitling.com/media/breitling/images/br-11-20/asset-version-300ff783f3/icon-free-shipping-return.svg" />
@@ -192,7 +207,14 @@ function HomePage() {
         </Row>
       </S.styledWrapper>
       <div>
-        <S.styledCustomSlider>
+        <S.styledCustomSlider
+          style={{
+            maxWidth: "1216px",
+            margin: "0 auto",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
           <Col span={24}>
             <S.styledTextTitle>
               YOU DON'T HAVE YOUR <span>BREITLING NFT </span> YET ?
@@ -211,7 +233,15 @@ function HomePage() {
         </S.styledCustomSlider>
       </div>
       <S.styledWrapper>
-        <S.styledCustomRowService gutter={[16, 16]}>
+        <S.styledCustomRowService
+          gutter={[16, 16]}
+          style={{
+            maxWidth: "1216px",
+            margin: "0 auto",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
           <S.styledCustomColWoman span={8}>
             <S.styledCustomWoman> </S.styledCustomWoman>
           </S.styledCustomColWoman>
@@ -245,7 +275,14 @@ function HomePage() {
         </S.styledCustomRowService>
       </S.styledWrapper>
       <div>
-        <S.styledCustomRowNew>
+        <S.styledCustomRowNew
+          style={{
+            maxWidth: "1216px",
+            margin: "0 auto",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <Col span={24}>
             <h2
               style={{
@@ -261,603 +298,621 @@ function HomePage() {
         </S.styledCustomRowNew>
       </div>
       <S.styledWrapper>
-        <S.styleRowFeature gutter={[16, 16]} justify="space-between">
-          <S.styledColServiceWrapper span={12}>
-            <S.styledTitleStrapsService>STRAPS</S.styledTitleStrapsService>
-            <S.styledContentStrapsService>
-              Made from leather, rubber , or ECONYL™ fabric, the Breitling
-              straps will nicely complement your Breitling watch and give it a
-              fresh new look.
-            </S.styledContentStrapsService>
-            <S.styledCustomButton>BUY NOW</S.styledCustomButton>
-          </S.styledColServiceWrapper>
-          <S.styledColServiceWrapper span={12}>
-            <S.styledTitleStrapsService>SERVICE</S.styledTitleStrapsService>
-            <S.styledContentStrapsService>
-              Explore our comprenhensive set of services and assistance designed
-              for you and your Breitling.
-            </S.styledContentStrapsService>
-            <S.styledCustomButton>DISCOVER NOW</S.styledCustomButton>
-          </S.styledColServiceWrapper>
+        <S.styleRowFeature
+          gutter={[16, 16]}
+          style={{
+            maxWidth: "1216px",
+            margin: "0 auto",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Col span={12}>
+            <S.styledColServiceWrapper>
+              <S.styledTitleStrapsService>STRAPS</S.styledTitleStrapsService>
+              <S.styledContentStrapsService>
+                Made from leather, rubber , or ECONYL™ fabric, the Breitling
+                straps will nicely complement your Breitling watch and give it a
+                fresh new look.
+              </S.styledContentStrapsService>
+              <S.styledCustomButton>BUY NOW</S.styledCustomButton>
+            </S.styledColServiceWrapper>
+          </Col>
+          <Col span={12}>
+            <S.styledColServiceWrapper>
+              <S.styledTitleStrapsService>SERVICE</S.styledTitleStrapsService>
+              <S.styledContentStrapsService>
+                Explore our comprenhensive set of services and assistance
+                designed for you and your Breitling.
+              </S.styledContentStrapsService>
+              <S.styledCustomButton>DISCOVER NOW</S.styledCustomButton>
+            </S.styledColServiceWrapper>
+          </Col>
         </S.styleRowFeature>
       </S.styledWrapper>
       <S.styledWrapper>
         <Row
-          // style={{
-          //   maxWidth: "1216px",
-          //   margin: "0 auto",
-          //   justifyContent: "space-between",
-          //   alignItems: "center",
-          // }}
-          gutter={[8, 8]}
+          style={{
+            maxWidth: "1216px",
+            margin: "0 auto",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+          gutter={[16, 16]}
         >
-          <S.styledCustomColStore span={8}>
-            <div>
+          <Col span={8}>
+            <S.styledCustomColStore>
               <div>
-                <h2
-                  style={{
-                    fontSize: "24px",
-                    color: "#111820",
-                    fontWeight: "700",
-                  }}
-                >
-                  BREITLING BOUTIQUE ATLANTA{" "}
-                </h2>
-                <p
-                  style={{
-                    fontSize: "14px",
-                  }}
-                >
-                  393 Peachtree Road NE, Space 3042B, ATLANTA, GA 30326
-                </p>
-                <p
-                  style={{
-                    fontSize: "14px",
-                  }}
-                >
-                  Phone +84983823317{" "}
-                </p>
-              </div>
-              <div
-                className="opening-hours"
-                style={{
-                  marginTop: "15px",
-                  marginBottom: "15px",
-                }}
-              >
-                <h5
-                  style={{
-                    fontSize: "18px",
-                    fontWeight: "700",
-                  }}
-                >
-                  {" "}
-                  Opening hours{" "}
-                </h5>
+                <div>
+                  <h2
+                    style={{
+                      fontSize: "24px",
+                      color: "#111820",
+                      fontWeight: "700",
+                    }}
+                  >
+                    BREITLING BOUTIQUE ATLANTA{" "}
+                  </h2>
+                  <p
+                    style={{
+                      fontSize: "14px",
+                    }}
+                  >
+                    393 Peachtree Road NE, Space 3042B, ATLANTA, GA 30326
+                  </p>
+                  <p
+                    style={{
+                      fontSize: "14px",
+                    }}
+                  >
+                    Phone +84983823317{" "}
+                  </p>
+                </div>
                 <div
+                  className="opening-hours"
                   style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
+                    marginTop: "15px",
+                    marginBottom: "15px",
                   }}
                 >
-                  <table>
-                    <tbody>
-                      <tr>
-                        <td
-                          style={{
-                            padding: "1px 30px 1px 1px",
-                            textAlign: "left",
-                          }}
-                        >
-                          Tuesday :{" "}
-                        </td>
-                        <td
-                          style={{
-                            textAlign: "right",
-                          }}
-                        >
-                          11:00 - 19-00
-                        </td>
-                      </tr>
-                      <tr>
-                        <td
-                          style={{
-                            padding: "1px 30px 1px 1px",
-                            textAlign: "left",
-                          }}
-                        >
-                          Wednesday :{" "}
-                        </td>
-                        <td
-                          style={{
-                            textAlign: "right",
-                          }}
-                        >
-                          {" "}
-                          11:00 - 19-00
-                        </td>
-                      </tr>
-                      <tr>
-                        <td
-                          style={{
-                            padding: "1px 30px 1px 1px",
-                            textAlign: "left",
-                          }}
-                        >
-                          Thursday :{" "}
-                        </td>
-                        <td
-                          style={{
-                            textAlign: "right",
-                          }}
-                        >
-                          {" "}
-                          11:00 - 19-00
-                        </td>
-                      </tr>
-                      <tr>
-                        <td
-                          style={{
-                            padding: "1px 30px 1px 1px",
-                            textAlign: "left",
-                          }}
-                        >
-                          Friday :{" "}
-                        </td>
-                        <td
-                          style={{
-                            textAlign: "right",
-                          }}
-                        >
-                          11:00 - 19-00
-                        </td>
-                      </tr>
-                      <tr>
-                        <td
-                          style={{
-                            padding: "1px 30px 1px 1px",
-                            textAlign: "left",
-                          }}
-                        >
-                          Saturday :{" "}
-                        </td>
-                        <td
-                          style={{
-                            textAlign: "right",
-                          }}
-                        >
-                          11:00 - 19-00
-                        </td>
-                      </tr>
-                      <tr>
-                        <td
-                          style={{
-                            padding: "1px 30px 1px 1px",
-                            textAlign: "left",
-                          }}
-                        >
-                          Sunday :{" "}
-                        </td>
-                        <td
-                          style={{
-                            textAlign: "right",
-                          }}
-                        >
-                          12:00 - 18-00
-                        </td>
-                      </tr>
-                      <tr>
-                        <td
-                          style={{
-                            padding: "1px 30px 1px 1px",
-                            textAlign: "left",
-                          }}
-                        >
-                          Monday :{" "}
-                        </td>
-                        <td
-                          style={{
-                            textAlign: "right",
-                          }}
-                        >
-                          11:00 - 19-00
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <h5
+                    style={{
+                      fontSize: "18px",
+                      fontWeight: "700",
+                    }}
+                  >
+                    {" "}
+                    Opening hours{" "}
+                  </h5>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <table>
+                      <tbody>
+                        <tr>
+                          <td
+                            style={{
+                              padding: "1px 30px 1px 1px",
+                              textAlign: "left",
+                            }}
+                          >
+                            Tuesday :{" "}
+                          </td>
+                          <td
+                            style={{
+                              textAlign: "right",
+                            }}
+                          >
+                            11:00 - 19-00
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style={{
+                              padding: "1px 30px 1px 1px",
+                              textAlign: "left",
+                            }}
+                          >
+                            Wednesday :{" "}
+                          </td>
+                          <td
+                            style={{
+                              textAlign: "right",
+                            }}
+                          >
+                            {" "}
+                            11:00 - 19-00
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style={{
+                              padding: "1px 30px 1px 1px",
+                              textAlign: "left",
+                            }}
+                          >
+                            Thursday :{" "}
+                          </td>
+                          <td
+                            style={{
+                              textAlign: "right",
+                            }}
+                          >
+                            {" "}
+                            11:00 - 19-00
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style={{
+                              padding: "1px 30px 1px 1px",
+                              textAlign: "left",
+                            }}
+                          >
+                            Friday :{" "}
+                          </td>
+                          <td
+                            style={{
+                              textAlign: "right",
+                            }}
+                          >
+                            11:00 - 19-00
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style={{
+                              padding: "1px 30px 1px 1px",
+                              textAlign: "left",
+                            }}
+                          >
+                            Saturday :{" "}
+                          </td>
+                          <td
+                            style={{
+                              textAlign: "right",
+                            }}
+                          >
+                            11:00 - 19-00
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style={{
+                              padding: "1px 30px 1px 1px",
+                              textAlign: "left",
+                            }}
+                          >
+                            Sunday :{" "}
+                          </td>
+                          <td
+                            style={{
+                              textAlign: "right",
+                            }}
+                          >
+                            12:00 - 18-00
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style={{
+                              padding: "1px 30px 1px 1px",
+                              textAlign: "left",
+                            }}
+                          >
+                            Monday :{" "}
+                          </td>
+                          <td
+                            style={{
+                              textAlign: "right",
+                            }}
+                          >
+                            11:00 - 19-00
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div>
+                  <Row>
+                    <Col span={24}>
+                      <a> Email </a>
+                      <a> Get directions</a>
+                    </Col>
+                  </Row>
+
+                  <S.StyleButtonBook>BOOK AN APPOINTMENT</S.StyleButtonBook>
                 </div>
               </div>
+            </S.styledCustomColStore>
+          </Col>
+          <Col span={8}>
+            <S.styledCustomColStore>
               <div>
-                <Row>
-                  <Col span={24}>
-                    <a> Email </a>
-                    <a> Get directions</a>
-                  </Col>
-                </Row>
-
-                <button>BOOK AN APPOINTMENT</button>
-              </div>
-            </div>
-          </S.styledCustomColStore>
-          <S.styledCustomColStore span={8}>
-            <div>
-              <div>
-                <h2
-                  style={{
-                    fontSize: "24px",
-                    color: "#111820",
-                    fontWeight: "700",
-                  }}
-                >
-                  BREITLING BOUTIQUE ATLANTA{" "}
-                </h2>
-                <p
-                  style={{
-                    fontSize: "14px",
-                  }}
-                >
-                  393 Peachtree Road NE, Space 3042B, ATLANTA, GA 30326
-                </p>
-                <p
-                  style={{
-                    fontSize: "14px",
-                  }}
-                >
-                  Phone +84983823317{" "}
-                </p>
-              </div>
-              <div
-                className="opening-hours"
-                style={{
-                  marginTop: "15px",
-                  marginBottom: "15px",
-                }}
-              >
-                <h5
-                  style={{
-                    fontSize: "18px",
-                    fontWeight: "700",
-                  }}
-                >
-                  {" "}
-                  Opening hours{" "}
-                </h5>
+                <div>
+                  <h2
+                    style={{
+                      fontSize: "24px",
+                      color: "#111820",
+                      fontWeight: "700",
+                    }}
+                  >
+                    BREITLING BOUTIQUE SEATLE{" "}
+                  </h2>
+                  <p
+                    style={{
+                      fontSize: "14px",
+                    }}
+                  >
+                    216 N RODEO DR., BEVERLY HILLS, CA 90210 Phone +1, USA
+                  </p>
+                  <p
+                    style={{
+                      fontSize: "14px",
+                    }}
+                  >
+                    Phone +84983823317{" "}
+                  </p>
+                </div>
                 <div
+                  className="opening-hours"
                   style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
+                    marginTop: "15px",
+                    marginBottom: "15px",
                   }}
                 >
-                  <table>
-                    <tbody>
-                      <tr>
-                        <td
-                          style={{
-                            padding: "1px 30px 1px 1px",
-                            textAlign: "left",
-                          }}
-                        >
-                          Tuesday :{" "}
-                        </td>
-                        <td
-                          style={{
-                            textAlign: "right",
-                          }}
-                        >
-                          11:00 - 19-00
-                        </td>
-                      </tr>
-                      <tr>
-                        <td
-                          style={{
-                            padding: "1px 30px 1px 1px",
-                            textAlign: "left",
-                          }}
-                        >
-                          Wednesday :{" "}
-                        </td>
-                        <td
-                          style={{
-                            textAlign: "right",
-                          }}
-                        >
-                          {" "}
-                          11:00 - 19-00
-                        </td>
-                      </tr>
-                      <tr>
-                        <td
-                          style={{
-                            padding: "1px 30px 1px 1px",
-                            textAlign: "left",
-                          }}
-                        >
-                          Thursday :{" "}
-                        </td>
-                        <td
-                          style={{
-                            textAlign: "right",
-                          }}
-                        >
-                          {" "}
-                          11:00 - 19-00
-                        </td>
-                      </tr>
-                      <tr>
-                        <td
-                          style={{
-                            padding: "1px 30px 1px 1px",
-                            textAlign: "left",
-                          }}
-                        >
-                          Friday :{" "}
-                        </td>
-                        <td
-                          style={{
-                            textAlign: "right",
-                          }}
-                        >
-                          11:00 - 19-00
-                        </td>
-                      </tr>
-                      <tr>
-                        <td
-                          style={{
-                            padding: "1px 30px 1px 1px",
-                            textAlign: "left",
-                          }}
-                        >
-                          Saturday :{" "}
-                        </td>
-                        <td
-                          style={{
-                            textAlign: "right",
-                          }}
-                        >
-                          11:00 - 19-00
-                        </td>
-                      </tr>
-                      <tr>
-                        <td
-                          style={{
-                            padding: "1px 30px 1px 1px",
-                            textAlign: "left",
-                          }}
-                        >
-                          Sunday :{" "}
-                        </td>
-                        <td
-                          style={{
-                            textAlign: "right",
-                          }}
-                        >
-                          12:00 - 18-00
-                        </td>
-                      </tr>
-                      <tr>
-                        <td
-                          style={{
-                            padding: "1px 30px 1px 1px",
-                            textAlign: "left",
-                          }}
-                        >
-                          Monday :{" "}
-                        </td>
-                        <td
-                          style={{
-                            textAlign: "right",
-                          }}
-                        >
-                          11:00 - 19-00
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <h5
+                    style={{
+                      fontSize: "18px",
+                      fontWeight: "700",
+                    }}
+                  >
+                    {" "}
+                    Opening hours{" "}
+                  </h5>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <table>
+                      <tbody>
+                        <tr>
+                          <td
+                            style={{
+                              padding: "1px 30px 1px 1px",
+                              textAlign: "left",
+                            }}
+                          >
+                            Tuesday :{" "}
+                          </td>
+                          <td
+                            style={{
+                              textAlign: "right",
+                            }}
+                          >
+                            11:00 - 19-00
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style={{
+                              padding: "1px 30px 1px 1px",
+                              textAlign: "left",
+                            }}
+                          >
+                            Wednesday :{" "}
+                          </td>
+                          <td
+                            style={{
+                              textAlign: "right",
+                            }}
+                          >
+                            {" "}
+                            11:00 - 19-00
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style={{
+                              padding: "1px 30px 1px 1px",
+                              textAlign: "left",
+                            }}
+                          >
+                            Thursday :{" "}
+                          </td>
+                          <td
+                            style={{
+                              textAlign: "right",
+                            }}
+                          >
+                            {" "}
+                            11:00 - 19-00
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style={{
+                              padding: "1px 30px 1px 1px",
+                              textAlign: "left",
+                            }}
+                          >
+                            Friday :{" "}
+                          </td>
+                          <td
+                            style={{
+                              textAlign: "right",
+                            }}
+                          >
+                            11:00 - 19-00
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style={{
+                              padding: "1px 30px 1px 1px",
+                              textAlign: "left",
+                            }}
+                          >
+                            Saturday :{" "}
+                          </td>
+                          <td
+                            style={{
+                              textAlign: "right",
+                            }}
+                          >
+                            11:00 - 19-00
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style={{
+                              padding: "1px 30px 1px 1px",
+                              textAlign: "left",
+                            }}
+                          >
+                            Sunday :{" "}
+                          </td>
+                          <td
+                            style={{
+                              textAlign: "right",
+                            }}
+                          >
+                            12:00 - 18-00
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style={{
+                              padding: "1px 30px 1px 1px",
+                              textAlign: "left",
+                            }}
+                          >
+                            Monday :{" "}
+                          </td>
+                          <td
+                            style={{
+                              textAlign: "right",
+                            }}
+                          >
+                            11:00 - 19-00
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div>
+                  <Row>
+                    <Col span={24}>
+                      <a> Email </a>
+                      <a> Get directions</a>
+                    </Col>
+                  </Row>
+
+                  <S.StyleButtonBook>BOOK AN APPOINTMENT</S.StyleButtonBook>
                 </div>
               </div>
+            </S.styledCustomColStore>
+          </Col>
+          <Col span={8}>
+            <S.styledCustomColStore>
               <div>
-                <Row>
-                  <Col span={24}>
-                    <a> Email </a>
-                    <a> Get directions</a>
-                  </Col>
-                </Row>
-
-                <button>BOOK AN APPOINTMENT</button>
-              </div>
-            </div>
-          </S.styledCustomColStore>
-          <S.styledCustomColStore span={8}>
-            <div>
-              <div>
-                <h2
-                  style={{
-                    fontSize: "24px",
-                    color: "#111820",
-                    fontWeight: "700",
-                  }}
-                >
-                  BREITLING BOUTIQUE ATLANTA{" "}
-                </h2>
-                <p
-                  style={{
-                    fontSize: "14px",
-                  }}
-                >
-                  393 Peachtree Road NE, Space 3042B, ATLANTA, GA 30326
-                </p>
-                <p
-                  style={{
-                    fontSize: "14px",
-                  }}
-                >
-                  Phone +84983823317{" "}
-                </p>
-              </div>
-              <div
-                className="opening-hours"
-                style={{
-                  marginTop: "15px",
-                  marginBottom: "15px",
-                }}
-              >
-                <h5
-                  style={{
-                    fontSize: "18px",
-                    fontWeight: "700",
-                  }}
-                >
-                  {" "}
-                  Opening hours{" "}
-                </h5>
+                <div>
+                  <h2
+                    style={{
+                      fontSize: "24px",
+                      color: "#111820",
+                      fontWeight: "700",
+                    }}
+                  >
+                    BREITLING BOUTIQUE TEXAS{" "}
+                  </h2>
+                  <p
+                    style={{
+                      fontSize: "14px",
+                    }}
+                  >
+                    393 Peachtree Road NE, Space 3042B, ATLANTA, GA 30326
+                  </p>
+                  <p
+                    style={{
+                      fontSize: "14px",
+                    }}
+                  >
+                    Phone +84983823317{" "}
+                  </p>
+                </div>
                 <div
+                  className="opening-hours"
                   style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
+                    marginTop: "15px",
+                    marginBottom: "15px",
                   }}
                 >
-                  <table>
-                    <tbody>
-                      <tr>
-                        <td
-                          style={{
-                            padding: "1px 30px 1px 1px",
-                            textAlign: "left",
-                          }}
-                        >
-                          Tuesday :{" "}
-                        </td>
-                        <td
-                          style={{
-                            textAlign: "right",
-                          }}
-                        >
-                          11:00 - 19-00
-                        </td>
-                      </tr>
-                      <tr>
-                        <td
-                          style={{
-                            padding: "1px 30px 1px 1px",
-                            textAlign: "left",
-                          }}
-                        >
-                          Wednesday :{" "}
-                        </td>
-                        <td
-                          style={{
-                            textAlign: "right",
-                          }}
-                        >
-                          {" "}
-                          11:00 - 19-00
-                        </td>
-                      </tr>
-                      <tr>
-                        <td
-                          style={{
-                            padding: "1px 30px 1px 1px",
-                            textAlign: "left",
-                          }}
-                        >
-                          Thursday :{" "}
-                        </td>
-                        <td
-                          style={{
-                            textAlign: "right",
-                          }}
-                        >
-                          {" "}
-                          11:00 - 19-00
-                        </td>
-                      </tr>
-                      <tr>
-                        <td
-                          style={{
-                            padding: "1px 30px 1px 1px",
-                            textAlign: "left",
-                          }}
-                        >
-                          Friday :{" "}
-                        </td>
-                        <td
-                          style={{
-                            textAlign: "right",
-                          }}
-                        >
-                          11:00 - 19-00
-                        </td>
-                      </tr>
-                      <tr>
-                        <td
-                          style={{
-                            padding: "1px 30px 1px 1px",
-                            textAlign: "left",
-                          }}
-                        >
-                          Saturday :{" "}
-                        </td>
-                        <td
-                          style={{
-                            textAlign: "right",
-                          }}
-                        >
-                          11:00 - 19-00
-                        </td>
-                      </tr>
-                      <tr>
-                        <td
-                          style={{
-                            padding: "1px 30px 1px 1px",
-                            textAlign: "left",
-                          }}
-                        >
-                          Sunday :{" "}
-                        </td>
-                        <td
-                          style={{
-                            textAlign: "right",
-                          }}
-                        >
-                          12:00 - 18-00
-                        </td>
-                      </tr>
-                      <tr>
-                        <td
-                          style={{
-                            padding: "1px 30px 1px 1px",
-                            textAlign: "left",
-                          }}
-                        >
-                          Monday :{" "}
-                        </td>
-                        <td
-                          style={{
-                            textAlign: "right",
-                          }}
-                        >
-                          11:00 - 19-00
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <h5
+                    style={{
+                      fontSize: "18px",
+                      fontWeight: "700",
+                    }}
+                  >
+                    {" "}
+                    Opening hours{" "}
+                  </h5>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <table>
+                      <tbody>
+                        <tr>
+                          <td
+                            style={{
+                              padding: "1px 30px 1px 1px",
+                              textAlign: "left",
+                            }}
+                          >
+                            Tuesday :{" "}
+                          </td>
+                          <td
+                            style={{
+                              textAlign: "right",
+                            }}
+                          >
+                            11:00 - 19-00
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style={{
+                              padding: "1px 30px 1px 1px",
+                              textAlign: "left",
+                            }}
+                          >
+                            Wednesday :{" "}
+                          </td>
+                          <td
+                            style={{
+                              textAlign: "right",
+                            }}
+                          >
+                            {" "}
+                            11:00 - 19-00
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style={{
+                              padding: "1px 30px 1px 1px",
+                              textAlign: "left",
+                            }}
+                          >
+                            Thursday :{" "}
+                          </td>
+                          <td
+                            style={{
+                              textAlign: "right",
+                            }}
+                          >
+                            {" "}
+                            11:00 - 19-00
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style={{
+                              padding: "1px 30px 1px 1px",
+                              textAlign: "left",
+                            }}
+                          >
+                            Friday :{" "}
+                          </td>
+                          <td
+                            style={{
+                              textAlign: "right",
+                            }}
+                          >
+                            11:00 - 19-00
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style={{
+                              padding: "1px 30px 1px 1px",
+                              textAlign: "left",
+                            }}
+                          >
+                            Saturday :{" "}
+                          </td>
+                          <td
+                            style={{
+                              textAlign: "right",
+                            }}
+                          >
+                            11:00 - 19-00
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style={{
+                              padding: "1px 30px 1px 1px",
+                              textAlign: "left",
+                            }}
+                          >
+                            Sunday :{" "}
+                          </td>
+                          <td
+                            style={{
+                              textAlign: "right",
+                            }}
+                          >
+                            12:00 - 18-00
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style={{
+                              padding: "1px 30px 1px 1px",
+                              textAlign: "left",
+                            }}
+                          >
+                            Monday :{" "}
+                          </td>
+                          <td
+                            style={{
+                              textAlign: "right",
+                            }}
+                          >
+                            11:00 - 19-00
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div>
+                  <Row>
+                    <Col span={24}>
+                      <a> Email </a>
+                      <a> Get directions</a>
+                    </Col>
+                  </Row>
+
+                  <S.StyleButtonBook>BOOK AN APPOINTMENT</S.StyleButtonBook>
                 </div>
               </div>
-              <div>
-                <Row>
-                  <Col span={24}>
-                    <a> Email </a>
-                    <a> Get directions</a>
-                  </Col>
-                </Row>
-
-                <button>BOOK AN APPOINTMENT</button>
-              </div>
-            </div>
-          </S.styledCustomColStore>
+            </S.styledCustomColStore>
+          </Col>
         </Row>
       </S.styledWrapper>
     </S.styledContainer>

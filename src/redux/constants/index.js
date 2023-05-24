@@ -7,3 +7,5 @@ export * from "./location.constant";
 export * from "./order.constant";
 export * from "./user.constant";
 export * from "./category.constant";
+export * from "./diametter.constant";
+export * from "./gender.constant";
