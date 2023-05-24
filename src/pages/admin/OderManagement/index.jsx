@@ -1,4 +1,13 @@
-import { Checkbox, Form, Select, Space, DatePicker, Table } from "antd";
+import {
+  Checkbox,
+  Form,
+  Select,
+  Space,
+  DatePicker,
+  Table,
+  Row,
+  Col,
+} from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { getOrderListAdmin, getCityListAction } from "../../../redux/actions";
@@ -15,9 +24,9 @@ function OderManagement() {
   useEffect(() => {
     dispatch(getOrderListAdmin());
   }, []);
-    useEffect(() => {
-      dispatch(getCityListAction());
-    }, []);
+  useEffect(() => {
+    dispatch(getCityListAction());
+  }, []);
 
   const tableColumns = [
     {
@@ -81,14 +90,28 @@ function OderManagement() {
       pagination={false}
       expandable={{
         expandedRowRender: (record) => (
-          <ul>
-            {record.orderDetails.map((item) => (
-              <li key={item.id}>
-                {item.name}
-                {` - USD ${parseInt(item.price).toLocaleString()}`}
-              </li>
-            ))}
-          </ul>
+          <Row>
+            <Col span={24}>
+              {record.orders.map((item) => (
+                <Row
+                  key={item.id}
+                  gutter={[16, 16]}
+                  style={{ textAlign: "center", fontSize: "20px" }}
+                >
+                  <Col span={8}>{item.name}</Col>
+                  <Col span={8}>
+                    {" "}
+                    {`  USD ${parseInt(item.price).toLocaleString()}`}
+                  </Col>
+                  <Col span={8}>
+                    {" "}
+                    {record.address}, {record.wardName}, {record.districtName},
+                    {record.cityName}`
+                  </Col>
+                </Row>
+              ))}
+            </Col>
+          </Row>
         ),
       }}
     />

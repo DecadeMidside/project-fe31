@@ -1,4 +1,4 @@
-import { Table, Space, Avatar } from "antd";
+import { Table, Space, Avatar, Row, Col } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserListAction } from "../../../redux/actions";
 import { useEffect } from "react";
@@ -72,14 +72,28 @@ function CustomersManagement() {
       pagination={false}
       expandable={{
         expandedRowRender: (record) => (
-          <ul>
-            {record.orders.map((item) => (
-              <li key={item.id}>
-                {item.name}
-                {` - USD ${parseInt(item.totalPrice).toLocaleString()}`}
-              </li>
-            ))}
-          </ul>
+          <Row>
+            <Col span={24}>
+              {record.orderDetails.map((item) => (
+                <Row
+                  key={item.id}
+                  gutter={[16, 16]}
+                  style={{ textAlign: "center", fontSize: "20px" }}
+                >
+                  <Col span={8}>{item.name}</Col>
+                  <Col span={8}>
+                    {" "}
+                    {`  USD ${parseInt(item.price).toLocaleString()}`}
+                  </Col>
+                  <Col span={8}>
+                    {" "}
+                    {record.address}, {record.wardName}, {record.districtName},
+                    {record.cityName}`
+                  </Col>
+                </Row>
+              ))}
+            </Col>
+          </Row>
         ),
       }}
     />

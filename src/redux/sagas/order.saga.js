@@ -13,6 +13,7 @@ function* orderProductSaga(action) {
         productId: products[i].id,
         name: products[i].name,
         price: products[i].price,
+        image: products[i].image,
       });
     }
     yield callback();
