@@ -4,6 +4,7 @@ import { AUTH_ACTION } from "../constants/auth.constant";
 import { REQUEST, SUCCESS, FAIL } from "../constants/actionType";
 
 const initialState = {
+ 
   userInfo: {
     data: {},
     load: true, //để check đúng khi đăng nhập bằng admin/user nên để load = true ngay từ đầu. Vì userInfo luôn được gọi API đầu tiên để check.
@@ -123,6 +124,38 @@ const authReducer = createReducer(initialState, {
       ...state,
       userInfo: {
         ...state.userInfo,
+        load: false,
+        error: error,
+      },
+    };
+  },
+  [REQUEST(AUTH_ACTION.GET_USER)]: (state, action) => {
+    return {
+      ...state,
+      users: {
+        ...state.users,
+        load: true,
+        error: "",
+      },
+    };
+  },
+  [SUCCESS(AUTH_ACTION.GET_USER)]: (state, action) => {
+    const { data } = action.payload;
+    return {
+      ...state,
+      users: {
+        ...state.users,
+        data: data,
+        load: false,
+      },
+    };
+  },
+  [FAIL(AUTH_ACTION.GET_USER)]: (state, action) => {
+    const { error } = action.payload;
+    return {
+      ...state,
+      users: {
+        ...state.users,
         load: false,
         error: error,
       },

@@ -9,7 +9,7 @@ function* getReviewListSaga(action) {
     const result = yield axios.get("http://localhost:4000/reviews", {
       params: {
         // relationships
-        _expand: "user",
+        _expand: ["user", "product"],
         _sort: "id",
         _order: "desc",
         // filter
@@ -25,6 +25,31 @@ function* getReviewListSaga(action) {
   } catch (e) {
     yield put({
       type: FAIL(REVIEW_ACTION.GET_REVIEW_LIST),
+      payload: {
+        error: "Lỗi rồi!",
+      },
+    });
+  }
+}
+
+function* getReviewListAdminSaga(action) {
+  try {
+    const result = yield axios.get("http://localhost:4000/reviews", {
+      params: {
+        _expand: ["user", "product"],
+        _sort: "id",
+        _order: "desc",
+      },
+    });
+    yield put({
+      type: SUCCESS(REVIEW_ACTION.GET_REVIEW_LIST_ADMIN),
+      payload: {
+        data: result.data,
+      },
+    });
+  } catch (e) {
+    yield put({
+      type: FAIL(REVIEW_ACTION.GET_REVIEW_LIST_ADMIN),
       payload: {
         error: "Lỗi rồi!",
       },
@@ -59,7 +84,11 @@ function* sendReviewSaga(action) {
   }
 }
 
-export default function* productSaga() {
+export default function* reviewSaga() {
   yield takeEvery(REQUEST(REVIEW_ACTION.GET_REVIEW_LIST), getReviewListSaga);
+  yield takeEvery(
+    REQUEST(REVIEW_ACTION.GET_REVIEW_LIST_ADMIN),
+    getReviewListAdminSaga
+  );
   yield takeEvery(REQUEST(REVIEW_ACTION.SEND_REVIEW), sendReviewSaga);
 }

@@ -51,7 +51,7 @@ function AccountPage() {
   };
 
   return (
-    <div>
+    <div style={{ maxWidth: "100%" }}>
       {userInfo.data.id ? (
         <S.styleProfile>
           <S.StyleTitle>MY ACCOUNT</S.StyleTitle>

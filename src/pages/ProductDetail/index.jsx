@@ -15,14 +15,27 @@ import {
   Image,
   notification,
 } from "antd";
+<<<<<<< HEAD
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
+=======
+import {
+  MenuOutlined,
+  BellFilled,
+  MailOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
+>>>>>>> 57ce314f25204e150eac444051081b45de76e162
 import { useEffect, useMemo, useState } from "react";
 import { Link, useParams, generatePath } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
+<<<<<<< HEAD
+=======
+import { AiOutlineHeart, AiFillInfoCircle } from "react-icons/ai";
+>>>>>>> 57ce314f25204e150eac444051081b45de76e162
 import { ROUTES } from "../../constant/routes";
-import { PRODUCT_LIMIT } from "../../constant/paging";
+import { PRODUCT_LIMIT, PRODUCT_LIMIT_HOME } from "../../constant/paging";
 import {
   getProductDetailAction,
   getProductListAction,
@@ -32,15 +45,19 @@ import {
   favoriteProductAction,
   unFavoriteProductAction,
 } from "../../redux/actions";
-import { FaPhoneAlt, FaCalendarAlt } from "react-icons/fa";
+
+import { FaPhoneAlt, FaCalendarAlt, FaReplyAll } from "react-icons/fa";
 
 function ProductDetail() {
   const { id } = useParams();
   const [reviewForm] = Form.useForm();
+  // const [replyForm] = Form.useForm(); // Add a new form for reply
 
   const dispatch = useDispatch();
 
   const { userInfo } = useSelector((state) => state.auth);
+  console.log("🚀 ~ file: index.jsx:47 ~ ProductDetail ~ userInfo:", userInfo);
+
   const { productList, productDetail } = useSelector((state) => state.product);
   console.log(
     "🚀 ~ file: index.jsx:42 ~ ProductDetail ~ productDetail:",
@@ -73,7 +90,7 @@ function ProductDetail() {
     dispatch(
       getProductListAction({
         page: 1,
-        limit: PRODUCT_LIMIT,
+        limit: PRODUCT_LIMIT_HOME,
       })
     );
   }, [id]);
@@ -110,11 +127,12 @@ function ProductDetail() {
       addToCartAction({
         id: parseInt(id),
         name: productDetail.data.name,
-        image: productDetail.data.image,
-        price: productDetail.data.price,
+        image: productDetail.data.images[0].url,
+        price: parseInt(productDetail.data.price),
       })
     );
   };
+
   const handleReview = (values) => {
     dispatch(
       sendReviewAction({
@@ -128,17 +146,41 @@ function ProductDetail() {
     );
   };
 
+  // const handleReply = (commentId, values) => {
+  //   // Here, you can dispatch an action to send the reply to the server
+  //   // and update the UI accordingly
+  //   console.log("Reply Comment ID:", commentId);
+  //   console.log("Reply Comment Values:", values);
+  // };
+
   const renderReviewList = useMemo(() => {
     return reviewList.data.map((item) => {
       return (
-        <Card size="small" key={item.id}>
+        <S.StyledCardReview size="small" key={item.id}>
           <Space>
-            <h3>{item.user.fullName}</h3>
+            <h3>
+              <UserOutlined style={{ color: "#ffc26d" }} /> :{" "}
+              {item.user.fullName}
+            </h3>
             <span>{moment(item.createdAt).fromNow()}</span>
+            <Rate value={item.rate} disabled style={{ fontSize: 12 }} />
           </Space>
-          <Rate value={item.rate} disabled style={{ fontSize: 12 }} />
-          <p>{item.comment}</p>
-        </Card>
+          <p>
+            {" "}
+            <MailOutlined style={{ color: "#ffc26d" }} /> : {item.comment}
+          </p>
+          {userInfo.data.role === "admin" && (
+            <Space>
+              <FaReplyAll />
+              <Input disabled={!userInfo.data.role === "admin"} />
+              <Button
+              // onClick={() => handleReply(item.id, replyForm.getFieldsValue())}
+              >
+                Reply
+              </Button>
+            </Space>
+          )}
+        </S.StyledCardReview>
       );
     });
   }, [reviewList.data]);
@@ -149,10 +191,13 @@ function ProductDetail() {
           <Link to={generatePath(ROUTES.USER.PRODUCT_DETAIL, { id: item.id })}>
             <S.StyledProductItem
               hoverable
-              cover={<img alt="example" src={item.image} />}
+              cover={<img src={item.images[0].url} />}
             >
               <h3>{item.name}</h3>
-              <h6>USD {parseInt(item.price).toLocaleString()} </h6>
+              <h4>
+                USD {parseInt(item.price).toLocaleString()}{" "}
+                <AiFillInfoCircle style={{ color: "#ffc62d" }} />{" "}
+              </h4>
               <S.StyledBtnProduct>ADD TO CART</S.StyledBtnProduct>
             </S.StyledProductItem>{" "}
           </Link>
@@ -160,11 +205,18 @@ function ProductDetail() {
       );
     });
   }, [productList.data]);
-
+  // const renderProductImages = useMemo(() => {
+  //   return productDetail.data.images.map((item) => {
+  //     return (
+  //       <img key={item.id} src={item.url} width="300px" height="auto" alt="" />
+  //     );
+  //   });
+  // }, [productDetail.data.images]);
   return (
     <div>
       <S.WrapperDetail>
         <Col span={12}>
+<<<<<<< HEAD
           <img
             src={productDetail.data.image}
             style={{ position: "relative" }}
@@ -189,12 +241,16 @@ function ProductDetail() {
           >
             {/* <AiFillHeart /> */}
           </S.HeartIconWrap>
+=======
+          {productDetail.data && productDetail.data.images && (
+            <Image src={productDetail.data.images[0].url} />
+          )}
+>>>>>>> 57ce314f25204e150eac444051081b45de76e162
         </Col>
         <S.CustomColDetail span={12}>
-          <h5>{productDetail.data.codeNumber}</h5>
           <h1>{productDetail.data.name}</h1>
           <Space>
-            <Rate value={totalRate / reviewList.data.length} disabled />
+            <Rate value={totalRate / reviewList.data.length || 0} disabled />
             <span>{`(${(totalRate / reviewList.data.length).toFixed(
               1
             )})`}</span>
@@ -337,62 +393,74 @@ function ProductDetail() {
       </S.styleTechnical>
       <S.styleTechnical>
         {userInfo.data.id && (
-          <Card size="small">
+          <S.StyledCardReview size="small">
             <h1>REVIEW {productDetail.data.name}</h1>
-            <Form
-              form={reviewForm}
-              name="reviewForm"
-              layout="vertical"
-              onFinish={(values) => handleReview(values)}
-              autoComplete="off"
-            >
-              <Form.Item
-                label="Rate"
-                name="rate"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input your rate!",
-                  },
-                ]}
-              >
-                <Rate />
-              </Form.Item>
-              <Form.Item
-                label="Comment"
-                name="comment"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input your comment!",
-                  },
-                ]}
-              >
-                <Input.TextArea
-                  autoSize={{
-                    minRows: 2,
-                    maxRows: 4,
-                  }}
-                />
-              </Form.Item>
 
-              <Form.Item>
-                <S.styleButton
-                  style={{ width: "100%" }}
-                  htmlType="submit"
-                  block
+            <Row gutter={[16, 16]}>
+              <Col span={12}>
+                {" "}
+                <Form
+                  form={reviewForm}
+                  name="reviewForm"
+                  layout="vertical"
+                  onFinish={(values) => handleReview(values)}
+                  autoComplete="off"
                 >
-                  REVIEW
-                </S.styleButton>
-              </Form.Item>
-            </Form>
-          </Card>
+                  <Form.Item
+                    label="Rate"
+                    name="rate"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input your rate!",
+                      },
+                    ]}
+                  >
+                    <Rate />
+                  </Form.Item>
+                  <Form.Item
+                    label="Comment"
+                    name="comment"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input your comment!",
+                      },
+                    ]}
+                  >
+                    <Input.TextArea
+                      autoSize={{
+                        minRows: 2,
+                        maxRows: 4,
+                      }}
+                    />
+                  </Form.Item>
+
+                  <Form.Item>
+                    <S.styleButton
+                      style={{ width: "100%" }}
+                      htmlType="submit"
+                      block
+                    >
+                      REVIEW
+                    </S.styleButton>
+                  </Form.Item>
+                </Form>
+                {renderReviewList}
+              </Col>
+              <Col span={12}>
+                <Image src={productDetail.data.images[0].url} />
+              </Col>
+            </Row>
+          </S.StyledCardReview>
         )}
-        {renderReviewList}
       </S.styleTechnical>
-      <S.styleTechnical
-        dangerouslySetInnerHTML={{ __html: productDetail.data.content }}
-      ></S.styleTechnical>
+      <S.styleTechnical>
+        <h1>THE STORY</h1>
+        <S.styleContent
+          dangerouslySetInnerHTML={{ __html: productDetail.data.content }}
+        ></S.styleContent>
+      </S.styleTechnical>
       <S.styleTechnical>
         <h1>WARRANTY</h1>
         <Row style={{ display: "flex" }} gutter={[16, 16]}>

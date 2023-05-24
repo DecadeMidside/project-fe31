@@ -23,10 +23,13 @@ function AdminLayout() {
   }
   return (
     <div className="wrapper">
-      <Header />
-      <div className="container">
-        <AdminSidebar />
-        <S.MainWrapper>
+      <Header
+        isShowSidebar={isShowSidebar}
+        setIsShowSidebar={setIsShowSidebar}
+      />
+      <div>
+        <AdminSidebar isShowSidebar={isShowSidebar} />
+        <S.MainWrapper isFull={!isShowSidebar}>
           <Outlet />
         </S.MainWrapper>
       </div>

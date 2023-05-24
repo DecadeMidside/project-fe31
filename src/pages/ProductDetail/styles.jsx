@@ -127,6 +127,16 @@ export const styleRowService = styled(Row)`
   line-height: 22px;
   margin: 20px -15px 0px 0px;
 `;
+export const styleContent = styled(Col)`
+  display: flex;
+  padding: 20px;
+  align-items: center;
+  font-size: 13px;
+  background-color: #f1f1f1;
+  justify-content: space-between;
+  margin: 8px auto;
+`;
+
 export const styleColService = styled(Col)`
   max-width: 100%;
   align-items: center;
@@ -230,7 +240,6 @@ export const StyledProductItem = styled(Card)`
   border-radius: 0 !important;
   > div {
     padding: 0 4px 0 !important ;
-    margin: -24px;
   }
 
   &::before {
@@ -301,6 +310,7 @@ export const StyledBtnProduct = styled.button`
 // `;
 export const styleReview = styled.div`
   align-items: center;
+  max-width: 1232px;
   display: flex;
   font-size: 14px;
   justify-content: space-between;
@@ -318,4 +328,9 @@ export const styleReviewBtn = styled(Button)`
   :hover {
     background-color: #918d83;
   }
+`;
+export const StyledCardReview = styled(Card)`
+  border-radius: 0;
+  margin: 8px;
+  padding: 8px;
 `;

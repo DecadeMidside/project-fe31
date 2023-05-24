@@ -47,6 +47,7 @@ export const UserProfile = () => {
             <Form.Item
               name="fullName"
               label="Full Name"
+              initialValue={userInfo.data.fullName}
               rules={[
                 {
                   required: true,
@@ -55,7 +56,7 @@ export const UserProfile = () => {
                 },
               ]}
             >
-              <S.StyleCustomInput values={userInfo.data.fullName} />
+              <S.StyleCustomInput />
             </Form.Item>
             <Form.Item
               name="date-time-picker"
@@ -78,6 +79,7 @@ export const UserProfile = () => {
             <Form.Item
               name="phoneNumber"
               label="Phone Number"
+              initialValue={userInfo.data.phoneNumber}
               rules={[
                 {
                   required: true,
@@ -125,6 +127,10 @@ function OrderHistories() {
 
   const { userInfo } = useSelector((state) => state.auth);
   const { orderList } = useSelector((state) => state.order);
+  console.log(
+    "🚀 ~ file: index.jsx:130 ~ OrderHistories ~ orderList:",
+    orderList
+  );
 
   useEffect(() => {
     if (userInfo.data.id) {

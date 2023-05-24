@@ -94,7 +94,6 @@ export const StyledProductItem = styled(Card)`
   border-radius: 0 !important;
   > div {
     padding: 0 4px 0 !important ;
-    margin: -24px;
   }
 
   &::before {
@@ -128,6 +127,7 @@ export const HeartIconWrapper = styled.div`
 export const StyledBtnProduct = styled.button`
   width: 160px;
   height: 50px;
+  margin-top: 12px;
   background-color: #ffc62d;
   border-radius: 0;
   font-weight: 700;

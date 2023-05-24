@@ -11,12 +11,26 @@ export const StyleSlider = styled.div`
   background-image: url("https://www.breitling.com/media/breitling/images/br-11-20/collections/asset-version-ac66aa5027/hero-collection.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
   min-height: 200px;
+
   object-fit: cover;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+
+  @media (max-width: 768px) {
+    /* Các thuộc tính và giá trị tương thích với màn hình nhỏ hơn 768px */
+    min-height: 150px;
+    font-size: 30px;
+  }
+
+  @media (max-width: 480px) {
+    /* Các thuộc tính và giá trị tương thích với màn hình nhỏ hơn 480px */
+    min-height: 100px;
+    font-size: 20px;
+  }
 `;
 export const StyleTitle = styled.div`
   text-align: center;
@@ -35,6 +49,16 @@ export const WrapperCollection = styled(Row)`
   display: flex;
   font-size: 14px;
   justify-content: center;
+  @media (max-width: 1024px) {
+    /* Các thuộc tính và giá trị tương thích với màn hình nhỏ hơn 768px */
+    display: none;
+  }
+
+  @media (max-width: 480px) {
+    /* Các thuộc tính và giá trị tương thích với màn hình nhỏ hơn 480px */
+
+    display: none;
+  }
 `;
 
 export const CustomCol = styled(Col)`
@@ -103,7 +127,6 @@ export const StyledProductItem = styled(Card)`
   border-radius: 0;
   > div {
     padding: 0 4px 0;
-    margin: -24px;
   }
 
   &::before {
@@ -153,4 +176,7 @@ export const StyledFilter = styled(Card)`
   background-color: #f1f1f1;
   margin-top: 30px;
   min-height: 600px;
+  @media (max-width: 768px) {
+    display: none; // Ẩn phần filter trên màn hình nhỏ hơn 768px
+  }
 `;

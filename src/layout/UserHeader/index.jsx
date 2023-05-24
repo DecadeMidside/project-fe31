@@ -50,34 +50,31 @@ function Header() {
   return (
     <>
       <S.TopHeader>
-        <Row justify="space-between" align="center">
-          <S.CustomColLogo xs={8} md={4} lg={4}>
-            <S.StyledImg
-              src={Logo}
-              onClick={() => navigate(ROUTES.USER.HOME)}
-            ></S.StyledImg>
+        <Row style={{ height: "100%" }} justify="space-between" align="center">
+          <S.CustomColLogo xs={4} md={4} lg={4}>
+            <S.StyledImg src={Logo}></S.StyledImg>
           </S.CustomColLogo>
           <Col xs={0} md={0} lg={12} justify="center">
             <S.navBar>{menu}</S.navBar>
           </Col>
           <S.CustomColMenu>
-            <S.StyledListIcon xs={16} md={12} lg={8}>
-              <S.StyledIcon>
+            <S.StyledListIcon xs={20} md={20} lg={8}>
+              <S.StyledIcon xs={0} md={4} lg={4}>
                 {" "}
                 <FaSearch />
               </S.StyledIcon>
-              <S.StyledIcon>
+              <S.StyledIcon xs={0} md={4} lg={4}>
                 <S.StyledIconPhone>
                   {" "}
                   <FaPhoneAlt />
                 </S.StyledIconPhone>
               </S.StyledIcon>
-              <S.StyledIcon>
+              <S.StyledIcon xs={4} md={4} lg={4}>
                 <Link to={ROUTES.USER.ACCOUNT}>
                   <FaUser />
                 </Link>
               </S.StyledIcon>
-              <S.StyledIcon>
+              <S.StyledIcon xs={4} md={4} lg={4}>
                 <Link to={ROUTES.USER.CART}>
                   <Badge
                     count={cartList.length}
@@ -97,12 +94,14 @@ function Header() {
                   </Badge>
                 </Link>
               </S.StyledIcon>
+
               <Col xs={4} md={4} lg={0}>
                 <S.StyledIcon>
                   <Button
                     type="text"
                     icon={<MenuOutlined />}
                     onClick={() => setVisible(true)}
+                    style={{ marginRight: "8px" }}
                   />
                 </S.StyledIcon>
               </Col>

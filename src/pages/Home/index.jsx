@@ -1,27 +1,13 @@
 import * as S from "./styles";
 
-import moment from "moment";
-
-import {
-  Carousel,
-  Row,
-  Col,
-  Card,
-  InputNumber,
-  Input,
-  Button,
-  Form,
-  Rate,
-  Space,
-  Image,
-  notification,
-} from "antd";
+import { Carousel, Row, Col } from "antd";
 import { useEffect, useMemo, useState } from "react";
-import { Link, useParams, generatePath } from "react-router-dom";
+import { Link, useParams, generatePath, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { AiOutlineHeart } from "react-icons/ai";
 import { ROUTES } from "../../constant/routes";
+<<<<<<< HEAD
 import { PRODUCT_LIMIT } from "../../constant/paging";
 import {
   getProductDetailAction,
@@ -30,6 +16,11 @@ import {
   sendReviewAction,
   addToCartAction,
 } from "../../redux/actions";
+=======
+import { PRODUCT_LIMIT, PRODUCT_LIMIT_HOME } from "../../constant/paging";
+import { getProductListAction } from "../../redux/actions";
+import { AiFillInfoCircle } from "react-icons/ai";
+>>>>>>> 57ce314f25204e150eac444051081b45de76e162
 function HomePage() {
   const { productList } = useSelector((state) => state.product);
 
@@ -41,10 +32,19 @@ function HomePage() {
     dispatch(
       getProductListAction({
         page: 1,
-        limit: PRODUCT_LIMIT,
+        limit: PRODUCT_LIMIT_HOME,
       })
     );
   }, [id]);
+  const navigate = useNavigate();
+
+  const handleSelectCategory = () => {
+    navigate(ROUTES.USER.PRODUCT_LIST, {
+      state: {
+        categoryId: 1,
+      },
+    });
+  };
   const renderProductList = useMemo(() => {
     return productList.data.map((item) => {
       return (
@@ -52,10 +52,13 @@ function HomePage() {
           <Link to={generatePath(ROUTES.USER.PRODUCT_DETAIL, { id: item.id })}>
             <S.StyledProductItem
               hoverable
-              cover={<img alt="example" src={item.image} />}
+              cover={<img src={item.images[0].url} />}
             >
               <h3>{item.name}</h3>
-              <h6>USD {parseInt(item.price).toLocaleString()} </h6>
+              <h4>
+                USD {parseInt(item.price).toLocaleString()}{" "}
+                <AiFillInfoCircle style={{ color: "#ffc62d" }} />{" "}
+              </h4>
               <S.StyledBtnProduct>ADD TO CART</S.StyledBtnProduct>
             </S.StyledProductItem>{" "}
           </Link>
@@ -80,7 +83,9 @@ function HomePage() {
                   </span>{" "}
                   CLASSIC CARS
                 </S.styledTextTitle>
-                <S.styledCustomButton>DISCOVER</S.styledCustomButton>
+                <S.styledCustomButton onClick={() => handleSelectCategory()}>
+                  DISCOVER
+                </S.styledCustomButton>
               </S.styledBoxContent>
             </S.styledCustomColContainer>
 

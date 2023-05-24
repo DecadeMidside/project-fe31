@@ -1,4 +1,4 @@
-import { Button, Input, Col, Menu } from "antd";
+import { Button, Input, Col, Menu, Card } from "antd";
 import styled from "styled-components";
 
 export const TopHeader = styled.div`
@@ -87,6 +87,15 @@ export const StyledIcon = styled.div`
     cursor: pointer;
   }
 `;
+export const StyledCardReview = styled(Card)`
+  margin: 8px;
+  border-radius: none;
+  :hover {
+    cursor: pointer;
+    scale: 1.1;
+    transition: 0.4s;
+  }
+`;
 export const StyledIconPhone = styled.div`
   &:hover {
     &::after {
@@ -107,8 +116,10 @@ export const StyledIconPhone = styled.div`
 
 export const CustomColLogo = styled(Col)`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-left: 50px;
 `;
 export const HeaderBar = styled.div`
   font-size: 13px;
@@ -122,4 +133,21 @@ export const StyledImg = styled.img`
   max-width: 115px;
   height: auto;
   object-fit: cover;
+`;
+export const StyledBtnProduct = styled.button`
+  margin: 1rem 0;
+  width: 100px;
+  font-weight: 600;
+  padding: 4px;
+  margin: 8px 0;
+  background-color: ${(props) => (props.outline ? "#ffc62d" : "#ebebeb")};
+  color: ${(props) => (props.outline ? "#ebebeb" : "#333")};
+  font-size: 12px;
+  border: 1px solid black;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${(props) => (props.outline ? "#ffc62d" : "#ffc62d")};
+    color: ${(props) => (props.outline ? "#fff" : "#fff")};
+  }
 `;

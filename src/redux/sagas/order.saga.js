@@ -32,30 +32,29 @@ function* orderProductSaga(action) {
   }
 }
 
-function* guestOrderProductSaga(action) {
+function* getOrderListAdminSaga(action) {
+  // const { data } = action.payload;
+
   try {
-    const { products, ...orderData } = action.payload;
-    const result = yield axios.post(
-      "http://localhost:4000/guestOrders",
-      orderData
-    );
-    for (let i = 0; i < products.length; i++) {
-      yield axios.post("http://localhost:4000/guestOrderProducts", {
-        guestOrderId: result.data.id,
-        ...products[i],
-      });
-    }
+    const result = yield axios.get("http://localhost:4000/orders", {
+      params: {
+        _embed: ["user", "product", "orderDetails"],
+        // _embed: "orderDetails",
+        _sort: "id",
+        _order: "asc",
+      },
+    });
     yield put({
-      type: SUCCESS(ORDER_ACTION.GUEST_ORDER_PRODUCT),
+      type: SUCCESS(ORDER_ACTION.GET_ORDER_LIST_ADMIN),
       payload: {
         data: result.data,
       },
     });
   } catch (e) {
     yield put({
-      type: FAIL(ORDER_ACTION.GUEST_ORDER_PRODUCT),
+      type: FAIL(ORDER_ACTION.GET_ORDER_LIST_ADMIN),
       payload: {
-        error: "Fail!",
+        error: "Lỗi rồi!",
       },
     });
   }
@@ -88,9 +87,9 @@ function* getOrderListSaga(action) {
 
 export default function* orderSaga() {
   yield takeEvery(REQUEST(ORDER_ACTION.ORDER_PRODUCT), orderProductSaga);
-  // yield takeEvery(
-  //   REQUEST(ORDER_ACTION.GUEST_ORDER_PRODUCT),
-  //   guestOrderProductSaga
-  // );
   yield takeEvery(REQUEST(ORDER_ACTION.GET_ORDER_LIST), getOrderListSaga);
+  yield takeEvery(
+    REQUEST(ORDER_ACTION.GET_ORDER_LIST_ADMIN),
+    getOrderListAdminSaga
+  );
 }
