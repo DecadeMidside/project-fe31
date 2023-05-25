@@ -89,10 +89,34 @@ function* getOrderListSaga(action) {
     });
   }
 }
+function* updateOrderSaga(action) {
+  try {
+    const { data, id, callback } = action.payload;
+    const result = yield axios.patch(
+      `http://localhost:4000/orders/${id}`,
+      data
+    );
+    yield callback();
+    yield put({
+      type: SUCCESS(ORDER_ACTION.UPDATE_ORDER),
+      payload: {
+        data: result.data,
+      },
+    });
+  } catch (e) {
+    yield put({
+      type: FAIL(ORDER_ACTION.UPDATE_ORDER),
+      payload: {
+        error: "Đã có lỗi xảy ra!",
+      },
+    });
+  }
+}
 
 export default function* orderSaga() {
   yield takeEvery(REQUEST(ORDER_ACTION.ORDER_PRODUCT), orderProductSaga);
   yield takeEvery(REQUEST(ORDER_ACTION.GET_ORDER_LIST), getOrderListSaga);
+  yield takeEvery(REQUEST(ORDER_ACTION.UPDATE_ORDER), updateOrderSaga);
   yield takeEvery(
     REQUEST(ORDER_ACTION.GET_ORDER_LIST_ADMIN),
     getOrderListAdminSaga

@@ -1,6 +1,12 @@
 import { Space, Table, Row, Col } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { getOrderListAdmin, getCityListAction } from "../../../redux/actions";
+import { useNavigate, useParams } from "react-router-dom";
+
+import {
+  getOrderListAdmin,
+  getCityListAction,
+  updateOrderAction,
+} from "../../../redux/actions";
 import { useEffect } from "react";
 import moment from "moment";
 
@@ -8,7 +14,7 @@ import * as S from "./styles";
 
 function OderManagement() {
   const dispatch = useDispatch();
-
+  const { id } = useParams();
   const { orderList } = useSelector((state) => state.order);
   console.log(
     "🚀 ~ file: index.jsx:19 ~ OderManagement ~ orderList:",
@@ -16,12 +22,31 @@ function OderManagement() {
   );
 
   useEffect(() => {
-    dispatch(getOrderListAdmin());
+    dispatch(getOrderListAdmin({ id: id }));
   }, []);
   useEffect(() => {
     dispatch(getCityListAction());
   }, []);
-
+  // useEffect(() => {
+  //   dispatch(updateOrderAction());
+  // }, []);
+  const onAccept = (record) => {
+    const updatedOrderList = orderList.data.map((order) => {
+      if (order.id === record.id) {
+        return {
+          ...order,
+          status: "Pending",
+        };
+      }
+      return order;
+    });
+    dispatch(
+      updateOrderAction({
+        data: updatedOrderList,
+        id: id,
+      })
+    );
+  };
   const tableColumns = [
     {
       title: "Ordered Codes",
@@ -66,9 +91,13 @@ function OderManagement() {
       title: "Action",
       dataIndex: "action",
       key: "action",
-      render: () => (
+      render: (_, record) => (
         <Space>
-          <S.StyledBtnProduct type="primary" outline={true}>
+          <S.StyledBtnProduct
+            type="primary"
+            outline={true}
+            onClick={() => onAccept(record)}
+          >
             Accept
           </S.StyledBtnProduct>
         </Space>

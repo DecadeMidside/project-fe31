@@ -8,18 +8,15 @@ export const FilterWrapper = styled.div`
 `;
 export const StyledBtnProduct = styled.button`
   margin: 1rem 0;
-  width: 100pxpx;
+  width: 100px;
   font-weight: 600;
   padding: 4px;
   margin: 8px 0;
-  background-color: ${(props) => (props.outline ? "#ffc62d" : "#ebebeb")};
-  color: ${(props) => (props.outline ? "#ebebeb" : "#333")};
-  font-size: 1rem;
-  border: 1px solid black;
+  background-color: #95ed95;
+  border: 1px solid #27f027;
   cursor: pointer;
 
   &:hover {
-    background-color: ${(props) => (props.outline ? "#ffc62d" : "#ffc62d")};
-    color: ${(props) => (props.outline ? "#fff" : "#fff")};
+    background-color: #27f027;
   }
 `;

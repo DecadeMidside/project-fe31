@@ -11,3 +11,6 @@ export const getOrderList = createAction(REQUEST(ORDER_ACTION.GET_ORDER_LIST));
 export const getOrderListAdmin = createAction(
   REQUEST(ORDER_ACTION.GET_ORDER_LIST_ADMIN)
 );
+export const updateOrderAction = createAction(
+  REQUEST(ORDER_ACTION.UPDATE_ORDER)
+);

@@ -23,3 +23,19 @@ export const StyledBtnProduct = styled.button`
     color: ${(props) => (props.outline ? "#fff" : "#fff")};
   }
 `;
+export const StyledIcon = styled.button`
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  border-radius: 4px;
+  background-color: #fff;
+  border: 2px solid green;
+`;
+export const StyledIconDel = styled.button`
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  border-radius: 4px;
+  background-color: #fff;
+  border: 1px solid red;
+`;

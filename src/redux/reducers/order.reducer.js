@@ -77,6 +77,37 @@ const orderReducer = createReducer(initialState, {
       },
     };
   },
+
+  [REQUEST(ORDER_ACTION.UPDATE_ORDER)]: (state, action) => {
+    return {
+      ...state,
+      updateOrderData: {
+        ...state.updateOrderData,
+        load: true,
+        error: "",
+      },
+    };
+  },
+  [SUCCESS(ORDER_ACTION.UPDATE_ORDER)]: (state, action) => {
+    return {
+      ...state,
+      updateOrderData: {
+        ...state.updateOrderData,
+        load: false,
+      },
+    };
+  },
+  [FAIL(ORDER_ACTION.UPDATE_ORDER)]: (state, action) => {
+    const { error } = action.payload;
+    return {
+      ...state,
+      updateOrderData: {
+        ...state.updateOrderData,
+        load: false,
+        error: error,
+      },
+    };
+  },
 });
 
 export default orderReducer;

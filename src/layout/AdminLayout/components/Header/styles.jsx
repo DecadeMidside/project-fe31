@@ -6,7 +6,6 @@ export const TopHeader = styled.div`
   position: fixed;
   width: 100%;
   height: 86px;
-  padding: 0 8px;
   background-color: #fff;
   z-index: 999;
   top: 0;
@@ -14,6 +13,7 @@ export const TopHeader = styled.div`
 
 export const navBar = styled.ul`
   display: flex;
+  height: 100%;
   padding: 20px;
   font-size: 18px;
   justify-content: center;
@@ -97,6 +97,12 @@ export const StyledIcon = styled.div`
     cursor: pointer;
   }
 `;
+export const StyledIconMenu = styled.button`
+  width: 20px;
+  height: 20px;
+  margin: auto 20px;
+`;
+
 export const StyledCardReview = styled(Card)`
   margin: 8px;
   border-radius: none;
@@ -124,12 +130,13 @@ export const StyledIconPhone = styled.div`
   }
 `;
 
-export const CustomColLogo = styled(Col)`
+export const CustomColLogo = styled.div`
   display: flex;
-  flex-direction: column;
+  /* background-color: #f1f1f1; */
+  width: 250px;
+
   justify-content: center;
   align-items: center;
-  margin-left: 50px;
 `;
 export const HeaderBar = styled.div`
   font-size: 13px;
@@ -148,6 +155,7 @@ export const StyledBtnProduct = styled.button`
   margin: 1rem 0;
   width: 100px;
   font-weight: 600;
+  border-radius: 20px;
   padding: 4px;
   margin: 8px 0;
   background-color: ${(props) => (props.outline ? "#ffc62d" : "#ebebeb")};

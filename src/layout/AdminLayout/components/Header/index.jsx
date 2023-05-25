@@ -19,11 +19,16 @@ import {
   MailOutlined,
   UserOutlined,
 } from "@ant-design/icons";
+import { FaUserCircle } from "react-icons/fa";
+import { GoPrimitiveDot } from "react-icons/go";
 import { useEffect, useMemo, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { ROUTES } from "../../../../constant/routes";
 import Logo from "../../../../images/breitling.svg";
-import { getReviewListAdminAction } from "../../../../redux/actions";
+import {
+  getReviewListAdminAction,
+  getUserInfoAction,
+} from "../../../../redux/actions";
 import * as S from "./styles";
 
 function Header(props) {
@@ -32,11 +37,12 @@ function Header(props) {
   const dispatch = useDispatch();
 
   const { isShowSidebar, setIsShowSidebar } = props;
-  const [comments, setComments] = useState([]);
-  const [orders, setOrders] = useState([]);
+
   const [commentsOpen, setCommentsOpen] = useState(false);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
 
+  const { userInfo } = useSelector((state) => state.auth);
+  console.log("🚀 ~ file: index.jsx:41 ~ Header ~ userInfo:", userInfo);
   const menu = (
     <S.customMenu mode="horizontal">
       <Menu.Item key="watches">
@@ -54,6 +60,7 @@ function Header(props) {
   );
   useEffect(() => {
     dispatch(getReviewListAdminAction());
+    dispatch(getUserInfoAction());
   }, []);
   const renderReviewList = useMemo(() => {
     return reviewList.data.map((item) => {
@@ -88,18 +95,28 @@ function Header(props) {
     <>
       <S.TopHeader>
         <Row justify="space-between" align="center">
-          <S.CustomColLogo xs={8} md={4} lg={4}>
-            <S.StyledImg src={Logo}></S.StyledImg>
-
-            <S.StyledBtnProduct
-              type="primary"
-              width="100px"
-              onClick={() => setIsShowSidebar(!isShowSidebar)}
-            >
-              <MenuOutlined />
-              Menu
-            </S.StyledBtnProduct>
+          <S.CustomColLogo>
+            <Row>
+              <S.StyledIconMenu
+                type="primary"
+                width="100px"
+                onClick={() => setIsShowSidebar(!isShowSidebar)}
+              >
+                <MenuOutlined />
+              </S.StyledIconMenu>
+              <div>
+                <h3>{userInfo.data.fullName}</h3>
+                <h4>
+                  {" "}
+                  <GoPrimitiveDot
+                    style={{ color: "green", fontSize: "14px" }}
+                  />
+                  Online
+                </h4>
+              </div>
+            </Row>
           </S.CustomColLogo>
+
           <Col xs={0} md={0} lg={12} justify="center">
             <S.navBar>{menu}</S.navBar>
           </Col>

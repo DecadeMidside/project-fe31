@@ -10,6 +10,9 @@ import {
   Space,
   Avatar,
 } from "antd";
+import { GrUpdate } from "react-icons/gr";
+import { AiOutlineDelete } from "react-icons/ai";
+import { ImCancelCircle } from "react-icons/im";
 import {
   getCategoryListAction,
   deleteCategoryAction,
@@ -54,9 +57,9 @@ function CategoriesManagement() {
       key: "action",
       render: (_, item) => (
         <Space>
-          <S.StyledBtnProduct type="primary" outline={true}>
-            Update
-          </S.StyledBtnProduct>
+          <S.StyledIcon>
+            <GrUpdate style={{ color: "green" }} />
+          </S.StyledIcon>
 
           <Popconfirm
             title="Are you sure you want to delete this category?"
@@ -67,10 +70,16 @@ function CategoriesManagement() {
                 })
               )
             }
-            okText="Delete"
-            cancelText="Cancel"
+            okText={
+              <AiOutlineDelete style={{ fontSize: "18", color: "red" }} />
+            }
+            cancelText={
+              <ImCancelCircle style={{ fontSize: "18", color: "green" }} />
+            }
           >
-            <S.StyledBtnProduct outline={false}>Delete</S.StyledBtnProduct>
+            <S.StyledIconDel>
+              <AiOutlineDelete style={{ color: "red" }} />
+            </S.StyledIconDel>
           </Popconfirm>
         </Space>
       ),
