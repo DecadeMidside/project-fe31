@@ -49,16 +49,13 @@ function ProductDetail() {
   const dispatch = useDispatch();
 
   const { userInfo } = useSelector((state) => state.auth);
-  console.log("🚀 ~ file: index.jsx:47 ~ ProductDetail ~ userInfo:", userInfo);
-
   const { productList, productDetail } = useSelector((state) => state.product);
-  console.log(
-    "🚀 ~ file: index.jsx:42 ~ ProductDetail ~ productDetail:",
-    productDetail
-  );
   const { reviewList } = useSelector((state) => state.review);
-  const { cartList } = useSelector((state) => state.cart);
 
+  const productImages = useMemo(
+    () => productDetail.data.images?.map((item) => item.url) || [],
+    [productDetail.data.images]
+  );
   const isLike = useMemo(
     () =>
       productDetail.data.favorites?.findIndex(
@@ -120,7 +117,7 @@ function ProductDetail() {
       addToCartAction({
         id: parseInt(id),
         name: productDetail.data.name,
-        image: productDetail.data?.images[0].url,
+        image: productImages[0],
         price: parseInt(productDetail.data.price),
       })
     );
@@ -150,16 +147,16 @@ function ProductDetail() {
     return reviewList.data.map((item) => {
       return (
         <S.StyledCardReview size="small" key={item.id}>
-          <Space>
+          <Space align="baseline" size={16}>
             <h3>
-              <UserOutlined style={{ color: "#ffc26d" }} /> :{" "}
+              <UserOutlined style={{ color: "#ffc26d" }} />
+              {": "}
               {item.user.fullName}
             </h3>
             <span>{moment(item.createdAt).fromNow()}</span>
             <Rate value={item.rate} disabled style={{ fontSize: 12 }} />
           </Space>
           <p>
-            {" "}
             <MailOutlined style={{ color: "#ffc26d" }} /> : {item.comment}
           </p>
           {userInfo.data.role === "admin" && (
@@ -184,7 +181,7 @@ function ProductDetail() {
           <Link to={generatePath(ROUTES.USER.PRODUCT_DETAIL, { id: item.id })}>
             <S.StyledProductItem
               hoverable
-              cover={<img src={item.images[0].url} />}
+              cover={<img src={item.images[0]?.url} />}
             >
               <h3>{item.name}</h3>
               <h4>
@@ -208,80 +205,76 @@ function ProductDetail() {
   return (
     <div>
       <S.WrapperDetail>
-        <Col span={12}>
-          <img
-            src={productDetail.data.image}
-            style={{ position: "relative" }}
-          />{" "}
-          <S.HeartIconWrap
-            hoverable
-            type="text"
-            style={{ position: "absolute", right: "100px" }}
-            danger={isLike}
-            icon={
-              isLike ? (
-                <AiFillHeart
-                  style={{
-                    color: "#ffc62d",
-                  }}
-                />
-              ) : (
-                <AiOutlineHeart />
-              )
-            }
-            onClick={() => handleToggleFavorite()}
-          >
-            {/* <AiFillHeart /> */}
-          </S.HeartIconWrap>
-          {productDetail.data && productDetail.data.images && (
-            <Image src={productDetail.data.images[0]?.url} />
-          )}
-        </Col>
-        <S.CustomColDetail span={12}>
-          <h1>{productDetail.data.name}</h1>
-          <Space>
-            <Rate value={totalRate / reviewList.data.length || 0} disabled />
-            <span>{`(${(totalRate / reviewList.data.length).toFixed(
-              1
-            )})`}</span>
-          </Space>
-          <h3>USD {parseInt(productDetail.data.price).toLocaleString()}</h3>
-          <h5>Boutique delivery available</h5>
-          <S.styleButton outline={true} onClick={(id) => handleAddToBag(id)}>
-            ADD TO BAG
-          </S.styleButton>
-          <S.styleTextOr>
-            <span>or</span>
-          </S.styleTextOr>
-          <S.styleButton outline={false}> GIVE AS A GIFT</S.styleButton>
-          <S.styleCall>
-            <FaPhoneAlt /> <span>CALL TO BUY </span>
-          </S.styleCall>
-          <S.styleCall>
-            <FaCalendarAlt /> <span>BOOK AN APPOINTMENT</span>
-          </S.styleCall>
+        <Row gutter={[16, 16]}>
+          <Col span={12}>
+            {productDetail.data && productDetail.data.images?.length && (
+              <Image src={productImages[0]} />
+            )}
+          </Col>
+          <S.CustomColDetail span={12}>
+            <S.HeartIconWrap
+              size="large"
+              hoverable
+              type="text"
+              danger={isLike}
+              icon={
+                isLike ? (
+                  <AiFillHeart
+                    style={{
+                      color: "#ffc62d",
+                    }}
+                  />
+                ) : (
+                  <AiOutlineHeart />
+                )
+              }
+              onClick={() => handleToggleFavorite()}
+            />
+            <h1>{productDetail.data.name}</h1>
+            <Space style={{ margin: "8px 0" }}>
+              <Rate value={totalRate / reviewList.data.length || 0} disabled />
+              <span>{`(${(totalRate / reviewList.data.length).toFixed(
+                1
+              )})`}</span>
+            </Space>
+            <h3>USD {parseInt(productDetail.data.price).toLocaleString()}</h3>
+            <h5>Boutique delivery available</h5>
+            <S.styleButton outline={true} onClick={(id) => handleAddToBag(id)}>
+              ADD TO BAG
+            </S.styleButton>
+            <S.styleTextOr>
+              <span>or</span>
+            </S.styleTextOr>
+            <S.styleButton outline={false}> GIVE AS A GIFT</S.styleButton>
+            <S.styleCall>
+              <FaPhoneAlt /> <span>CALL TO BUY </span>
+            </S.styleCall>
+            <S.styleCall>
+              <FaCalendarAlt /> <span>BOOK AN APPOINTMENT</span>
+            </S.styleCall>
 
-          <S.styleRowService gutter={[16, 16]}>
-            <S.styleColService span={8}>
-              <div>
-                <img src="https://www.breitling.com/media/breitling/images/br-11-20/asset-version-890399ea8e/icon-free-shipping.svg"></img>
-              </div>
-              <span>FREE SHIPPING</span>
-            </S.styleColService>
-            <S.styleColService span={8}>
-              <div>
-                <img src="https://www.breitling.com/media/breitling/images/br-11-20/asset-version-14fb6ee1d5/icon-free-return.svg"></img>
-              </div>
-              <span>FREE RETURN</span>
-            </S.styleColService>
-            <S.styleColService span={8}>
-              <div>
-                <img src="https://www.breitling.com/media/breitling/images/br-11-20/asset-version-0721303587/icon-exclusive-benefit.svg"></img>
-              </div>
-              <span>EXCLUSIVE BENEFITS</span>
-            </S.styleColService>
-          </S.styleRowService>
-        </S.CustomColDetail>
+            <S.styleRowService gutter={[16, 16]}>
+              <S.styleColService span={8}>
+                <div>
+                  <img src="https://www.breitling.com/media/breitling/images/br-11-20/asset-version-890399ea8e/icon-free-shipping.svg"></img>
+                </div>
+                <span>FREE SHIPPING</span>
+              </S.styleColService>
+              <S.styleColService span={8}>
+                <div>
+                  <img src="https://www.breitling.com/media/breitling/images/br-11-20/asset-version-14fb6ee1d5/icon-free-return.svg"></img>
+                </div>
+                <span>FREE RETURN</span>
+              </S.styleColService>
+              <S.styleColService span={8}>
+                <div>
+                  <img src="https://www.breitling.com/media/breitling/images/br-11-20/asset-version-0721303587/icon-exclusive-benefit.svg"></img>
+                </div>
+                <span>EXCLUSIVE BENEFITS</span>
+              </S.styleColService>
+            </S.styleRowService>
+          </S.CustomColDetail>
+        </Row>
       </S.WrapperDetail>
 
       <S.styleTechnical>
@@ -439,7 +432,7 @@ function ProductDetail() {
                 {renderReviewList}
               </Col>
               <Col span={12}>
-                <Image src={productDetail.data.images[0].url} />
+                <Image src={productImages[0]} />
               </Col>
             </Row>
           </S.StyledCardReview>

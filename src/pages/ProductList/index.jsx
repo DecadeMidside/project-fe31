@@ -117,11 +117,11 @@ function ProductList() {
   const renderCategoryFilter = useMemo(() => {
     return categoryList.data.map((item) => {
       return (
-        <S.CustomCol lg={3} key={item.id} onClick={() => console.log(item.id)}>
+        <Col lg={3} key={item.id} onClick={() => console.log(item.id)}>
           <S.StyledCollection cover={<img alt="example" src={item.image} />}>
             <Meta title={item.name} />
           </S.StyledCollection>
-        </S.CustomCol>
+        </Col>
       );
     });
   }, [categoryList.data]);
@@ -143,16 +143,17 @@ function ProductList() {
         <Col key={item.id} lg={8} md={12} xs={24}>
           <Link to={generatePath(ROUTES.USER.PRODUCT_DETAIL, { id: item.id })}>
             <S.StyledProductItem
+              size="small"
               hoverable
-              cover={<img src={item.images[0].url} />}
+              cover={<img src={item.images[0].url} alt="" />}
             >
               <h3>{item.name}</h3>
-              <h4>
-                USD {parseInt(item.price).toLocaleString()}{" "}
-                <AiFillInfoCircle style={{ color: "#ffc62d" }} />{" "}
-              </h4>
+              <h3>
+                USD {parseInt(item.price).toLocaleString()}
+                <AiFillInfoCircle style={{ color: "#ffc62d" }} />
+              </h3>
               <S.StyledBtnProduct>ADD TO CART</S.StyledBtnProduct>
-            </S.StyledProductItem>{" "}
+            </S.StyledProductItem>
           </Link>
         </Col>
       );
@@ -164,8 +165,8 @@ function ProductList() {
         <S.StyleTitle>ALL WATCHES</S.StyleTitle>
       </S.StyleSlider>
 
-      <S.WrapperCollection gutter={[16, 16]}>
-        {renderCategoryFilter}
+      <S.WrapperCollection>
+        <Row gutter={[16, 16]}>{renderCategoryFilter}</Row>
       </S.WrapperCollection>
 
       <S.ProductListWrapper>
@@ -198,14 +199,14 @@ function ProductList() {
             <Row gutter={[16, 16]}>
               <Col lg={16} md={12} xs={24}>
                 <Input.Search
-                  style={{ borderRadius: 0, margin: "8px" }}
+                  style={{ borderRadius: 0 }}
                   onChange={(e) => handleFilter("searchKey", e.target.value)}
                   placeholder="What is Looking for..."
                 ></Input.Search>
               </Col>
               <Col lg={8} md={12} xs={24}>
                 <Select
-                  style={{ width: "100%", margin: "8px" }}
+                  style={{ width: "100%" }}
                   onChange={(value) => handleFilter("sort", value)}
                 >
                   <Select.Option value="price.asc">
@@ -219,7 +220,7 @@ function ProductList() {
                 </Select>
               </Col>
             </Row>
-            <Row gutter={[16, 16]} style={{ margin: "8px 0px" }}>
+            <Row gutter={[16, 16]} style={{ margin: "16px 0px" }}>
               <Spin spinning={productList.load}>
                 <Row gutter={[16, 16]}>{renderProductList}</Row>
               </Spin>

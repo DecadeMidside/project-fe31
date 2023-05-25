@@ -11,12 +11,11 @@ import {
   Image,
 } from "antd";
 import styled from "styled-components";
-export const WrapperDetail = styled(Col)`
+export const WrapperDetail = styled.div`
   display: flex;
   margin: 0 auto;
   padding: 16px;
   max-width: 1232px;
-  height: 670px;
   background-color: #fafafa;
 `;
 export const CustomColDetail = styled(Col)`
@@ -26,7 +25,7 @@ export const CustomColDetail = styled(Col)`
   > h5 {
     font-size: 16px;
     font-weight: 400;
-    margin: 0px 0px 10px 3px;
+    margin: 8px 0px 10px 3px;
     max-width: 440px;
   }
   > h1 {
@@ -40,7 +39,7 @@ export const CustomColDetail = styled(Col)`
   }
   > h3 {
     color: #ffc62d;
-    font-size: 20px;
+    font-size: 28px;
     line-height: 31.4286px;
     margin: 3px 0px 0px;
     max-width: 440px;
@@ -257,26 +256,18 @@ export const StyledProductItem = styled(Card)`
     font-weight: 500;
   }
 `;
-export const HeartIconWrapper = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
-  /* padding: 0 8px; */
-  margin: 4px;
-  color: #333;
-  font-size: 24px;
-  cursor: pointer;
-`;
 
 export const HeartIconWrap = styled(Button)`
   position: absolute;
   top: 0;
-  right: 0;
-  /* padding: 0 8px; */
-  margin: 4px;
+  right: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
   color: #333;
-  font-size: 24px;
-
+  font-size: 28px !important;
+  z-index: 1;
   cursor: pointer;
 `;
 export const StyledBtnProduct = styled.button`

@@ -1,7 +1,7 @@
 import { Checkbox, Form, Select, Upload, DatePicker, Table } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
-import { getOrderList, getFavoriteList } from "../../../redux/actions";
+import { getOrderList, getFavoriteListAction } from "../../../redux/actions";
 import { useEffect } from "react";
 import moment from "moment";
 
@@ -135,6 +135,7 @@ function OrderHistories() {
   useEffect(() => {
     if (userInfo.data.id) {
       dispatch(getOrderList({ userId: userInfo.data.id }));
+      dispatch(getFavoriteListAction({ userId: userInfo.data.id }));
     }
   }, [userInfo.data.id]);
 
