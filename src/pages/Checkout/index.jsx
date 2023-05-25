@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate, Navigate } from "react-router-dom";
+import { useNavigate, Navigate, useParams } from "react-router-dom";
 import {
   Form,
   Button,
@@ -33,6 +33,8 @@ function CheckoutPage() {
   useEffect(() => {
     dispatch(getCityListAction());
   }, []);
+  const { id } = useParams();
+
   const { cityList, districtList, wardList } = useSelector(
     (state) => state.location
   );
@@ -100,7 +102,7 @@ function CheckoutPage() {
         },
         products: cartList,
         callback: () => {
-          navigate(ROUTES.USER.SUCCESSCHECKOUT, { state: values });
+          navigate(ROUTES.USER.SUCCESSCHECKOUT, { state: values, id: id });
         },
       })
     );

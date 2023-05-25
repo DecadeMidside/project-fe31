@@ -7,31 +7,34 @@ export const customStyleRow = styled(Row)`
 `;
 
 export const styleBackground = styled.div`
-  background-image: url("https://www.breitling.com/media/image/3/double_entry_desktop_922/asset-version-33cb1fdb45/10-about-page-squadonamission-2.webp");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("https://www.breitling.com/media/image/3/double_entry_desktop_922/asset-version-33cb1fdb45/10-about-page-squadonamission-2.webp");
   align-items: center;
   background-repeat: no-repeat;
   background-size: cover;
-  min-height: 400px;
+  min-height: 550px;
   object-fit: cover;
   font-size: 14px;
   line-height: 22px;
   padding: 30px;
-  margin: 16px;
+  margin: 8px;
   text-align: center;
   > h1 {
-    margin: 16px auto;
-    font-size: 50px;
+    margin: 4px auto;
+    font-size: 40px;
     font-weight: 700;
     line-height: 61px;
-    color: #ffc62d;
+    color: #ffffff;
   }
   > p {
+    display: inline-block;
     color: #ffffff;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 700;
     line-height: 22px;
     margin: 10px 0px 0px;
     text-align: center;
+    text-decoration: underline;
     :hover {
       cursor: pointer;
       color: #ffc62d;

@@ -310,7 +310,12 @@ function HomePage() {
           }}
         >
           <Col span={12}>
-            <S.styledColServiceWrapper>
+            <S.styledColServiceWrapper
+              style={{
+                backgroundImage:
+                  "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) , url(https://www.breitling.com/media/image/3/section_cta_960/asset-version-df79b7c235/home-straps.webp)",
+              }}
+            >
               <S.styledTitleStrapsService>STRAPS</S.styledTitleStrapsService>
               <S.styledContentStrapsService>
                 Made from leather, rubber , or ECONYL™ fabric, the Breitling

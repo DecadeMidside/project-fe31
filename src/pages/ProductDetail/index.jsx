@@ -120,7 +120,7 @@ function ProductDetail() {
       addToCartAction({
         id: parseInt(id),
         name: productDetail.data.name,
-        image: productDetail.data.images[0].url,
+        image: productDetail.data?.images[0].url,
         price: parseInt(productDetail.data.price),
       })
     );

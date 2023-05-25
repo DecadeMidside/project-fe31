@@ -1,6 +1,6 @@
-import { Button, Result } from "antd";
+import { Button, Result, Table } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { getOrderList, orderProductAction } from "../../../redux/actions";
 import { useEffect } from "react";
 import { ROUTES } from "../../../constant/routes";
@@ -11,7 +11,7 @@ const SuccessCheckoutPage = (values) => {
   const { state } = useLocation();
   console.log("🚀 ~ file: index.jsx:11 ~ SuccessCheckoutPage ~ state:", state);
   const navigate = useNavigate();
-
+  const { id } = useParams();
   const { userInfo } = useSelector((state) => state.auth);
   const { orderList } = useSelector((state) => state.order);
   console.log(
@@ -24,6 +24,39 @@ const SuccessCheckoutPage = (values) => {
       dispatch(getOrderList({ userId: userInfo.data.id }));
     }
   }, [userInfo.data.id]);
+  const tableColumns = [
+    {
+      title: "Ordered Codes",
+      dataIndex: "createdAt",
+      key: "id",
+    },
+    {
+      title: "Quantity",
+      dataIndex: "orderDetails",
+      key: "orderDetails",
+      render: (orderDetails) => `${orderDetails.length} products`,
+    },
+    {
+      title: "Total",
+      dataIndex: "totalPrice",
+      key: "totalPrice",
+      render: (cartTotalPrice) =>
+        `USD ${parseInt(cartTotalPrice).toLocaleString()}`,
+    },
+    {
+      title: "Order Date",
+      dataIndex: "createdAt",
+      key: "createdAt",
+      render: (createdAt) => moment(createdAt).format("DD/MM/YYYY HH:mm"),
+    },
+    {
+      title: "Address",
+      dataIndex: "address",
+      key: "address",
+      render: (_, item) =>
+        `${item.address}, ${item.wardName}, ${item.districtName}, ${item.cityName}`,
+    },
+  ];
 
   return (
     <div>
@@ -33,21 +66,13 @@ const SuccessCheckoutPage = (values) => {
         subTitle="Purchase Information"
         extra={[
           <div>
-            <h3> PURCHASE INFORMATION </h3>
-            <span> Purchased Code : {orderList.data.createdAt} </span>
-            <p> ---------------------- </p>
-            <h3> SHIPMENT DETAILS </h3>
-            <span> Full name :{orderList.fullName}</span>
-            <br />
-            <span> Address : </span>
-            <br />
-            <span> Telephone : {state.phoneNumber}</span>
-            <br />
-            <span> Payment Method : {state.paymentMethod}</span>
-            <br />
-            <span> Address : {state.address}</span>
-            <br />
-            <span> {userInfo.city}</span>
+            <Table
+              columns={tableColumns}
+              dataSource={orderList.data}
+              rowKey="id"
+              pagination={false}
+            />
+            ,
           </div>,
           <Button
             type="primary"

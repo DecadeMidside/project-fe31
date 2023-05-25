@@ -263,9 +263,6 @@ export const styledCustomRowNew = styled(Row)`
   padding: 50px 22px 30px;
 `;
 export const styledColStrapsWrapper = styled(Col)`
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("https://www.breitling.com/media/image/2/section_cta_1324/asset-version-135305ec1e/stilllife-straps-04_final.webp");
-
   background-repeat: no-repeat;
   background-size: cover;
   object-fit: cover;
@@ -274,9 +271,16 @@ export const styledColStrapsWrapper = styled(Col)`
   text-align: center;
   padding: 70px 22px 0;
 `;
-export const styledColServiceWrapper = styled(styledColStrapsWrapper)`
+export const styledColServiceWrapper = styled(Col)`
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("https://www.breitling.com/media/image/2/section_cta_1324/asset-version-108f1e5d72/_mg_9785.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  min-height: 550px;
+  align-items: center;
+  text-align: center;
+  padding: 70px 22px 0;
 `;
 export const styledTitleStrapsService = styled.h2`
   font-weight: 700 !important;
