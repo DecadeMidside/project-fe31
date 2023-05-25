@@ -40,7 +40,10 @@ function Header() {
       </Menu.Item>
       <Menu.Item key="straps">STRAPS</Menu.Item>
       <Menu.Item key="stores">STORES</Menu.Item>
-      <Menu.Item key="service">SERVICE</Menu.Item>
+      <Menu.Item key="service">
+        {" "}
+        <Link to={ROUTES.USER.SERVICE}>SERVICE</Link>
+      </Menu.Item>
       <Menu.Item key="sustainability">SUSTAINABILITY</Menu.Item>
       <Menu.Item key="about">
         {" "}

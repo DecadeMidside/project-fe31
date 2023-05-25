@@ -1,14 +1,4 @@
-import {
-  Checkbox,
-  Form,
-  Select,
-  Space,
-  DatePicker,
-  Table,
-  Row,
-  Col,
-} from "antd";
-import { PlusOutlined } from "@ant-design/icons";
+import { Space, Table, Row, Col } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { getOrderListAdmin, getCityListAction } from "../../../redux/actions";
 import { useEffect } from "react";
@@ -20,6 +10,10 @@ function OderManagement() {
   const dispatch = useDispatch();
 
   const { orderList } = useSelector((state) => state.order);
+  console.log(
+    "🚀 ~ file: index.jsx:19 ~ OderManagement ~ orderList:",
+    orderList
+  );
 
   useEffect(() => {
     dispatch(getOrderListAdmin());
@@ -92,7 +86,7 @@ function OderManagement() {
         expandedRowRender: (record) => (
           <Row>
             <Col span={24}>
-              {record.orders.map((item) => (
+              {record.orderDetails.map((item) => (
                 <Row
                   key={item.id}
                   gutter={[16, 16]}
