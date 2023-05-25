@@ -78,7 +78,7 @@ function CartPage() {
     return cartList.map((item) => {
       return (
         <S.styleProductItem>
-          <img src={item.image} alt="" />
+          <img src={item.image} alt="" style={{ objectFit: "cover" }} />
 
           <S.ProductInf>
             <h3>{item.name}</h3>

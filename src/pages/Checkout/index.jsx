@@ -1,25 +1,23 @@
 import { useEffect, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate, Navigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   Form,
-  Button,
   Input,
   Select,
   Radio,
   Row,
   Col,
-  Card,
   Space,
   Table,
   Avatar,
+  notification,
 } from "antd";
 import {
   getCityListAction,
   getDistrictListAction,
   getWardListAction,
   orderProductAction,
-  getUserInfoAction,
 } from "../../redux/actions";
 
 import { ROUTES } from "../../constant/routes";
@@ -39,9 +37,7 @@ function CheckoutPage() {
     (state) => state.location
   );
   const { cartList } = useSelector((state) => state.cart);
-  console.log("🚀 ~ file: index.jsx:40 ~ CheckoutPage ~ cartList:", cartList);
   const { userInfo } = useSelector((state) => state.auth);
-  console.log("🚀 ~ file: index.jsx:41 ~ CheckoutPage ~ userInfo:", userInfo);
   const initialValues = {};
   const data = JSON.parse(localStorage.getItem("cartList"));
   const cartTotalPrice = cartList.reduce(
@@ -80,29 +76,30 @@ function CheckoutPage() {
   ];
 
   const handleSubmitCheckoutForm = (values) => {
+    if (!cartList.length) return notification.error("Cart is empty");
     const totalPrice = cartList.reduce(
       (total, item) => total + parseInt(item.price),
       0
     );
-
+    const newValues = {
+      ...values,
+      cityName: cityList.data.find((item) => item.code === values.cityCode)
+        ?.name,
+      districtName: districtList.data.find(
+        (item) => item.code === values.districtCode
+      )?.name,
+      wardName: wardList.data.find((item) => item.code === values.wardCode)
+        ?.name,
+      userId: userInfo.data.id,
+      totalPrice: totalPrice,
+      status: "pending",
+    };
     dispatch(
       orderProductAction({
-        data: {
-          ...values,
-          cityName: cityList.data.find((item) => item.code === values.cityCode)
-            ?.name,
-          districtName: districtList.data.find(
-            (item) => item.code === values.districtCode
-          )?.name,
-          wardName: wardList.data.find((item) => item.code === values.wardCode)
-            ?.name,
-          userId: userInfo.data.id,
-          totalPrice: totalPrice,
-          status: "pending",
-        },
+        data: newValues,
         products: cartList,
         callback: () => {
-          navigate(ROUTES.USER.SUCCESSCHECKOUT, { state: values, id: id });
+          navigate(ROUTES.USER.SUCCESSCHECKOUT, { state: newValues, id: id });
         },
       })
     );
@@ -138,7 +135,6 @@ function CheckoutPage() {
     });
   }, [wardList.data]);
 
-  if (!cartList.length) return <Navigate to={ROUTES.USER.CART} />;
   return (
     <>
       <S.styleTitle>
@@ -160,7 +156,9 @@ function CheckoutPage() {
                 rowKey="id"
                 pagination={false}
               />
-              <S.styleTotal>Totally: USD {cartTotalPrice}</S.styleTotal>
+              <S.styleTotal>
+                Totally: USD {cartTotalPrice.toLocaleString()}
+              </S.styleTotal>
             </S.styleCard>
           </Col>
           <Col span={16}>
@@ -298,11 +296,7 @@ function CheckoutPage() {
                   Back
                 </S.StyledBtnProduct>
 
-                <S.StyledBtnProduct
-                  type="primary"
-                  htmlType="submit"
-                  onClick={() => checkoutForm.submit()}
-                >
+                <S.StyledBtnProduct type="primary" htmlType="submit">
                   Pay
                 </S.StyledBtnProduct>
               </Row>

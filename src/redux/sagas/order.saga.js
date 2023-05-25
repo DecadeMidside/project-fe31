@@ -6,6 +6,10 @@ import { ORDER_ACTION, REQUEST, SUCCESS, FAIL } from "../constants";
 function* orderProductSaga(action) {
   try {
     const { data, products, callback } = action.payload;
+    console.log(
+      "🚀 ~ file: order.saga.js:9 ~ function*orderProductSaga ~ action.payload:",
+      action.payload
+    );
     const result = yield axios.post("http://localhost:4000/orders", data);
     for (let i = 0; i < products.length; i++) {
       yield axios.post("http://localhost:4000/orderDetails", {

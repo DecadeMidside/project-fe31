@@ -46,7 +46,13 @@ function App() {
     window.scrollTo(0, 0);
   }, [pathname]);
   return (
-    <ConfigProvider>
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: "#ffc62d",
+        },
+      }}
+    >
       <Routes>
         <Route element={<UserLayout />}>
           <Route path={ROUTES.USER.HOME} element={<HomePage />} />

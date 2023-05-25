@@ -12,7 +12,7 @@ export const StyleSlider = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  min-height: 200px;
+  min-height: 160px;
 
   object-fit: cover;
   display: flex;
@@ -42,11 +42,11 @@ export const StyleTitle = styled.div`
   margin: 40px auto;
 `;
 
-export const WrapperCollection = styled(Row)`
+export const WrapperCollection = styled.div`
   background-color: #f1f1f1;
-  height: 100px;
-  width: 100%;
   display: flex;
+  padding: 0 32px;
+  align-items: center;
   font-size: 14px;
   justify-content: center;
   @media (max-width: 1024px) {
@@ -89,9 +89,8 @@ export const CustomColSort = styled(Col)`
 `;
 export const StyledCollection = styled(Card)`
   background-color: rgba(256, 256, 256, 0);
-  margin-top: -100%;
   width: 100%;
-  height: 145px;
+  padding-bottom: 32px;
   text-align: center;
   font-size: 8px;
   border: none;
@@ -159,6 +158,7 @@ export const HeartIconWrapper = styled(Button)`
 export const StyledBtnProduct = styled.button`
   width: 160px;
   height: 50px;
+  margin-top: 12px;
   background-color: #ffc62d;
   border-radius: 0;
   font-weight: 700;
@@ -174,8 +174,12 @@ export const StyledFilter = styled(Card)`
   padding: 0 8px;
   border-radius: 0;
   background-color: #f1f1f1;
-  margin-top: 30px;
   min-height: 600px;
+
+  & h3 {
+    margin-top: 16px;
+  }
+
   @media (max-width: 768px) {
     display: none; // Ẩn phần filter trên màn hình nhỏ hơn 768px
   }

@@ -61,12 +61,13 @@ function* unFavoriteProductSaga(action) {
 }
 
 function* getFavoriteListSaga(action) {
-  const { id } = action.payload;
+  const { userId } = action.payload;
 
   try {
-    const result = yield axios.get(`http://localhost:4000/favorites/${id}`, {
+    const result = yield axios.get("http://localhost:4000/favorites", {
       params: {
-        _embed: ["users", "products"],
+        userId: userId,
+        _expand: "product",
         isDelete: false,
       },
     });
