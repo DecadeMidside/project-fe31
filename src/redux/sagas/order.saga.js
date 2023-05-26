@@ -44,7 +44,6 @@ function* getOrderListAdminSaga(action) {
     const result = yield axios.get("http://localhost:4000/orders", {
       params: {
         _embed: ["user", "product", "orderDetails"],
-        // _embed: "orderDetails",
         _sort: "id",
         _order: "asc",
       },
@@ -91,12 +90,13 @@ function* getOrderListSaga(action) {
 }
 function* updateOrderSaga(action) {
   try {
-    const { data, id, callback } = action.payload;
-    const result = yield axios.patch(
-      `http://localhost:4000/orders/${id}`,
-      data
-    );
-    yield callback();
+    const { id, status } = action.payload;
+    const result = yield axios.patch(`http://localhost:4000/orders/${id}`, {
+      status: status,
+    });
+    yield put({
+      type: REQUEST(ORDER_ACTION.GET_ORDER_LIST_ADMIN),
+    });
     yield put({
       type: SUCCESS(ORDER_ACTION.UPDATE_ORDER),
       payload: {
