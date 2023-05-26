@@ -7,7 +7,7 @@ export const styleFooter = styled.div`
   font-size: 14px;
   color: #fff;
   background-color: #111820;
-  bottom: 0;
+  bottom: 0 !important;
 `;
 export const styleFooterHeading = styled.ul`
   display: flex;

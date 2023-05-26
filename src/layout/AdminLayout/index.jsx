@@ -17,7 +17,13 @@ function AdminLayout() {
   const accessToken = localStorage.getItem("accessToken");
 
   if (accessToken && userInfo.load) {
-    return <div>Loading...</div>;
+    return (
+      <S.styleLoading>
+        <S.styleBar>
+          <S.styleLoad></S.styleLoad>
+        </S.styleBar>
+      </S.styleLoading>
+    );
   } else if (userInfo.data.role !== "admin") {
     return <Navigate to={ROUTES.USER.HOME} />;
   }
