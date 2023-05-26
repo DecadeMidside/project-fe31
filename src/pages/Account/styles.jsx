@@ -24,8 +24,8 @@ export const StyleTitle = styled.div`
   font-size: 50px;
   font-weight: 700;
   line-height: 50px;
+  padding: 20px 0;
   letter-spacing: 0;
-  margin: 20px auto;
 `;
 export const StyleText = styled.div`
   color: #ffffff;
@@ -127,8 +127,8 @@ export const styleProfile = styled.div`
 export const ProfileWrapper = styled.div`
   margin: 4px auto;
   padding: 16px;
-  /* max-width: 1232px;
-  min-width: 723px; */
+  /* max-width: 1232px; */
+  min-width: 1100px;
   border: 1px solid #333;
   background-color: #f1f1f1;
 

@@ -111,7 +111,7 @@ function ProductDetail() {
       }
     } else {
       notification.error({
-        message: "Vui lòng đăng nhập để thực hiện chức năng này!",
+        message: "Please login for this!",
       });
     }
   };
