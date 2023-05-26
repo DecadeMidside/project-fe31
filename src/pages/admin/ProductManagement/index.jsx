@@ -15,6 +15,9 @@ import {
 } from "antd";
 
 import { ROUTES } from "../../../constant/routes";
+import { GrUpdate } from "react-icons/gr";
+import { AiOutlineDelete } from "react-icons/ai";
+import { ImCancelCircle } from "react-icons/im";
 import { ADMIN_TABLE_LIMIT } from "../../../constant/paging";
 import {
   getProductListAction,
@@ -77,7 +80,7 @@ function ProductManagement() {
       render: (_, item) => {
         return (
           <Space>
-            <S.StyledBtnProduct
+            <S.StyledIcon
               type="primary"
               outline={true}
               onClick={() =>
@@ -86,8 +89,8 @@ function ProductManagement() {
                 )
               }
             >
-              Update
-            </S.StyledBtnProduct>{" "}
+              <GrUpdate style={{ color: "green" }} />
+            </S.StyledIcon>
             <Popconfirm
               title="Are you sure you want to delete this product?"
               onConfirm={() =>
@@ -100,10 +103,16 @@ function ProductManagement() {
                   })
                 )
               }
-              okText="Delete"
-              cancelText="Cancel"
+              okText={
+                <AiOutlineDelete style={{ fontSize: "18", color: "red" }} />
+              }
+              cancelText={
+                <ImCancelCircle style={{ fontSize: "18", color: "green" }} />
+              }
             >
-              <S.StyledBtnProduct outline={false}>Delete</S.StyledBtnProduct>
+              <S.StyledIconDel>
+                <AiOutlineDelete style={{ color: "red" }} />
+              </S.StyledIconDel>
             </Popconfirm>
           </Space>
         );
@@ -161,13 +170,12 @@ function ProductManagement() {
     <div>
       <Row justify="space-between" align="center">
         <h1>Product Management</h1>
-        <S.StyledBtnProduct
+        <S.styleCreate
           outline={true}
-          type="primary"
           onClick={() => navigate(ROUTES.ADMIN.CREATE_PRODUCT)}
         >
           Create Product
-        </S.StyledBtnProduct>
+        </S.styleCreate>
       </Row>
       <S.FilterWrapper>
         <h5>FILTER</h5>

@@ -11,6 +11,9 @@ import {
   Space,
   Avatar,
 } from "antd";
+import { GrUpdate } from "react-icons/gr";
+import { AiOutlineDelete } from "react-icons/ai";
+import { ImCancelCircle } from "react-icons/im";
 import { getUserListAction, deleteUserAction } from "../../../redux/actions";
 import { ROUTES } from "../../../constant/routes";
 import * as S from "./styles";
@@ -78,15 +81,15 @@ function UserManagement() {
       key: "action",
       render: (_, item) => (
         <Space>
-          <S.StyledBtnProduct
+          <S.StyledIcon
             type="primary"
             outline={true}
             onClick={() =>
               navigate(generatePath(ROUTES.ADMIN.UPDATE_USER, { id: item.id }))
             }
           >
-            Update
-          </S.StyledBtnProduct>
+            <GrUpdate style={{ color: "green" }} />
+          </S.StyledIcon>
 
           {userInfo.data.id !== item.id ? (
             <Popconfirm
@@ -99,10 +102,16 @@ function UserManagement() {
                   })
                 )
               }
-              okText="Delete"
-              cancelText="Cancel"
+              okText={
+                <AiOutlineDelete style={{ fontSize: "18", color: "red" }} />
+              }
+              cancelText={
+                <ImCancelCircle style={{ fontSize: "18", color: "green" }} />
+              }
             >
-              <S.StyledBtnProduct outline={false}>Delete</S.StyledBtnProduct>
+              <S.StyledIconDel>
+                <AiOutlineDelete style={{ color: "red" }} />
+              </S.StyledIconDel>
             </Popconfirm>
           ) : null}
         </Space>

@@ -92,7 +92,7 @@ function CheckoutPage() {
         ?.name,
       userId: userInfo.data.id,
       totalPrice: totalPrice,
-      status: "pending",
+      status: "wait for confirmation",
     };
     dispatch(
       orderProductAction({

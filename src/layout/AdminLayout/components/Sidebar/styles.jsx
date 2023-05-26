@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 export const SidebarWrapper = styled.div`
   position: fixed;
   top: 86px;
-  left: -350px;
+  left: -250px;
   padding: 20px;
-  width: 350px;
+  width: 250px;
   height: 100%;
   background-color: #f1f1f1;
   overflow: hidden;

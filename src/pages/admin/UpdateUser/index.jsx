@@ -59,13 +59,13 @@ function UpdateUser() {
     <S.Wrapper>
       <S.TopWrapper>
         <h3>Update User</h3>
-        <Button
+        <S.styleCreate
           type="primary"
           // loading={updateUserData.load}
           onClick={() => updateForm.submit()}
         >
           Update
-        </Button>
+        </S.styleCreate>
       </S.TopWrapper>
       <Form
         form={updateForm}
