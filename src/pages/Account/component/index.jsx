@@ -153,16 +153,19 @@ function OrderHistories() {
     {
       title: "Ordered Codes",
       dataIndex: "createdAt",
+      align: "center",
       key: "id",
     },
     {
       title: "Quantity",
+      align: "center",
       dataIndex: "orderDetails",
       key: "orderDetails",
       render: (orderDetails) => `${orderDetails.length} products`,
     },
     {
       title: "Total",
+      align: "center",
       dataIndex: "totalPrice",
       key: "totalPrice",
       render: (cartTotalPrice) =>
@@ -170,12 +173,14 @@ function OrderHistories() {
     },
     {
       title: "Order Date",
+      align: "center",
       dataIndex: "createdAt",
       key: "createdAt",
       render: (createdAt) => moment(createdAt).format("DD/MM/YYYY HH:mm"),
     },
     {
       title: "Address",
+      align: "center",
       dataIndex: "address",
       key: "address",
       render: (_, item) =>
@@ -184,124 +189,65 @@ function OrderHistories() {
   ];
 
   return (
-    <Table
-      columns={tableColumns}
-      dataSource={orderList.data}
-      rowKey="id"
-      pagination={false}
-      expandable={{
-        expandedRowRender: (record) => (
-          <Row>
-            <Col span={24}>
-              {record.orderDetails.map((item) => (
-                <Row
-                  key={item.id}
-                  gutter={[16, 16]}
-                  style={{
-                    textAlign: "center",
-                    fontSize: "20px",
-                    borderBottom: "1px solid green",
-                    alignItems: "center",
-                    fontWeight: 600,
-                  }}
-                >
-                  <Col span={6}>{item.name}</Col>
-                  <Col span={6}>
-                    <img
-                      src={item.image}
-                      alt=""
-                      style={{ width: "100px", height: "100px" }}
-                    />
-                  </Col>
-                  <Col span={6}>
-                    {" "}
-                    {`  USD ${parseInt(item.price).toLocaleString()}`}
-                  </Col>
-                  <Col span={6}>
-                    <SlLocationPin />
-                    {record.address}, {record.wardName}, {record.districtName},
-                    {record.cityName}`
-                  </Col>
-                </Row>
-              ))}
-            </Col>
-          </Row>
-        ),
-      }}
-    />
+    <S.styledHistoriesWrapper>
+      <S.styledTable>
+        <h1
+          style={{
+            color: "#ffc26d",
+            margin: "20px 0",
+          }}
+        >
+          {" "}
+          Your Ordered{" "}
+        </h1>
+        <Table
+          columns={tableColumns}
+          dataSource={orderList.data}
+          rowKey="id"
+          pagination={false}
+          expandable={{
+            expandedRowRender: (record) => (
+              <Row>
+                <Col span={24}>
+                  {record.orderDetails.map((item) => (
+                    <Row
+                      key={item.id}
+                      gutter={[16, 16]}
+                      style={{
+                        textAlign: "center",
+                        fontSize: "20px",
+                        borderBottom: "1px solid green",
+                        alignItems: "center",
+                        fontWeight: 600,
+                      }}
+                    >
+                      <Col span={6}>{item.name}</Col>
+                      <Col span={6}>
+                        <img
+                          src={item.image}
+                          alt=""
+                          style={{ width: "100px", height: "100px" }}
+                        />
+                      </Col>
+                      <Col span={6}>
+                        {" "}
+                        {`  USD ${parseInt(item.price).toLocaleString()}`}
+                      </Col>
+                      <Col span={6}>
+                        <SlLocationPin />
+                        {record.address}, {record.wardName},{" "}
+                        {record.districtName},{record.cityName}`
+                      </Col>
+                    </Row>
+                  ))}
+                </Col>
+              </Row>
+            ),
+          }}
+        />
+      </S.styledTable>
+    </S.styledHistoriesWrapper>
   );
 }
-export const UpdatePassword = () => {
-  return (
-    <>
-      <S.StyleCustomRow>
-        <S.StyleTitle>UPDATE MY PASSWORD</S.StyleTitle>
-      </S.StyleCustomRow>
-      <S.StyleCustomRowForm>
-        <S.styleFormContent>
-          <Form layout="vertical" name="register" scrollToFirstError>
-            <Form.Item
-              name="currentPassword"
-              label="Current Password"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your password!",
-                },
-              ]}
-              hasFeedback
-            >
-              <S.StyleCustomInputPass />
-            </Form.Item>
-            <Form.Item
-              name="newPassword"
-              label="New Password"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your password!",
-                },
-              ]}
-              hasFeedback
-            >
-              <S.StyleCustomInputPass />
-            </Form.Item>
-            <Form.Item
-              name="confirm"
-              label="Confirm New Password"
-              dependencies={["password"]}
-              hasFeedback
-              rules={[
-                {
-                  required: true,
-                  message: "Please confirm your password!",
-                },
-                ({ getFieldValue }) => ({
-                  validator(_, value) {
-                    if (!value || getFieldValue("password") === value) {
-                      return Promise.resolve();
-                    }
-                    return Promise.reject(
-                      new Error(
-                        "The two passwords that you entered do not match!"
-                      )
-                    );
-                  },
-                }),
-              ]}
-            >
-              <S.StyleCustomInputPass />
-            </Form.Item>
 
-            <Form.Item>
-              <S.StyleButtonCreate type="primary" htmlType="submit">
-                PASSWORD UPDATED
-              </S.StyleButtonCreate>
-            </Form.Item>
-          </Form>
-        </S.styleFormContent>
-      </S.StyleCustomRowForm>
-    </>
-  );
-};
 export default OrderHistories;

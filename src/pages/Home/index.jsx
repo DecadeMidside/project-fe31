@@ -1,20 +1,18 @@
 import * as S from "./styles";
 
 import { Carousel, Row, Col } from "antd";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 import { Link, useParams, generatePath, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { AiOutlineHeart, AiFillInfoCircle } from "react-icons/ai";
+import { AiFillInfoCircle } from "react-icons/ai";
 import { ROUTES } from "../../constant/routes";
-import {
-  getProductDetailAction,
-  getProductListAction,
-  getReviewListAction,
-  sendReviewAction,
-  addToCartAction,
-} from "../../redux/actions";
-import { PRODUCT_LIMIT, PRODUCT_LIMIT_HOME } from "../../constant/paging";
+import { getProductListAction } from "../../redux/actions";
+import { GiShoppingBag } from "react-icons/gi";
+import { MdKeyboardArrowRight } from "react-icons/md";
+import { BiCalendar } from "react-icons/bi";
+
+import { PRODUCT_LIMIT_HOME } from "../../constant/paging";
 function HomePage() {
   const { productList } = useSelector((state) => state.product);
 
@@ -53,7 +51,15 @@ function HomePage() {
                 USD {parseInt(item.price).toLocaleString()}{" "}
                 <AiFillInfoCircle style={{ color: "#ffc62d" }} />{" "}
               </h4>
-              <S.StyledBtnProduct>ADD TO CART</S.StyledBtnProduct>
+              <S.StyledBtnProduct>
+                ADD TO CART{" "}
+                <GiShoppingBag
+                  style={{
+                    fontSize: "16px",
+                    marginBottom: "-2px",
+                  }}
+                />{" "}
+              </S.StyledBtnProduct>
             </S.StyledProductItem>{" "}
           </Link>
         </Col>
@@ -79,6 +85,14 @@ function HomePage() {
                 </S.styledTextTitle>
                 <S.styledCustomButton onClick={() => handleSelectCategory()}>
                   DISCOVER
+                  <MdKeyboardArrowRight
+                    style={{
+                      lineHeight: "22px",
+                      fontSize: "22px",
+                      color: "black",
+                      marginBottom: "-6px",
+                    }}
+                  />
                 </S.styledCustomButton>
               </S.styledBoxContent>
             </S.styledCustomColContainer>
@@ -100,7 +114,17 @@ function HomePage() {
                   </span>{" "}
                   COLLECTION
                 </S.styledTextTitle>
-                <S.styledCustomButton>DISCOVER</S.styledCustomButton>
+                <S.styledCustomButton>
+                  DISCOVER
+                  <MdKeyboardArrowRight
+                    style={{
+                      lineHeight: "22px",
+                      fontSize: "22px",
+                      color: "black",
+                      marginBottom: "-6px",
+                    }}
+                  />
+                </S.styledCustomButton>
               </S.styledBoxContent>
             </S.styledCustomColContainer>
 
@@ -122,7 +146,17 @@ function HomePage() {
                   PRO
                 </S.styledTextTitle>
 
-                <S.styledCustomButton>BUY NOW</S.styledCustomButton>
+                <S.styledCustomButton>
+                  BUY NOW{" "}
+                  <MdKeyboardArrowRight
+                    style={{
+                      lineHeight: "22px",
+                      fontSize: "22px",
+                      color: "black",
+                      marginBottom: "-6px",
+                    }}
+                  />
+                </S.styledCustomButton>
               </S.styledBoxContent>
             </S.styledCustomColContainer>
 
@@ -270,7 +304,17 @@ function HomePage() {
                   See all the variations of the elegantly versatile Chronomat
                   for women.
                 </p>
-                <S.styledCustomButton>DISCOVER</S.styledCustomButton>
+                <S.styledCustomButton>
+                  DISCOVER{" "}
+                  <MdKeyboardArrowRight
+                    style={{
+                      lineHeight: "22px",
+                      fontSize: "22px",
+                      color: "black",
+                      marginBottom: "-6px",
+                    }}
+                  />
+                </S.styledCustomButton>
               </S.styledTextWoman>
             </Link>
           </S.styledCustomColWoman>
@@ -295,7 +339,17 @@ function HomePage() {
             >
               TURN YOUR PREOWNED WATCH INTO YOUR NEXT BREITLING
             </h2>
-            <S.styledCustomButton>START</S.styledCustomButton>
+            <S.styledCustomButton>
+              START{" "}
+              <MdKeyboardArrowRight
+                style={{
+                  lineHeight: "22px",
+                  fontSize: "22px",
+                  color: "black",
+                  marginBottom: "-6px",
+                }}
+              />
+            </S.styledCustomButton>
           </Col>
         </S.styledCustomRowNew>
       </div>
@@ -322,7 +376,17 @@ function HomePage() {
                 straps will nicely complement your Breitling watch and give it a
                 fresh new look.
               </S.styledContentStrapsService>
-              <S.styledCustomButton>BUY NOW</S.styledCustomButton>
+              <S.styledCustomButton>
+                BUY NOW{" "}
+                <MdKeyboardArrowRight
+                  style={{
+                    lineHeight: "22px",
+                    fontSize: "22px",
+                    color: "black",
+                    marginBottom: "-6px",
+                  }}
+                />
+              </S.styledCustomButton>
             </S.styledColServiceWrapper>
           </Col>
           <Col span={12}>
@@ -332,7 +396,17 @@ function HomePage() {
                 Explore our comprenhensive set of services and assistance
                 designed for you and your Breitling.
               </S.styledContentStrapsService>
-              <S.styledCustomButton>DISCOVER NOW</S.styledCustomButton>
+              <S.styledCustomButton>
+                DISCOVER NOW
+                <MdKeyboardArrowRight
+                  style={{
+                    lineHeight: "22px",
+                    fontSize: "22px",
+                    color: "black",
+                    marginBottom: "-6px",
+                  }}
+                />
+              </S.styledCustomButton>
             </S.styledColServiceWrapper>
           </Col>
         </S.styleRowFeature>
@@ -533,7 +607,17 @@ function HomePage() {
                     </Col>
                   </Row>
 
-                  <S.StyleButtonBook>BOOK AN APPOINTMENT</S.StyleButtonBook>
+                  <S.StyleButtonBook>
+                    BOOK AN APPOINTMENT
+                    <BiCalendar
+                      style={{
+                        lineHeight: "22px",
+                        fontSize: "16px",
+                        color: "black",
+                        marginBottom: "-3px",
+                      }}
+                    />
+                  </S.StyleButtonBook>
                 </div>
               </div>
             </S.styledCustomColStore>
@@ -724,7 +808,17 @@ function HomePage() {
                     </Col>
                   </Row>
 
-                  <S.StyleButtonBook>BOOK AN APPOINTMENT</S.StyleButtonBook>
+                  <S.StyleButtonBook>
+                    BOOK AN APPOINTMENT
+                    <BiCalendar
+                      style={{
+                        lineHeight: "22px",
+                        fontSize: "16px",
+                        color: "black",
+                        marginBottom: "-3px",
+                      }}
+                    />
+                  </S.StyleButtonBook>
                 </div>
               </div>
             </S.styledCustomColStore>
@@ -915,7 +1009,17 @@ function HomePage() {
                     </Col>
                   </Row>
 
-                  <S.StyleButtonBook>BOOK AN APPOINTMENT</S.StyleButtonBook>
+                  <S.StyleButtonBook>
+                    BOOK AN APPOINTMENT
+                    <BiCalendar
+                      style={{
+                        lineHeight: "22px",
+                        fontSize: "16px",
+                        color: "black",
+                        marginBottom: "-3px",
+                      }}
+                    />
+                  </S.StyleButtonBook>
                 </div>
               </div>
             </S.styledCustomColStore>

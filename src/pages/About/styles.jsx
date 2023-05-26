@@ -13,12 +13,14 @@ export const styleBackground = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 550px;
+  position: relative;
   object-fit: cover;
   font-size: 14px;
   line-height: 22px;
   padding: 30px;
   margin: 8px;
   text-align: center;
+
   > h1 {
     margin: 4px auto;
     font-size: 40px;
@@ -29,9 +31,11 @@ export const styleBackground = styled.div`
   > p {
     display: inline-block;
     color: #ffffff;
+    position: absolute;
     font-size: 18px;
     font-weight: 700;
     line-height: 22px;
+    bottom: 32px;
     margin: 10px 0px 0px;
     text-align: center;
     text-decoration: underline;
@@ -39,6 +43,9 @@ export const styleBackground = styled.div`
       cursor: pointer;
       color: #ffc62d;
     }
+  }
+  > h4 {
+    color: #ffffff;
   }
 `;
 export const styleTitle = styled.div`

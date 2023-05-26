@@ -23,7 +23,7 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import { BsShareFill } from "react-icons/bs";
-import { GiCheckMark, GiShoppingBag } from "react-icons/gi";
+import { GiShoppingBag } from "react-icons/gi";
 import { AiFillGift } from "react-icons/ai";
 
 import { useEffect, useMemo, useState } from "react";

@@ -138,7 +138,7 @@ export const styledCustomButton = styled.button`
   max-width: none;
   height: auto;
   margin: 16px 0 6px;
-  padding: 16px 32px;
+  padding: 16px 8px 16px 16px;
   font-weight: 700 !important;
   font-size: 14px;
   text-align: center;

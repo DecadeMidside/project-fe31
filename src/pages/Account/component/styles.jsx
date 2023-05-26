@@ -68,3 +68,13 @@ export const StyleButtonCreate = styled.button`
     cursor: pointer;
   }
 `;
+export const styledHistoriesWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+`;
+export const styledTable = styled.div`
+  max-width: 700px;
+  margin-bottom: 20%;
+`;

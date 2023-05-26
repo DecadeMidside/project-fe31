@@ -1,5 +1,15 @@
 import styled from "styled-components";
 
+export const styledWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+`;
+export const styledTable = styled.div`
+  max-width: 700px;
+`;
+
 export const styledCheckBtn = styled.button`
   display: inline-block;
   max-width: none;

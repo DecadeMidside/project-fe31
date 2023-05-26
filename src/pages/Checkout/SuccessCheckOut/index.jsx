@@ -1,12 +1,13 @@
-import { Result, Table } from "antd";
+import { Result, Table, Col, Row } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { getOrderList, orderProductAction } from "../../../redux/actions";
+import { getOrderList } from "../../../redux/actions";
 import { useEffect } from "react";
 import { ROUTES } from "../../../constant/routes";
 import moment from "moment";
 import * as S from "./styles";
 import { GiCheckMark, GiShoppingBag } from "react-icons/gi";
+import { SlLocationPin } from "react-icons/sl";
 
 const SuccessCheckoutPage = (values) => {
   const dispatch = useDispatch();
@@ -61,21 +62,59 @@ const SuccessCheckoutPage = (values) => {
   ];
 
   return (
-    <div>
+    <S.styledWrapper>
       <Result
         status="success"
         title="Successfully Purchased !"
         subTitle="Purchase Information"
         extra={[
-          <div>
+          <S.styledTable>
             <Table
               columns={tableColumns}
               dataSource={orderList.data}
               rowKey="id"
               pagination={false}
+              expandable={{
+                expandedRowRender: (record) => (
+                  <Row>
+                    <Col span={24}>
+                      {record.orderDetails.map((item) => (
+                        <Row
+                          key={item.id}
+                          gutter={[16, 16]}
+                          style={{
+                            textAlign: "center",
+                            fontSize: "20px",
+                            borderBottom: "1px solid green",
+                            alignItems: "center",
+                            fontWeight: 600,
+                          }}
+                        >
+                          <Col span={6}>{item.name}</Col>
+                          <Col span={6}>
+                            <img
+                              src={item.image}
+                              alt=""
+                              style={{ width: "100px", height: "100px" }}
+                            />
+                          </Col>
+                          <Col span={6}>
+                            {" "}
+                            {`  USD ${parseInt(item.price).toLocaleString()}`}
+                          </Col>
+                          <Col span={6}>
+                            <SlLocationPin />
+                            {record.address}, {record.wardName},{" "}
+                            {record.districtName},{record.cityName}`
+                          </Col>
+                        </Row>
+                      ))}
+                    </Col>
+                  </Row>
+                ),
+              }}
             />
-            ,
-          </div>,
+          </S.styledTable>,
           <S.styledCheckBtn
             onClick={() => navigate(ROUTES.USER.ORDEREDHISTORIES)}
           >
@@ -100,7 +139,10 @@ const SuccessCheckoutPage = (values) => {
           </S.styledContinueBtn>,
         ]}
       />
-    </div>
+    </S.styledWrapper>
   );
 };
 export default SuccessCheckoutPage;
+//
+
+//
