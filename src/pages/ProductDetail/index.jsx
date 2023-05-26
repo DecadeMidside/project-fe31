@@ -441,6 +441,7 @@ function ProductDetail() {
       <S.styleTechnical>
         <h1>THE STORY</h1>
         <S.styleContent
+          style={{ fontSize: "14px" }}
           dangerouslySetInnerHTML={{ __html: productDetail.data.content }}
         ></S.styleContent>
       </S.styleTechnical>

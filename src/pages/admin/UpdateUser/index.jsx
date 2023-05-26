@@ -92,10 +92,7 @@ function UpdateUser() {
           name="role"
           rules={[{ required: true, message: "Required!" }]}
         >
-          <Select>
-            <Select.Option>admin</Select.Option>
-            <Select.Option>user</Select.Option>
-          </Select>
+          <Input />
         </Form.Item>
       </Form>
     </S.Wrapper>

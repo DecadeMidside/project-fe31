@@ -152,13 +152,13 @@ function UpdateProduct() {
     <S.Wrapper>
       <S.TopWrapper>
         <h3>Update Product</h3>
-        <Button
+        <S.StyledBtnProduct
           type="primary"
           // loading={updateProductData.load}
           onClick={() => updateForm.submit()}
         >
           Update
-        </Button>
+        </S.StyledBtnProduct>
       </S.TopWrapper>
       <Form
         form={updateForm}

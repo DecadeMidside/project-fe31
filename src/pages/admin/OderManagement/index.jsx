@@ -8,7 +8,7 @@ import {
 } from "../../../redux/actions";
 import { useEffect } from "react";
 import moment from "moment";
-
+import { SlLocationPin } from "react-icons/sl";
 import * as S from "./styles";
 
 const ORDER_STATUS = {
@@ -179,15 +179,28 @@ function OderManagement() {
                 <Row
                   key={item.id}
                   gutter={[16, 16]}
-                  style={{ textAlign: "center", fontSize: "20px" }}
+                  style={{
+                    textAlign: "center",
+                    fontSize: "20px",
+                    borderBottom: "1px solid green",
+                    alignItems: "center",
+                    fontWeight: 600,
+                  }}
                 >
-                  <Col span={8}>{item.name}</Col>
-                  <Col span={8}>
+                  <Col span={6}>{item.name}</Col>
+                  <Col span={6}>
+                    <img
+                      src={item.image}
+                      alt=""
+                      style={{ width: "100px", height: "100px" }}
+                    />
+                  </Col>
+                  <Col span={6}>
                     {" "}
                     {`  USD ${parseInt(item.price).toLocaleString()}`}
                   </Col>
-                  <Col span={8}>
-                    {" "}
+                  <Col span={6}>
+                    <SlLocationPin />
                     {record.address}, {record.wardName}, {record.districtName},
                     {record.cityName}`
                   </Col>

@@ -6,9 +6,11 @@ import {
   UserOutlined,
   CustomerServiceOutlined,
   UnorderedListOutlined,
+  LogoutOutlined,
 } from "@ant-design/icons";
 import { Space } from "antd";
-
+import { useDispatch } from "react-redux";
+import { logoutAction } from "../../../../redux/actions";
 import { ROUTES } from "../../../../constant/routes";
 
 import * as S from "./styles";
@@ -44,15 +46,32 @@ const SIDEBAR_ITEMS = [
     path: ROUTES.ADMIN.CATEGORIES_MANAGEMENT,
     icon: <UnorderedListOutlined />,
   },
+  {
+    label: "Log out",
+    path: ROUTES.USER.ACCOUNT,
+    icon: <LogoutOutlined />,
+  },
 ];
 
 function AdminSidebar(props) {
   const { isShowSidebar } = props;
+  const dispatch = useDispatch();
 
   const { pathname } = useLocation();
 
   const renderSidebarItems = () => {
     return SIDEBAR_ITEMS.map((item, index) => {
+      if (item.label === "Log out") {
+        return (
+          <S.SidebarItem key={index} onClick={() => dispatch(logoutAction())}>
+            <Space>
+              {item.icon}
+              {item.label}
+            </Space>
+          </S.SidebarItem>
+        );
+      }
+
       return (
         <S.SidebarItem
           key={index}
