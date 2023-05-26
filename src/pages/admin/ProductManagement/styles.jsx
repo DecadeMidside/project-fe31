@@ -44,7 +44,7 @@ export const styleCreate = styled.button`
   width: 150px;
   height: 50px;
   box-shadow: #ffffff 0px 0px 0px 2px;
-  border-radius: 4px;
+  border-radius: px;
   display: inline-block;
   background-color: #95ed95;
   font-size: 14px;
