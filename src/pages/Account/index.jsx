@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginAction } from "../../redux/actions";
 import { ROUTES } from "../../constant/routes";
 import { logoutAction } from "../../redux/actions";
-
+import { ImExit } from "react-icons/im";
 import { UserProfile, UpdatePassword } from "./component";
 import OrderHistories from "./component";
 
@@ -99,7 +99,13 @@ function AccountPage() {
                           }}
                         >
                           {" "}
-                          Log Out
+                          Log Out{" "}
+                          <ImExit
+                            style={{
+                              fontSize: "18px",
+                              marginBottom: "-3px",
+                            }}
+                          />
                         </S.StyleButtonCreate>
                       </div>
                     ),

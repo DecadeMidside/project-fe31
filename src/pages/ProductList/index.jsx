@@ -14,7 +14,9 @@ import {
   notification,
 } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { AiOutlineHeart, AiFillHeart, AiFillInfoCircle } from "react-icons/ai";
+import { AiFillInfoCircle } from "react-icons/ai";
+import { GiShoppingBag } from "react-icons/gi";
+
 import { ROUTES } from "../../constant/routes";
 import { PRODUCT_LIMIT } from "../../constant/paging";
 import {
@@ -152,7 +154,15 @@ function ProductList() {
                 USD {parseInt(item.price).toLocaleString()}
                 <AiFillInfoCircle style={{ color: "#ffc62d" }} />
               </h3>
-              <S.StyledBtnProduct>ADD TO CART</S.StyledBtnProduct>
+              <S.StyledBtnProduct>
+                ADD TO CART{" "}
+                <GiShoppingBag
+                  style={{
+                    fontSize: "16px",
+                    marginBottom: "-2px",
+                  }}
+                />{" "}
+              </S.StyledBtnProduct>
             </S.StyledProductItem>
           </Link>
         </Col>

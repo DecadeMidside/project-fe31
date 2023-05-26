@@ -22,6 +22,10 @@ import {
   MailOutlined,
   UserOutlined,
 } from "@ant-design/icons";
+import { BsShareFill } from "react-icons/bs";
+import { GiCheckMark, GiShoppingBag } from "react-icons/gi";
+import { AiFillGift } from "react-icons/ai";
+
 import { useEffect, useMemo, useState } from "react";
 import { Link, useParams, generatePath } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -188,7 +192,15 @@ function ProductDetail() {
                 USD {parseInt(item.price).toLocaleString()}{" "}
                 <AiFillInfoCircle style={{ color: "#ffc62d" }} />{" "}
               </h4>
-              <S.StyledBtnProduct>ADD TO CART</S.StyledBtnProduct>
+              <S.StyledBtnProduct>
+                ADD TO CART{" "}
+                <GiShoppingBag
+                  style={{
+                    fontSize: "16px",
+                    marginBottom: "-2px",
+                  }}
+                />
+              </S.StyledBtnProduct>
             </S.StyledProductItem>{" "}
           </Link>
         </Col>
@@ -230,22 +242,47 @@ function ProductDetail() {
               }
               onClick={() => handleToggleFavorite()}
             />
+            <BsShareFill
+              style={{
+                position: "absolute",
+                top: "40px",
+                right: "18px",
+                fontSize: "20px",
+                color: "#ffc62d",
+              }}
+            />
+
             <h1>{productDetail.data.name}</h1>
             <Space style={{ margin: "8px 0" }}>
               <Rate value={totalRate / reviewList.data.length || 0} disabled />
-              <span>{`(${(totalRate / reviewList.data.length).toFixed(
+              <span>{`(${(totalRate / reviewList.data.length || 0).toFixed(
                 1
               )})`}</span>
             </Space>
             <h3>USD {parseInt(productDetail.data.price).toLocaleString()}</h3>
             <h5>Boutique delivery available</h5>
             <S.styleButton outline={true} onClick={(id) => handleAddToBag(id)}>
-              ADD TO BAG
+              ADD TO BAG{" "}
+              <GiShoppingBag
+                style={{
+                  fontSize: "16px",
+                  marginBottom: "-2px",
+                }}
+              />
             </S.styleButton>
             <S.styleTextOr>
               <span>or</span>
             </S.styleTextOr>
-            <S.styleButton outline={false}> GIVE AS A GIFT</S.styleButton>
+            <S.styleButton outline={false}>
+              {" "}
+              GIVE AS A GIFT{" "}
+              <AiFillGift
+                style={{
+                  fontSize: "16px",
+                  marginBottom: "-2px",
+                }}
+              />{" "}
+            </S.styleButton>
             <S.styleCall>
               <FaPhoneAlt /> <span>CALL TO BUY </span>
             </S.styleCall>
