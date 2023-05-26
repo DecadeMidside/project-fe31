@@ -140,6 +140,7 @@ function UserManagement() {
         dataSource={userList?.data || []}
         rowKey="id"
         pagination={false}
+        loading={userList.load}
       />
     </div>
   );
