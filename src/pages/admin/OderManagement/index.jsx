@@ -1,6 +1,5 @@
-import { Space, Table, Row, Col } from "antd";
+import { Space, Table, Row, Col, Tag } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
 
 import {
   getOrderListAdmin,
@@ -12,41 +11,97 @@ import moment from "moment";
 
 import * as S from "./styles";
 
+const ORDER_STATUS = {
+  WAITING: "waiting",
+  SHIPPING: "shipping",
+  DELIVERED: "delivered",
+  CANCELLED: "cancelled",
+};
+
+const PAYMENT_METHOD = {
+  COD: "cod",
+  ATM: "atm",
+};
+
 function OderManagement() {
   const dispatch = useDispatch();
-  const { id } = useParams();
   const { orderList } = useSelector((state) => state.order);
-  console.log(
-    "🚀 ~ file: index.jsx:19 ~ OderManagement ~ orderList:",
-    orderList
-  );
 
   useEffect(() => {
-    dispatch(getOrderListAdmin({ id: id }));
-  }, []);
-  useEffect(() => {
+    dispatch(getOrderListAdmin());
     dispatch(getCityListAction());
   }, []);
-  // useEffect(() => {
-  //   dispatch(updateOrderAction());
-  // }, []);
-  const onAccept = (record) => {
-    const updatedOrderList = orderList.data.map((order) => {
-      if (order.id === record.id) {
-        return {
-          ...order,
-          status: "Pending",
-        };
-      }
-      return order;
-    });
+
+  const handleChangeStatusOrder = (id, status) => {
     dispatch(
       updateOrderAction({
-        data: updatedOrderList,
         id: id,
+        status: status,
       })
     );
   };
+
+  const renderOrderAction = (id, status) => {
+    if ([ORDER_STATUS.CANCELLED, ORDER_STATUS.DELIVERED].includes(status)) {
+      return null;
+    }
+    switch (status) {
+      case ORDER_STATUS.SHIPPING: {
+        return (
+          <S.StyledBtnProduct
+            type="primary"
+            outline={true}
+            onClick={() => handleChangeStatusOrder(id, ORDER_STATUS.DELIVERED)}
+          >
+            Delivered
+          </S.StyledBtnProduct>
+        );
+      }
+      case ORDER_STATUS.WAITING:
+      default: {
+        return (
+          <S.StyledBtnProduct
+            type="primary"
+            outline={true}
+            onClick={() => handleChangeStatusOrder(id, ORDER_STATUS.SHIPPING)}
+          >
+            Shipping
+          </S.StyledBtnProduct>
+        );
+      }
+    }
+  };
+
+  const renderOrderStatus = (status) => {
+    switch (status) {
+      case ORDER_STATUS.SHIPPING: {
+        return <Tag color="blue">SHIPPING</Tag>;
+      }
+      case ORDER_STATUS.DELIVERED: {
+        return <Tag color="green">DELIVERED</Tag>;
+      }
+      case ORDER_STATUS.CANCELLED: {
+        return <Tag>CANCELLED</Tag>;
+      }
+      case ORDER_STATUS.WAITING:
+      default: {
+        return <Tag color="gold">WAITING</Tag>;
+      }
+    }
+  };
+
+  const renderPaymentMethod = (paymentMethod) => {
+    switch (paymentMethod) {
+      case PAYMENT_METHOD.ATM: {
+        return <Tag color="blue">ATM</Tag>;
+      }
+      case PAYMENT_METHOD.COD:
+      default: {
+        return <Tag color="magenta">COD</Tag>;
+      }
+    }
+  };
+
   const tableColumns = [
     {
       title: "Ordered Codes",
@@ -68,11 +123,13 @@ function OderManagement() {
       title: "Status",
       dataIndex: "status",
       key: "status",
+      render: (status) => renderOrderStatus(status),
     },
     {
       title: "Payment Method",
       dataIndex: "paymentMethod",
       key: "paymentMethod",
+      render: (paymentMethod) => renderPaymentMethod(paymentMethod),
     },
     {
       title: "Total Price",
@@ -93,13 +150,16 @@ function OderManagement() {
       key: "action",
       render: (_, record) => (
         <Space>
-          <S.StyledBtnProduct
-            type="primary"
-            outline={true}
-            onClick={() => onAccept(record)}
-          >
-            Accept
-          </S.StyledBtnProduct>
+          {renderOrderAction(record.id, record.status)}
+          {record.status !== ORDER_STATUS.CANCELLED && (
+            <S.StyledBtnProduct
+              onClick={() =>
+                handleChangeStatusOrder(record.id, ORDER_STATUS.CANCELLED)
+              }
+            >
+              Cancelled
+            </S.StyledBtnProduct>
+          )}
         </Space>
       ),
     },

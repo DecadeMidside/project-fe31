@@ -580,9 +580,9 @@
       "wardName": "Phường Hiệp Thành",
       "userId": 1,
       "totalPrice": 8000,
-      "status": "wait for confirmation",
+      "status": "cancelled",
       "createdAt": 1685021085518,
-      "updatedAt": 1685021085519,
+      "updatedAt": 1685072781711,
       "isDelete": false,
       "id": 1
     }
