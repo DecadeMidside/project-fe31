@@ -8,11 +8,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginAction } from "../../redux/actions";
 import { ROUTES } from "../../constant/routes";
 import { logoutAction } from "../../redux/actions";
-
+import { ImExit } from "react-icons/im";
 import { UserProfile, UpdatePassword } from "./component";
 import OrderHistories from "./component";
 
 import * as S from "./styles";
+import ChangePassword from "./component/ChangePassword";
+import FavoriteProduct from "./component/FavoriteProduct";
 function AccountPage() {
   const [loginForm] = Form.useForm();
   const navigate = useNavigate();
@@ -70,15 +72,20 @@ function AccountPage() {
                     key: 2,
                     children: <OrderHistories />,
                   },
+                  {
+                    label: "Favorites",
+                    key: 3,
+                    children: <FavoriteProduct />,
+                  },
 
                   {
                     label: "Changed Password",
-                    key: 3,
-                    children: <UpdatePassword />,
+                    key: 4,
+                    children: <ChangePassword />,
                   },
                   {
                     label: "Logout",
-                    key: 4,
+                    key: 5,
                     children: (
                       <div>
                         {" "}
@@ -99,7 +106,13 @@ function AccountPage() {
                           }}
                         >
                           {" "}
-                          Log Out
+                          Log Out{" "}
+                          <ImExit
+                            style={{
+                              fontSize: "18px",
+                              marginBottom: "-3px",
+                            }}
+                          />
                         </S.StyleButtonCreate>
                       </div>
                     ),

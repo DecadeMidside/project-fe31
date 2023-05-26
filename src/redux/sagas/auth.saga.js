@@ -17,13 +17,13 @@ function* loginSaga(action) {
       },
     });
     yield notification.success({
-      message: "Đăng nhập thành công  ",
+      message: "Successfully Login  ",
     });
   } catch (e) {
     yield put({
       type: FAIL(AUTH_ACTION.LOGIN),
       payload: {
-        error: "Email hoặc password không đúng!",
+        error: "Email or Password is not found!",
       },
     });
   }
@@ -41,7 +41,7 @@ function* registerSaga(action) {
       },
     });
     yield notification.success({
-      message: "Đăng ký tài khoản thành công ",
+      message: "Successful Account Registration ",
     });
   } catch (e) {
     yield put({
@@ -73,30 +73,42 @@ function* getUserInfoSaga(action) {
     });
   }
 }
-// function* getUserSaga(action) {
-//   try {
-//     const { data } = action.payload;
-//     const result = yield axios.get(`http://localhost:4000/users`, data);
-
-//     yield put({
-//       type: SUCCESS(AUTH_ACTION.GET_USER_INFO),
-//       payload: {
-//         data: result.data,
-//       },
-//     });
-//   } catch (e) {
-//     yield put({
-//       type: FAIL(AUTH_ACTION.GET_USER_INFO),
-//       payload: {
-//         error: "error",
-//       },
-//     });
-//   }
-// }
+function* changePasswordSaga(action) {
+  try {
+    const { id, data, callback } = action.payload;
+    yield axios.post("http://localhost:4000/login", {
+      email: data.email,
+      password: data.password,
+    });
+    const result = yield axios.patch(`http://localhost:4000/users/${id}`, {
+      password: data.newPassword,
+    });
+    callback();
+    yield put({
+      type: SUCCESS(AUTH_ACTION.CHANGE_PASSWORD),
+      payload: {
+        data: result.data,
+      },
+    });
+    yield notification.success({
+      message: "Changed Password !  ",
+    });
+  } catch (e) {
+    yield put({
+      type: FAIL(AUTH_ACTION.CHANGE_PASSWORD),
+      payload: {
+        error: "Lỗi!",
+      },
+    });
+    yield notification.error({
+      message: "Incorrect Password !  ",
+    });
+  }
+}
 
 export default function* authSaga() {
   yield takeEvery(REQUEST(AUTH_ACTION.LOGIN), loginSaga);
   yield takeEvery(REQUEST(AUTH_ACTION.REGISTER), registerSaga);
   yield takeEvery(REQUEST(AUTH_ACTION.GET_USER_INFO), getUserInfoSaga);
-  // yield takeEvery(REQUEST(AUTH_ACTION.GET_USER), getUserSaga);
+  yield takeEvery(REQUEST(AUTH_ACTION.CHANGE_PASSWORD), changePasswordSaga);
 }

@@ -1,8 +1,18 @@
-import { Checkbox, Form, Select, Upload, DatePicker, Table } from "antd";
+import {
+  Checkbox,
+  Form,
+  Select,
+  Upload,
+  DatePicker,
+  Table,
+  Col,
+  Row,
+} from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { getOrderList, getFavoriteListAction } from "../../../redux/actions";
 import { useEffect } from "react";
+import { SlLocationPin } from "react-icons/sl";
 import moment from "moment";
 
 import * as S from "./styles";
@@ -181,14 +191,41 @@ function OrderHistories() {
       pagination={false}
       expandable={{
         expandedRowRender: (record) => (
-          <ul>
-            {record.orderDetails.map((item) => (
-              <li key={item.id}>
-                {item.name}
-                {` - USD ${parseInt(item.price).toLocaleString()}`}
-              </li>
-            ))}
-          </ul>
+          <Row>
+            <Col span={24}>
+              {record.orderDetails.map((item) => (
+                <Row
+                  key={item.id}
+                  gutter={[16, 16]}
+                  style={{
+                    textAlign: "center",
+                    fontSize: "20px",
+                    borderBottom: "1px solid green",
+                    alignItems: "center",
+                    fontWeight: 600,
+                  }}
+                >
+                  <Col span={6}>{item.name}</Col>
+                  <Col span={6}>
+                    <img
+                      src={item.image}
+                      alt=""
+                      style={{ width: "100px", height: "100px" }}
+                    />
+                  </Col>
+                  <Col span={6}>
+                    {" "}
+                    {`  USD ${parseInt(item.price).toLocaleString()}`}
+                  </Col>
+                  <Col span={6}>
+                    <SlLocationPin />
+                    {record.address}, {record.wardName}, {record.districtName},
+                    {record.cityName}`
+                  </Col>
+                </Row>
+              ))}
+            </Col>
+          </Row>
         ),
       }}
     />

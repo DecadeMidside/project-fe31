@@ -67,7 +67,7 @@ function* getFavoriteListSaga(action) {
     const result = yield axios.get("http://localhost:4000/favorites", {
       params: {
         userId: userId,
-        _expand: "product",
+        _expand: ["products", "users"],
         isDelete: false,
       },
     });

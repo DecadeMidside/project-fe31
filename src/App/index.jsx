@@ -17,6 +17,7 @@ import RegisterPage from "../pages/Register";
 import ProductList from "../pages/ProductList";
 import ProductDetail from "../pages/ProductDetail";
 import CartPage from "../pages/Cart";
+// import FavoriteProduct from "../pages/Account/FavoriteProduct";
 import CheckoutPage from "../pages/Checkout";
 import SuccessCheckoutPage from "../pages/Checkout/SuccessCheckOut";
 import AboutPage from "../pages/About";
@@ -63,6 +64,7 @@ function App() {
           />
 
           <Route path={ROUTES.USER.REGISTER} element={<RegisterPage />} />
+          {/* <Route path={ROUTES.USER.FAVORITES} element={<FavoriteProduct />} /> */}
           <Route path={ROUTES.USER.PRODUCT_LIST} element={<ProductList />} />
           <Route path={ROUTES.USER.CHECKOUT} element={<CheckoutPage />} />
           <Route

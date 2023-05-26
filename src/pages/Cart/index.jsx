@@ -3,6 +3,8 @@ import { Row, Col } from "antd";
 import { useEffect, useMemo, useState } from "react";
 import { Link, useParams, generatePath, useNavigate } from "react-router-dom";
 import { ROUTES } from "../../constant/routes";
+import { GiShoppingBag, GiPhone } from "react-icons/gi";
+import { FaPhone } from "react-icons/fa";
 
 import { useDispatch, useSelector } from "react-redux";
 import { removeCartItemAction } from "../../redux/actions";
@@ -28,7 +30,13 @@ function CartPage() {
           <h1>YOUR SHOPPING BAG IS EMPTY</h1>
           <p>Free shipping and returns</p>
           <button onClick={() => navigate(ROUTES.USER.PRODUCT_LIST)}>
-            CONTINUE
+            CONTINUE{" "}
+            <GiShoppingBag
+              style={{
+                fontSize: "18px",
+                marginBottom: "-2px",
+              }}
+            />
           </button>
         </S.styleEmpty>
         <S.NeedHelp>
@@ -38,7 +46,15 @@ function CartPage() {
           <div>
             <div>ONLINE BOUTIQUE USA</div>
             <div>HANGAR 7, 206 DANBURY ROAD WILTON</div>
-            <S.styleButton>CONTACT US</S.styleButton>
+            <S.styleButton>
+              CONTACT US{" "}
+              <FaPhone
+                style={{
+                  fontSize: "16px",
+                  margin: "0 0 -2px 2px",
+                }}
+              />
+            </S.styleButton>
           </div>
         </S.NeedHelp>
 
