@@ -13,6 +13,11 @@ const initialState = {
     load: false,
     error: "",
   },
+  createProductData: {
+    data: {},
+    load: false,
+    error: "",
+  },
 };
 
 const productReducer = createReducer(initialState, {

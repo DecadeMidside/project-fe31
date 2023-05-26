@@ -171,6 +171,7 @@ function OderManagement() {
       dataSource={orderList.data}
       rowKey="id"
       pagination={false}
+      loading={orderList.load}
       expandable={{
         expandedRowRender: (record) => (
           <Row>

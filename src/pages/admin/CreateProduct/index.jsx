@@ -110,7 +110,7 @@ const CreateProductPage = () => {
         <h3>Create Product</h3>
         <S.styleCreate
           type="primary"
-          // loading={createProductData.load}
+          loading={createProductData.load}
           onClick={() => createForm.submit()}
         >
           Create
